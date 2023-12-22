@@ -22,14 +22,16 @@ namespace boombang_emulator.src.Handlers.Auth
             client.jwtToken = clientMessage.parameters[0, 0];
             client.websocketToken = clientMessage.parameters[1, 0];
 
-            User? user = await UserService.GetUser(client);
-            if (user != null)
-            {
-                Console.WriteLine("User: " + user.Username);
-                client.user = user;
-                Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
-                UserPacket.Invoke(client);
-            }
+            //User? user = await UserService.GetUser(client);
+            //if (user != null)
+            //{
+            //    Console.WriteLine("User: " + user.Username);
+            //    client.user = user;
+            //    Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
+            //    UserPacket.Invoke(client);
+            //}
+            Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
+            UserPacket.Invoke(client);
         }
     }
 }

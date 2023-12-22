@@ -18,8 +18,6 @@ namespace boombang_emulator.src.Services
             try
             {
                 string url = client.apiRoute +  "/game/user";
-                Console.WriteLine("URL: " + url);
-                Console.WriteLine("JWT: " + client.jwtToken);
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", client.jwtToken);
                 var jsonContent = JsonConvert.SerializeObject(requestData);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
