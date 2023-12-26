@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace boombang_emulator.src.Models
 {
@@ -20,6 +16,8 @@ namespace boombang_emulator.src.Models
         public string MapArea { get; set; }
         public string RespawnPositions { get; set; }
         public bool Active { get; set; }
+        public Dictionary<int, Client> Clients { get; set; }
+        public MapArea MapAreaObject { get; set; }
         public Scenery(Dictionary<string, object> data)
         {
             this.Id = Convert.ToInt32(data["id"]);
@@ -33,6 +31,58 @@ namespace boombang_emulator.src.Models
             this.MapArea = (string)data["map_area"];
             this.RespawnPositions = (string)data["respawn_positions"];
             this.Active = Convert.ToBoolean(Convert.ToInt32(data["active"]));
+            this.Clients = [];
+            this.MapAreaObject = new MapArea(this.MapArea, this.RespawnPositions);
+        }
+        public void RemoveClient(Client client)
+        {
+            Clients.Remove(Clients.FirstOrDefault(x => x.Value.User.Id == client.User.Id).Key);
+            client.User.SetScenery(null);
+        }
+        public Client? GetClientInPosition(Point position)
+        {
+            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
+            {
+                if (sceneryClient.Value.User.GetActualPositionInScenery() == position)
+                {
+                    return sceneryClient.Value;
+                }
+            }
+            return null;
+        }
+        public int GetClientIdentifier(Client client)
+        {
+            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
+            {
+                if (sceneryClient.Value == client)
+                {
+                    return sceneryClient.Key;
+                }
+            }
+            client.Close();
+            return 0;
+        }
+        public int GetClientIdentifier(int userId)
+        {
+            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
+            {
+                if (sceneryClient.Value.User.Id == userId)
+                {
+                    return sceneryClient.Key;
+                }
+            }
+            return 0;
+        }
+        public void SendData(ServerMessage server, Client? client = null)
+        {
+            foreach (Client sceneryClient in this.Clients.Values)
+            {
+                if (sceneryClient == client)
+                {
+                    continue;
+                }
+                sceneryClient.SendData(server);
+            }
         }
         public string ShowData()
         {

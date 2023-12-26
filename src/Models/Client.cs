@@ -1,80 +1,67 @@
 ﻿using boombang_emulator.src.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace boombang_emulator.src.Models
 {
     internal class Client
     {
-        private Socket socket;
-        private byte[] buffer;
-        private Encoding encoding;
-        private int port;
-        private int encipherConstant;
-        private int encipherMorph;
-        private int decipherConstant;
-        private int decipherMorph;
-        public string? jwtToken;
-        public string? websocketToken;
-        public string apiRoute;
-        public User? user;
-        public Client(Socket socket, int port)
+        private Socket Socket { get; set; }
+        private byte[] Buffer { get; set; }
+        private Encoding Encoding { get; set; }
+        private int EncipherConstant { get; set; }
+        private int EncipherMorph { get; set; }
+        private int DecipherConstant { get; set; }
+        private int DecipherMorph { get; set; }
+        public string? JwtToken { get; set; }
+        public string? WebsocketToken { get; set; }
+        public User? User { get; set; }
+        public Client(Socket socket)
         {
-            this.socket = socket;
-            this.port = port;
-            this.buffer = new byte[2048];
-            this.encoding = Encoding.GetEncoding("iso-8859-1");
-            this.encipherConstant = 135;
-            this.decipherConstant = 135;
-            this.apiRoute = "http://localhost:8000/api";
-            this.socket.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
+            this.Socket = socket;
+            this.Buffer = new byte[2048];
+            this.Encoding = Encoding.GetEncoding("iso-8859-1");
+            this.EncipherConstant = 135;
+            this.DecipherConstant = 135;
+            this.Socket.BeginReceive(this.Buffer, 0, this.Buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
         }
-
         private void OnReceive(IAsyncResult iAr)
         {
             try
             {
-                int length = this.socket.EndReceive(iAr);
+                int length = this.Socket.EndReceive(iAr);
                 if (length > 0)
                 {
-                    if (this.socket == null)
+                    if (this.Socket == null)
                     {
                         return;
                     }
-                    int Length = this.socket.EndReceive(iAr);
-                    if (Length == 0 || Length > this.buffer.Length)
+                    int Length = this.Socket.EndReceive(iAr);
+                    if (Length == 0 || Length > this.Buffer.Length)
                     {
-                        this.socket.Close();
+                        this.Socket.Close();
                         return;
                     }
                     char[] Chars = new char[Length];
-                    this.encoding.GetChars(buffer, 0, Length, Chars, 0);
-                    string data = new string(Chars);
+                    this.Encoding.GetChars(Buffer, 0, Length, Chars, 0);
+                    string data = new(Chars);
 
                     if (!Policy(data))
                     {
-                        data = this.encoding.GetString(Decrypt(this.encoding.GetBytes(data)));
+                        data = this.Encoding.GetString(Decrypt(this.Encoding.GetBytes(data)));
                         ProcessData(data);
                     }
 
-                    this.socket.BeginReceive(this.buffer, 0, this.buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
+                    this.Socket.BeginReceive(this.Buffer, 0, this.Buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
                 }
                 else
                 {
-                    this.socket.Close();
+                    this.Socket.Close();
                 }
             }
             catch (Exception)
             {
-                if (this.socket != null)
-                {
-                    this.socket.Close();
-                }
+                this.Close();
             }
         }
 
@@ -82,29 +69,29 @@ namespace boombang_emulator.src.Models
         {
             try
             {
-                if (this.socket == null || !this.socket.Connected) { 
+                if (this.Socket == null || !this.Socket.Connected) { 
                     return; 
                 }
                 if (data[0] != Convert.ToChar(177))
                 {
-                    this.socket.Close();
+                    this.Socket.Close();
                 }
                 string[] datas = data.Split(Convert.ToChar(177));
                 for (int i = 1; i < datas.Length; i++)
                 {
-                    ClientMessage clientMessage = new ClientMessage(Convert.ToChar(177) + datas[i]);
+                    ClientMessage clientMessage = new(Convert.ToChar(177) + datas[i]);
                     HandlerController.SendHandler(this, clientMessage);
                 }
             }
             catch {
-                this.socket.Close();
+                this.Socket.Close();
             }
         }
         private bool Policy(string data)
         {
             if (data.Contains("<policy-file-request/>"))
             {
-                this.socket.Send(this.encoding.GetBytes("<?xml version=\"1.0\"?>\r\n<!DOCTYPE cross-domain-policy SYSTEM \"/xml/dtds/cross-domain-policy.dtd\">\r\n<cross-domain-policy>\r\n<allow-access-from domain=\"*\" to-ports=\"" + this.port + "\" />\r\n</cross-domain-policy>\0"));
+                this.Socket.Send(this.Encoding.GetBytes("<?xml version=\"1.0\"?>\r\n<!DOCTYPE cross-domain-policy SYSTEM \"/xml/dtds/cross-domain-policy.dtd\">\r\n<cross-domain-policy>\r\n<allow-access-from domain=\"*\" to-ports=\"" + Config.port + "\" />\r\n</cross-domain-policy>\0"));
                 return true;
             }
             return false;
@@ -119,11 +106,11 @@ namespace boombang_emulator.src.Models
             while (Length-- > 0)
             {
                 ActualByte = Data[Index];
-                Morph = (ActualByte ^ this.decipherConstant) ^ this.decipherMorph;
+                Morph = (ActualByte ^ this.DecipherConstant) ^ this.DecipherMorph;
                 Buffer[Index] = (byte)Morph;
                 Index++;
-                this.decipherConstant = (1103515245 * this.decipherConstant) + 12344;
-                this.decipherMorph = Morph;
+                this.DecipherConstant = (1103515245 * this.DecipherConstant) + 12344;
+                this.DecipherMorph = Morph;
             }
             return Buffer;
         }
@@ -137,30 +124,35 @@ namespace boombang_emulator.src.Models
             while (Length-- > 0)
             {
                 ActualByte = Data[Index];
-                Morph = (ActualByte ^ this.encipherConstant) ^ this.encipherMorph;
+                Morph = (ActualByte ^ this.EncipherConstant) ^ this.EncipherMorph;
                 Buffer[Index] = (byte)Morph;
                 Index++;
-                this.encipherConstant = (1103515245 * this.encipherConstant) + 12344;
-                this.encipherMorph = ActualByte;
+                this.EncipherConstant = (1103515245 * this.EncipherConstant) + 12344;
+                this.EncipherMorph = ActualByte;
             }
             return Buffer;
         }
         public void Close()
         {
-            if (this.socket != null && this.socket.Connected)
+            if (this.Socket != null && this.Socket.Connected)
             {
-                this.socket.Close();
+                this.Socket.Close();
+            }
+            if (this.User != null && this.User.Scenery != null)
+            {
+                this.User.Scenery.RemoveClient(this);
+                this.SendData(new ServerMessage([128, 124]));
             }
         }
         public Socket GetSocket()
         {
-            return this.socket;
+            return this.Socket;
         }
         public void SendData(ServerMessage serverMessage)
         {
-            if (this.socket != null && this.socket.Connected)
+            if (this.Socket != null && this.Socket.Connected)
             {
-                this.socket.Send(Encrypt(serverMessage.GetContent()));
+                this.Socket.Send(Encrypt(serverMessage.GetContent()));
             }   
         }
     }

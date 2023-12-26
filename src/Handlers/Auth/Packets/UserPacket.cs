@@ -1,10 +1,4 @@
 ﻿using boombang_emulator.src.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace boombang_emulator.src.Handlers.Auth.Packets
 {
@@ -12,40 +6,45 @@ namespace boombang_emulator.src.Handlers.Auth.Packets
     {
         public static void Invoke(Client client)
         {
-            ServerMessage server = new ServerMessage(new byte[] { 120, 121 });
-            server.AppendParameter(1);
-            server.AppendParameter("God");//Nombre
-            server.AppendParameter(2); //Avatar
-            server.AppendParameter("64060E000000F6FAFFF6FAFFF6FAFFFFFFFFF6FAFF"); //Colores
-            server.AppendParameter("x@gmail.com"); //Email
-            server.AppendParameter(20); //Edad
-            server.AppendParameter(2);
-            server.AppendParameter("BoomBang");
-            server.AppendParameter(0);
-            server.AppendParameter(1);//Id usuario
-            server.AppendParameter(1);//Admin
-            server.AppendParameter(1000);//Creditos Oro
-            server.AppendParameter(1000);//Creditos Plata
-            server.AppendParameter(200);
-            server.AppendParameter(5);
-            server.AppendParameter(0);
-            server.AppendParameter(0);//Regalo peuqeño
-            server.AppendParameter(1);//Concurso Actual
-            server.AppendParameter(0);//puntos en concurso
-            server.AppendParameter(0); //Tutorial islas
-            server.AppendParameter("ES");
-            server.AppendParameter(0);
-            server.AppendParameter(0);
-            server.AppendParameter(-1); //Vip
-            server.AppendParameter(-1);// Fecha de caducidad VIP
-            server.AppendParameter(1);
-            server.AppendParameter(0);// Clave de seguridad 0= off 1 = ON
-            server.AppendParameter(0);
-            server.AppendParameter(0);
-            server.AppendParameter(new object[] { 1, 0 });
-            server.AppendParameter(0);
-            server.AppendParameter(0);
-            client.SendData(server);
+            if (client.User == null)
+            {
+                throw new Exception("-");
+            }
+
+            ServerMessage serverMessage = new([120, 121]);
+            serverMessage.AppendParameter(1);
+            serverMessage.AppendParameter(client.User.Username);//Nombre
+            serverMessage.AppendParameter(2); //Avatar
+            serverMessage.AppendParameter("64060E000000F6FAFFF6FAFFF6FAFFFFFFFFF6FAFF"); //Colores
+            serverMessage.AppendParameter("x@gmail.com"); //Email
+            serverMessage.AppendParameter(20); //Edad
+            serverMessage.AppendParameter(2);
+            serverMessage.AppendParameter("BoomBang");
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(1);//Id usuario
+            serverMessage.AppendParameter(1);//Admin
+            serverMessage.AppendParameter(1000);//Creditos Oro
+            serverMessage.AppendParameter(1000);//Creditos Plata
+            serverMessage.AppendParameter(200);
+            serverMessage.AppendParameter(5);
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(0);//Regalo peuqeño
+            serverMessage.AppendParameter(1);//Concurso Actual
+            serverMessage.AppendParameter(0);//puntos en concurso
+            serverMessage.AppendParameter(0); //Tutorial islas
+            serverMessage.AppendParameter("ES");
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(-1); //Vip
+            serverMessage.AppendParameter(-1);// Fecha de caducidad VIP
+            serverMessage.AppendParameter(1);
+            serverMessage.AppendParameter(0);// Clave de seguridad 0= off 1 = ON
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter([1, 0]);
+            serverMessage.AppendParameter(0);
+            serverMessage.AppendParameter(0);
+            client.SendData(serverMessage);
         }
     }
 }

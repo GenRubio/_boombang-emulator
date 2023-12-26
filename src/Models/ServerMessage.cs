@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace boombang_emulator.src.Models
 {
     internal class ServerMessage
     {
-        private List<byte> Header = new List<byte>();
-        private List<object[]> Parameters = new List<object[]>();
-        private Encoding Encoding;
+        private List<byte> Header = [];
+        private List<object[]> Parameters = [];
+        private readonly Encoding Encoding;
         public ServerMessage(byte[] Header, params object[] Parameters)
         {
             this.Encoding = Encoding.GetEncoding("iso-8859-1");
@@ -21,12 +17,12 @@ namespace boombang_emulator.src.Models
 
             foreach (object Parameter in Parameters)
             {
-                this.Parameters.Add(new object[] { Parameter });
+                this.Parameters.Add([Parameter]);
             }
         }
         public void AppendParameter(object Parameter)
         {
-            this.Parameters.Add(new object[] { Parameter });
+            this.Parameters.Add([Parameter]);
         }
         public void AppendParameter(object[] ParameterGroup)
         {
@@ -34,7 +30,7 @@ namespace boombang_emulator.src.Models
         }
         public byte[] GetContent()
         {
-            List<byte> Message = new List<byte>();
+            List<byte> Message = [];
             Message.Add(0xb1);
             foreach (byte ActualHeader in Header)
             {
@@ -65,12 +61,12 @@ namespace boombang_emulator.src.Models
                 Message.Add(0xb2);
             }
             Message.Add(0xb0);
-            return Message.ToArray();
+            return [.. Message];
         }
 
         public new string ToString()
         {
-            List<byte> Message = new List<byte>();
+            List<byte> Message = [];
             Message.Add(0xb1);
             foreach (byte ActualHeader in Header)
             {

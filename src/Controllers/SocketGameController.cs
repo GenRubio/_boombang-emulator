@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using boombang_emulator.src.Models;
 
 namespace boombang_emulator.src.Controllers
 {
     internal class SocketGameController
     {
-        private static int port = 2001;
-        private static Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        public static List<Client> clients = new List<Client>();
+        private static Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        public static List<Models.Client> clients = [];
 
         public static void Invoke()
         {
-            socket.Bind(new IPEndPoint(IPAddress.Any, port));
+            socket.Bind(new IPEndPoint(IPAddress.Any, Config.port));
             socket.Listen(100);
 
             Listen();
@@ -39,7 +32,7 @@ namespace boombang_emulator.src.Controllers
                     string? sessionEndPoint = session.RemoteEndPoint.ToString();
                     Console.WriteLine("Conexión aceptada desde: " + sessionEndPoint);
 
-                    Client? errorClient = clients.Find(c => {
+                    Models.Client? errorClient = clients.Find(c => {
                         try
                         {
                             return c.GetSocket().RemoteEndPoint.ToString() == sessionEndPoint;
@@ -54,7 +47,7 @@ namespace boombang_emulator.src.Controllers
                     {
                         clients.Remove(errorClient);
                     }
-                    clients.Add(new Client(session, port));
+                    clients.Add(new Models.Client(session));
                     Listen();
                 }
             }

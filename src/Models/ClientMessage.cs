@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace boombang_emulator.src.Models
 {
     internal class ClientMessage
     {
-        private string data;
-        private List<int> headers;
-        public string[,] parameters;
+        private string Data { get; set; }
+        private List<int> Headers { get; set; }
+        public string[,] Parameters { get; set; }
         public ClientMessage(string data)
         {
-            this.data = data;
-            this.headers = new List<int>();
+            this.Data = data;
+            this.Headers = [];
 
             foreach (string header in Regex.Split(Regex.Split(data.Substring(1), "³²")[0], "³"))
             {
                 if (header.Length == 1)
                 {
-                    this.headers.Add(Convert.ToInt32(Convert.ToChar(header)));
+                    this.Headers.Add(Convert.ToInt32(Convert.ToChar(header)));
                 }
                 else
                 {
-                    this.headers.Add(0);
+                    this.Headers.Add(0);
                 }
             }
 
@@ -43,27 +37,25 @@ namespace boombang_emulator.src.Models
                 }
             }
 
-            this.parameters = new string[data.Split('²').Length, subParametersLength];
+            this.Parameters = new string[data.Split('²').Length, subParametersLength];
 
             for (int i = 1; i < data.Split('²').Length; i++)
             {
                 for (int j = 0; j < data.Split('²')[i].Split('³').Length - 1; j++)
                 {
-                    this.parameters[i - 1, j] = data.Split('²')[i].Split('³')[j];
+                    this.Parameters[i - 1, j] = data.Split('²')[i].Split('³')[j];
                 }
             }
 
         }
-
         public string GetData()
         {
-            return this.data;
+            return this.Data;
         }
-
         public string GetHandler()
         {
             string Handler = "Method";
-            foreach (int ActualHeader in this.headers)
+            foreach (int ActualHeader in this.Headers)
             {
                 Handler += "_" + ActualHeader;
             }
@@ -72,11 +64,15 @@ namespace boombang_emulator.src.Models
         public int GetInteger()
         {
             string num = "";
-            foreach (int ActualHeader in this.headers)
+            foreach (int ActualHeader in this.Headers)
             {
                 num += ActualHeader;
             }
             return Convert.ToInt32(num);
+        }
+        public int GetHeader()
+        {
+            return this.GetInteger();
         }
         public new string ToString()
         {
