@@ -6,7 +6,16 @@
     <RootNamespace>boombang_emulator</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="libs\Newtonsoft.Json.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="libs\Newtonsoft.Json.dll" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

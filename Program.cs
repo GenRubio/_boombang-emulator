@@ -1,4 +1,5 @@
-﻿using boombang_emulator.src.Controllers;
+﻿using boombang_emulator;
+using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Loaders;
 
 Console.Title = "Boombang Emulator";
@@ -6,6 +7,8 @@ Console.WriteLine("Iniciando servidor...");
 
 try
 {
+    AppDomain.CurrentDomain.AssemblyResolve += Embedding.CurrentDomain_AssemblyResolve;
+
     HandlerController.Invoke();
     SocketGameController.Invoke();
 
