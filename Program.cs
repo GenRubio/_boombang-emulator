@@ -19,7 +19,6 @@ catch (Exception ex)
     Console.WriteLine("-----------------------------------------------------------");
     Console.ReadKey(true);
     Console.WriteLine("Saliendo...");
-    return;
 }
 
 Console.WriteLine("-----------------------------------------------------------");

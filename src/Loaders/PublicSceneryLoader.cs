@@ -15,6 +15,7 @@ namespace boombang_emulator.src.Loaders
                 foreach (var data in dataList)
                 {
                     int key = autoIncrement++;
+
                     PublicAreaScenery sceneryArea = new(key, data);
                     publicSceneries.Add(key, sceneryArea);
                 }
