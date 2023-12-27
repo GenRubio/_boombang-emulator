@@ -10,7 +10,9 @@ try
     AppDomain.CurrentDomain.AssemblyResolve += Embedding.CurrentDomain_AssemblyResolve;
 
     HandlerController.Invoke();
+    HandlerWebController.Invoke();
     SocketGameController.Invoke();
+    SocketWebController.Invoke();
 
     await SceneryLoader.Invoke();
     await PublicSceneryLoader.Invoke();

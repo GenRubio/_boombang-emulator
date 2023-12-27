@@ -1,5 +1,8 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Handlers.Scenery.Packets;
+using boombang_emulator.src.Pathfinding;
 using System.Net.Sockets;
+using System.Net.WebSockets;
 using System.Text;
 
 namespace boombang_emulator.src.Models
@@ -16,6 +19,7 @@ namespace boombang_emulator.src.Models
         public string? JwtToken { get; set; }
         public string? WebsocketToken { get; set; }
         public User? User { get; set; }
+        public WebSocket WebSocket { get; set; }
         public Client(Socket socket)
         {
             this.Socket = socket;
@@ -39,7 +43,7 @@ namespace boombang_emulator.src.Models
                     int Length = this.Socket.EndReceive(iAr);
                     if (Length == 0 || Length > this.Buffer.Length)
                     {
-                        this.Socket.Close();
+                        this.Close();
                         return;
                     }
                     char[] Chars = new char[Length];
@@ -56,7 +60,7 @@ namespace boombang_emulator.src.Models
                 }
                 else
                 {
-                    this.Socket.Close();
+                    this.Close();
                 }
             }
             catch (Exception)
@@ -74,7 +78,7 @@ namespace boombang_emulator.src.Models
                 }
                 if (data[0] != Convert.ToChar(177))
                 {
-                    this.Socket.Close();
+                    this.Close();
                 }
                 string[] datas = data.Split(Convert.ToChar(177));
                 for (int i = 1; i < datas.Length; i++)
@@ -84,7 +88,7 @@ namespace boombang_emulator.src.Models
                 }
             }
             catch {
-                this.Socket.Close();
+                this.Close();
             }
         }
         private bool Policy(string data)
@@ -143,6 +147,7 @@ namespace boombang_emulator.src.Models
                 this.User.Scenery.RemoveClient(this);
                 this.SendData(new ServerMessage([128, 124]));
             }
+            SocketGameController.clients.Remove(this);
         }
         public Socket GetSocket()
         {
