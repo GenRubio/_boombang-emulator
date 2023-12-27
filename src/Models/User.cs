@@ -26,11 +26,11 @@ namespace boombang_emulator.src.Models
         {
             this.Scenery = scenery;
         }
-        public Point? GetActualPositionInScenery()
+        public Point GetActualPositionInScenery()
         {
             if (this.ActualPositionInScenery == null)
             {
-                return null;
+                throw new Exception("-");
             }
             int x = this.ActualPositionInScenery.X;
             int y = this.ActualPositionInScenery.Y;
