@@ -13,8 +13,6 @@ namespace boombang_emulator.src.Models
         public int UppertPrice { get; set; }
         public int CocoPrice { get; set; }
         public int MaxVisitors { get; set; }
-        public string MapArea { get; set; }
-        public string RespawnPositions { get; set; }
         public bool Active { get; set; }
         public Dictionary<int, Client> Clients { get; set; }
         public MapArea MapAreaObject { get; set; }
@@ -28,11 +26,9 @@ namespace boombang_emulator.src.Models
             this.UppertPrice = Convert.ToInt32(data["uppert_price"]);
             this.CocoPrice = Convert.ToInt32(data["coco_price"]);
             this.MaxVisitors = Convert.ToInt32(data["max_visitors"]);
-            this.MapArea = (string)data["map_area"];
-            this.RespawnPositions = (string)data["respawn_positions"];
             this.Active = Convert.ToBoolean(Convert.ToInt32(data["active"]));
             this.Clients = [];
-            this.MapAreaObject = new MapArea(this.MapArea, this.RespawnPositions);
+            this.MapAreaObject = new(data);
         }
         public void RemoveClient(Client client)
         {

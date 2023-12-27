@@ -9,17 +9,19 @@ namespace boombang_emulator.src.Models
         private int MATRIX_Y = 335;
         private double DIMENSION_X = 80 * 1;
         private double DIMENSION_Y = 40 * 1;
-        public int posX { get; set; }
-        public int posY { get; set; }
-        public bool[,] BoolMap;
-
-        public MapArea(string mapArea, string respawnPositions)
+        private string Map { get; set; }
+        public int PosX { get; set; }
+        public int PosY { get; set; }
+        public int PosZ { get; set; }
+        public bool[,] BoolMap { get; set; }
+        public MapArea(Dictionary<string, object> data)
         {
-            this.posX = 11;
-            this.posY = 11;
- 
-            mapArea = mapArea.Replace(" ", "");
-            string[] Lines = Convert.ToString(mapArea).Split(Convert.ToChar("\n"));
+            this.Map = ((string)data["map_area"]).Replace(" ", "");
+            this.PosX = Convert.ToInt32(data["door_position_x"]);
+            this.PosY = Convert.ToInt32(data["door_position_y"]);
+            this.PosZ = Convert.ToInt32(data["door_position_z"]);
+  
+            string[] Lines = Convert.ToString(this.Map).Split(Convert.ToChar("\n"));
             this.BoolMap = new bool[Lines.Length, Lines[0].Length];
             
             for (int Y = 0; Y < Lines.Length - 1; Y++)

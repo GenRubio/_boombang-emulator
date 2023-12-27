@@ -26,13 +26,22 @@ namespace boombang_emulator.src.Models
         {
             this.Scenery = scenery;
         }
-        public Point GetActualPositionInScenery()
+        public Point? GetActualPositionInScenery()
         {
-            return new(this.ActualPositionInScenery.X, this.ActualPositionInScenery.Y);
+            if (this.ActualPositionInScenery == null)
+            {
+                return null;
+            }
+            int x = this.ActualPositionInScenery.X;
+            int y = this.ActualPositionInScenery.Y;
+            return new(x, y);
         }
         public void SetActualPositionInScenery(Scenery scenery)
         {
-            this.ActualPositionInScenery = new(scenery.MapAreaObject.posX, scenery.MapAreaObject.posY, 4);
+            int x = scenery.MapAreaObject.PosX;
+            int y = scenery.MapAreaObject.PosY;
+            int z = scenery.MapAreaObject.PosZ;
+            this.ActualPositionInScenery = new(x, y, z);
         }
         public async Task RunPathfinding()
         {
