@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Handlers.FlowerPower.Packets;
+using boombang_emulator.src.Handlers.FlowerPower.PacketsWeb;
 using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
 
@@ -68,6 +69,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
                             break;
                     }
                     client.User.RunPathfinding();
+                    UserInSceneryPacketWeb.Invoke(client);
                 }
                 else
                 {
