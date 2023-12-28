@@ -24,6 +24,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.Scenery.GoOutHandler.Invoke();
             Handlers.Scenery.VotesHandler.Invoke();
             Handlers.Scenery.WalkHandler.Invoke();
+            Handlers.Scenery.WatchHandler.Invoke();
         }
         public static void SetHandler(int header, ProcessHandler handler)
         {
