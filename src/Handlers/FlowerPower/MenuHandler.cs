@@ -33,12 +33,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
                 switch(accessibilityTypeId)
                 {
                     case 1:
-                        PublicScenery publicScenery = PublicSceneryLoader.publicSceneries[scenaryId];
-                        if (publicScenery == null)
-                        {
-                            throw new Exception("-");
-                        }
-
+                        PublicScenery publicScenery = PublicSceneryLoader.publicSceneries[scenaryId] ?? throw new Exception("-");
                         client.User.SetScenery(publicScenery);
                         client.User.SetActualPositionInScenery(publicScenery);
                         publicScenery.AddClient(client);

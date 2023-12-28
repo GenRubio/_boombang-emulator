@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace boombang_emulator.src.Enums
+﻿namespace boombang_emulator.src.Enums
 {
     public enum BlockActionEnum
     {
-        Watch
+        Watch,
+        Walk,
+        Chat,
+        Generic
     }
 }

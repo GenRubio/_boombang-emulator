@@ -15,6 +15,11 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
+                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Walk))
+                {
+                    return;
+                }
+
                 string steps = clientMessage.Parameters[1, 0];
                 List<Position> listPositions = [];
 
