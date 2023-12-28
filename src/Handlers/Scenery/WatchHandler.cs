@@ -38,7 +38,6 @@ namespace boombang_emulator.src.Handlers.Scenery
                 int z = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 WatchPacket.Invoke(client, z);
                 client.User.ActualPositionInScenery.Z = z;
-                client.User.BlockAction.AddBlock(Enums.BlockActionEnum.Watch);
             }
             catch (Exception)
             {

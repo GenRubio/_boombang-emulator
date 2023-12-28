@@ -20,18 +20,14 @@ namespace boombang_emulator.src.Models
             switch (blockActionEnum)
             {
                 case BlockActionEnum.Watch:
-                    return this.Watch > DateTime.Now;
+                    bool watchBlock = this.Watch > DateTime.Now;
+                    if (!watchBlock)
+                    {
+                        this.Watch = DateTime.Now.AddMilliseconds(1000);
+                    }
+                    return watchBlock;
                 default:
                     return false;
-            }
-        }
-        public void AddBlock(BlockActionEnum blockActionEnum)
-        {
-            switch (blockActionEnum)
-            {
-                case BlockActionEnum.Watch:
-                    this.Watch = DateTime.Now.AddMilliseconds(1000);
-                    break;
             }
         }
     }
