@@ -21,18 +21,18 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
-               if (
+                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Watch))
+                {
+                    return;
+                }
+
+                if (
                 client.User == null
                 || client.User.Scenery == null
                 || client.User.ActualPositionInScenery == null
                )
                 {
                     throw new Exception("-");
-                }
-
-                if (client.User.BlockAction.IsBlocked(Enums.BlockActionEnum.Watch))
-                {
-                    return;
                 }
 
                 int z = Convert.ToInt32(clientMessage.Parameters[1, 0]);
