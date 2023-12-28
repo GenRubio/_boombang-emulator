@@ -12,11 +12,13 @@ namespace boombang_emulator.src.Models
         public Scenery? Scenery { get; set; }
         public WalkTrajectory? WalkTrajectory { get; set; }
         public Position? ActualPositionInScenery { get; set; }
+        public BlockAction BlockAction { get; set; }
         public User(Dictionary<string, object> data)
         {
             this.Id = Convert.ToInt32(data["id"]);
             this.Username = (string)data["username"];
             this.Email = (string)data["email"];
+            this.BlockAction = new();
         }
         public void SetWalkTrajectory(Point endLocation, Client client)
         {
