@@ -8,6 +8,7 @@ Console.WriteLine("Iniciando servidor...");
 try
 {
     AppDomain.CurrentDomain.AssemblyResolve += Embedding.CurrentDomain_AssemblyResolve;
+    Config.Invoke();
 
     HandlerController.Invoke();
     HandlerWebController.Invoke();
