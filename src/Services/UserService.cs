@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,14 +13,14 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute +  "/game/user";
+                string url = Config.apiRoute + "/game/user";
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", client.JwtToken);
                 var jsonContent = JsonConvert.SerializeObject(requestData);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync(url, content);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseBody);
+                var data = JsonUtils.Deserialize(responseBody);
                 if (data == null)
                 {
                     return null;

@@ -16,7 +16,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
         }
         private static void LoadSceneries(Client client, ClientMessage clientMessage)
         {
-            int typeId = int.Parse(clientMessage.Parameters[0, 0]);
+            int typeId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
             LoadSceneriesPacket.Invoke(client, typeId);
         }
         private static void GoToScenery(Client client, ClientMessage clientMessage)
@@ -28,8 +28,8 @@ namespace boombang_emulator.src.Handlers.FlowerPower
                     throw new Exception("-");
                 }
 
-                int accessibilityTypeId = int.Parse(clientMessage.Parameters[0, 0]);
-                int scenaryId = int.Parse(clientMessage.Parameters[1, 0]);
+                int accessibilityTypeId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
+                int scenaryId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 switch(accessibilityTypeId)
                 {
                     case 1:
@@ -54,22 +54,20 @@ namespace boombang_emulator.src.Handlers.FlowerPower
         {
             try
             {
-                if (client.User != null && client.User.Scenery != null)
-                {
-                    switch (client.User.Scenery.TypeId)
-                    {
-                        case 1:
-                            LoadAreaObjectsPacket.Invoke(client);
-                            LoadAreaConfigPacket.Invoke(client);
-                            break;
-                    }
-                    client.User.RunPathfinding();
-                    UserInSceneryPacketWeb.Invoke(client);
-                }
-                else
+                if (client.User == null || client.User.Scenery == null)
                 {
                     throw new Exception("-");
                 }
+
+                switch (client.User.Scenery.TypeId)
+                {
+                    case 1:
+                        LoadAreaObjectsPacket.Invoke(client);
+                        LoadAreaConfigPacket.Invoke(client);
+                        break;
+                }
+                client.User.RunPathfinding();
+                UserInSceneryPacketWeb.Invoke(client);
             }
             catch (Exception)
             {

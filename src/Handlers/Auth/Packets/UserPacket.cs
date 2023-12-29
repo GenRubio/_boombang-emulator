@@ -14,8 +14,8 @@ namespace boombang_emulator.src.Handlers.Auth.Packets
             ServerMessage serverMessage = new([120, 121]);
             serverMessage.AppendParameter(1);
             serverMessage.AppendParameter(client.User.Username);//Nombre
-            serverMessage.AppendParameter(2); //Avatar
-            serverMessage.AppendParameter("64060E000000F6FAFFF6FAFFF6FAFFFFFFFFF6FAFF"); //Colores
+            serverMessage.AppendParameter(client.User.Avatar.Id); //Avatar
+            serverMessage.AppendParameter(client.User.Avatar.Color); //Colores
             serverMessage.AppendParameter("x@gmail.com"); //Email
             serverMessage.AppendParameter(20); //Edad
             serverMessage.AppendParameter(2);

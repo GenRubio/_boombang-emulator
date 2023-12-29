@@ -4,14 +4,14 @@
     {
         public static Models.ServerMessage Invoke(Models.ServerMessage serverMessage, Models.Scenery scenery)
         {
-            foreach(var item in scenery.Clients)
+            foreach (var item in scenery.Clients)
             {
                 if (item.Value.User != null)
                 {
                     serverMessage.AppendParameter(item.Key); // Id en sala
                     serverMessage.AppendParameter(item.Value.User.Username);
-                    serverMessage.AppendParameter(1);
-                    serverMessage.AppendParameter("64060E000000F6FAFFF6FAFFF6FAFFFFFFFFF6FAFF");
+                    serverMessage.AppendParameter(item.Value.User.Avatar.Id);
+                    serverMessage.AppendParameter(item.Value.User.Avatar.Color);
                     serverMessage.AppendParameter(11);
                     serverMessage.AppendParameter(11);
                     serverMessage.AppendParameter(4);

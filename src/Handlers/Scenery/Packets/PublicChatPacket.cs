@@ -11,6 +11,7 @@
             {
                 throw new Exception("-");
             }
+
             int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
 
             Models.ServerMessage serverMessage = new([186]);

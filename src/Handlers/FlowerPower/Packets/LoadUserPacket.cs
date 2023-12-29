@@ -12,8 +12,8 @@
             Models.ServerMessage serverMessage = new([128, 122]);
             serverMessage.AppendParameter(scenery.GetClientIdentifier(client)); // Id en sala
             serverMessage.AppendParameter(client.User.Username);
-            serverMessage.AppendParameter(1);
-            serverMessage.AppendParameter("64060E000000F6FAFFF6FAFFF6FAFFFFFFFFF6FAFF");
+            serverMessage.AppendParameter(client.User.Avatar.Id);
+            serverMessage.AppendParameter(client.User.Avatar.Color);
             serverMessage.AppendParameter(11);
             serverMessage.AppendParameter(11);
             serverMessage.AppendParameter(4);
@@ -31,8 +31,18 @@
             serverMessage.AppendParameter(["Hola", "Hola", "Hola"]);
             serverMessage.AppendParameter([50, 50, 50]);
             serverMessage.AppendParameter("Hola");
-            serverMessage.AppendParameter([ 
-                1, 1, 1, 1, 1, 1, 1, 1, 1,1, "0³" + 1 + "³0³0³0³" +1 + "³0³0³" + (1 + 1) + "³" + 1 + "³0³" + 1 + "³" + 1 + "³" + 1 + "³0³" + 1
+            serverMessage.AppendParameter([
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                "0³" + 1 + "³0³0³0³" + 1 + "³0³0³" + (1 + 1) + "³" + 1 + "³0³" + 1 + "³" + 1 + "³" + 1 + "³0³" + 1
             ]);
             serverMessage.AppendParameter(1);
             serverMessage.AppendParameter(0);

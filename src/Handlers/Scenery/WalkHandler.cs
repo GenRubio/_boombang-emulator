@@ -15,6 +15,11 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
+                if (client.User == null || client.User.Scenery == null)
+                {
+                    throw new Exception("-");
+                }
+
                 if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Walk))
                 {
                     return;

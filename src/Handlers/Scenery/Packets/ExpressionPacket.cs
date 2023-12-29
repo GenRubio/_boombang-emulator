@@ -12,9 +12,11 @@
                 throw new Exception("-");
             }
 
+            int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
+
             Models.ServerMessage serverMessage = new([134]);
             serverMessage.AppendParameter(expressionId);
-            serverMessage.AppendParameter(client.User.Id);
+            serverMessage.AppendParameter(userKeyInArea);
             client.User.Scenery.SendData(serverMessage);
         }
     }

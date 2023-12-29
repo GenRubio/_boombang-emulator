@@ -17,6 +17,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 {
                     throw new Exception("-");
                 }
+
                 client.User.Scenery.RemoveClient(client);
                 client.SendData(new ServerMessage([128, 124]));
             }
