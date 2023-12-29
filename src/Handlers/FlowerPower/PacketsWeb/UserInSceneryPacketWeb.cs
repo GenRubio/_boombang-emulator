@@ -11,7 +11,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
             Dictionary<string, object> data = new()
             {
                {"key", "user-in-scenery"},
-               {"test_1", 123},
+               {"test_1", client.User.Username},
                {"test_2", true}
             };
             SocketWebController.SendData(client, JsonConvert.SerializeObject(data));
