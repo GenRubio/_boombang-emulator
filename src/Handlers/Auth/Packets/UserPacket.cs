@@ -21,7 +21,7 @@ namespace boombang_emulator.src.Handlers.Auth.Packets
             serverMessage.AppendParameter(2);
             serverMessage.AppendParameter("BoomBang");
             serverMessage.AppendParameter(0);
-            serverMessage.AppendParameter(1);//Id usuario
+            serverMessage.AppendParameter(client.User.Id);//Id usuario
             serverMessage.AppendParameter(1);//Admin
             serverMessage.AppendParameter(1000);//Creditos Oro
             serverMessage.AppendParameter(1000);//Creditos Plata

@@ -2,7 +2,6 @@
 using boombang_emulator.src.Handlers.Auth.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Services;
-using System.Net.WebSockets;
 
 namespace boombang_emulator.src.Handlers.Auth
 {
@@ -16,16 +15,21 @@ namespace boombang_emulator.src.Handlers.Auth
         {
             try
             {
-                client.JwtToken = clientMessage.Parameters[0, 0];
-                client.WebsocketToken = clientMessage.Parameters[1, 0];
+                string jwtToken = clientMessage.Parameters[0, 0];
+                string webSocketToken = clientMessage.Parameters[1, 0];
+                client.JwtToken = jwtToken;
+                client.WebsocketToken = webSocketToken;
 
                 User? user = await UserService.GetUser(client);
-                PendingToken pendingToken = SocketWebController.tokensPending[client.JwtToken];
+                PendingToken pendingToken = SocketWebController.tokensPending[jwtToken];
                 if (user == null || pendingToken == null)
                 {
-                   throw new Exception("User not found");
+                    throw new Exception("User not found");
                 }
-                SocketWebController.tokensPending.Remove(client.JwtToken);
+                SocketWebController.tokensPending.Remove(jwtToken);
+
+                Client? clientFound = SocketGameController.clients.Find(client => client.User?.Id == user.Id);
+                clientFound?.Close();
 
                 client.User = user;
                 client.WebSocket = pendingToken.WebSocket;
