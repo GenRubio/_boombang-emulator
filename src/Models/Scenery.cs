@@ -32,14 +32,18 @@ namespace boombang_emulator.src.Models
         }
         public void RemoveClient(Client client)
         {
-            Clients.Remove(Clients.FirstOrDefault(x => x.Value.User.Id == client.User.Id).Key);
+            if (client.User == null)
+            {
+                return;
+            }
+            Clients.Remove(Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key);
             client.User.SetScenery(null);
         }
         public Client? GetClientInPosition(Point position)
         {
             foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
             {
-                if (sceneryClient.Value.User.GetActualPositionInScenery() == position)
+                if (sceneryClient.Value.User != null && sceneryClient.Value.User.GetActualPositionInScenery() == position)
                 {
                     return sceneryClient.Value;
                 }
@@ -62,7 +66,7 @@ namespace boombang_emulator.src.Models
         {
             foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
             {
-                if (sceneryClient.Value.User.Id == userId)
+                if (sceneryClient.Value.User != null && sceneryClient.Value.User.Id == userId)
                 {
                     return sceneryClient.Key;
                 }

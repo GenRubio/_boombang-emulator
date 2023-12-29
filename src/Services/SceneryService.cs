@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Services
 {
@@ -13,7 +13,7 @@ namespace boombang_emulator.src.Services
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(responseBody);
+                var dataList = JsonUtils.DeserializeList(responseBody);
                 if (dataList == null)
                 {
                     return [];
@@ -33,7 +33,7 @@ namespace boombang_emulator.src.Services
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(responseBody);
+                var dataList = JsonUtils.DeserializeList(responseBody);
                 if (dataList == null)
                 {
                     return [];

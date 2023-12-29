@@ -1,7 +1,7 @@
-﻿using System.Net.WebSockets;
+﻿using boombang_emulator.src.Utils;
 using System.Net;
+using System.Net.WebSockets;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace boombang_emulator.src.Controllers
 {
@@ -46,7 +46,7 @@ namespace boombang_emulator.src.Controllers
                 WebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
 
                 string response = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, result.Count);
-                var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
+                var data = JsonUtils.Deserialize(response);
                 if (data == null)
                 {
                     return;
@@ -77,7 +77,7 @@ namespace boombang_emulator.src.Controllers
         }
         private static async void RemovePendingTokens()
         {
-            while(true)
+            while (true)
             {
                 //Console.WriteLine("Removing pending tokens: " + tokensPending.Count);
                 foreach (var token in tokensPending)

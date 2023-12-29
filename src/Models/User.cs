@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Pathfinding;
+using boombang_emulator.src.Utils;
 using System.Drawing;
 
 namespace boombang_emulator.src.Models
@@ -13,12 +14,14 @@ namespace boombang_emulator.src.Models
         public WalkTrajectory? WalkTrajectory { get; set; }
         public Position? ActualPositionInScenery { get; set; }
         public BlockAction BlockAction { get; set; }
+        public UserData Avatar { get; set; }
         public User(Dictionary<string, object> data)
         {
             this.Id = Convert.ToInt32(data["id"]);
             this.Username = (string)data["username"];
             this.Email = (string)data["email"];
             this.BlockAction = new();
+            this.Avatar = new(JsonUtils.Deserialize((string)data["content"]));
         }
         public void SetWalkTrajectory(Point endLocation, Client client)
         {

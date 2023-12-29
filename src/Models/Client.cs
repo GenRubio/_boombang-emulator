@@ -1,6 +1,4 @@
 ﻿using boombang_emulator.src.Controllers;
-using boombang_emulator.src.Handlers.Scenery.Packets;
-using boombang_emulator.src.Pathfinding;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Text;
@@ -73,8 +71,9 @@ namespace boombang_emulator.src.Models
         {
             try
             {
-                if (this.Socket == null || !this.Socket.Connected) { 
-                    return; 
+                if (this.Socket == null || !this.Socket.Connected)
+                {
+                    return;
                 }
                 if (data[0] != Convert.ToChar(177))
                 {
@@ -87,7 +86,8 @@ namespace boombang_emulator.src.Models
                     HandlerController.SendHandler(this, clientMessage);
                 }
             }
-            catch {
+            catch
+            {
                 this.Close();
             }
         }
@@ -144,8 +144,10 @@ namespace boombang_emulator.src.Models
             }
             if (this.User != null && this.User.Scenery != null)
             {
+                int userKeyInArea = this.User.Scenery.GetClientIdentifier(this.User.Id);
+                this.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
+
                 this.User.Scenery.RemoveClient(this);
-                this.SendData(new ServerMessage([128, 124]));
             }
             SocketGameController.clients.Remove(this);
         }
@@ -158,7 +160,7 @@ namespace boombang_emulator.src.Models
             if (this.Socket != null && this.Socket.Connected)
             {
                 this.Socket.Send(Encrypt(serverMessage.GetContent()));
-            }   
+            }
         }
     }
 }
