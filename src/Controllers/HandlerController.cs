@@ -20,6 +20,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.Backpack.BackpackUserHandler.Invoke();
             Handlers.House.UserHouseButtonHandler.Invoke();
             Handlers.FlowerPower.MenuHandler.Invoke();
+            Handlers.FlowerPower.LoadSceneriesHandler.Invoke();
             Handlers.FlowerPower.LoadSceneryObjectsHandler.Invoke();
             Handlers.UndefinedHandlers.Invoke();
             Handlers.Scenery.GoOutHandler.Invoke();
