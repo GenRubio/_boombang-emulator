@@ -38,6 +38,7 @@ namespace boombang_emulator.src.Models
             }
             Clients.Remove(Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key);
             client.User.SetScenery(null);
+            client.User.WalkTrajectory = null;
         }
         public Client? GetClientInPosition(Point position)
         {
@@ -75,7 +76,7 @@ namespace boombang_emulator.src.Models
         }
         public void SendData(ServerMessage server, Client? client = null)
         {
-            foreach (Client sceneryClient in this.Clients.Values)
+            foreach (Client sceneryClient in this.Clients.Values.ToList())
             {
                 if (sceneryClient == client)
                 {

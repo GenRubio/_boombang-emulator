@@ -37,26 +37,37 @@ namespace boombang_emulator.src.Controllers
         }
         private static async Task ReceiveData(HttpListenerContext context)
         {
+            WebSocketContext? webSocketContext = null;
             try
             {
-                WebSocketContext webSocketContext = await context.AcceptWebSocketAsync(null);
+                webSocketContext = await context.AcceptWebSocketAsync(null);
                 WebSocket webSocket = webSocketContext.WebSocket;
 
-                ArraySegment<byte> buffer = new(new byte[4096]);
-                WebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
-
-                string response = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, result.Count);
-                var data = JsonUtils.Deserialize(response);
-                if (data == null)
+                while (webSocket.State == WebSocketState.Open)
                 {
-                    return;
+                    ArraySegment<byte> buffer = new(new byte[4096]);
+                    WebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
+                    }
+                    else
+                    {
+                        string response = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, result.Count);
+                        var data = JsonUtils.Deserialize(response);
+                        if (data != null)
+                        {
+                            Models.Client? client = SocketGameController.clients.Find(c => c.JwtToken == (string)data["jwt"]);
+                            HandlerWebController.SendHandler(webSocket, client, data);
+                        }
+                    }
                 }
-                Models.Client? client = SocketGameController.clients.Find(c => c.JwtToken == (string)data["jwt"]);
-                HandlerWebController.SendHandler(webSocket, client, data);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("An exception occurred: " + ex.Message);
+                webSocketContext?.WebSocket.CloseAsync(WebSocketCloseStatus.InternalServerError, "An error occurred", CancellationToken.None).Wait();
             }
         }
         public static async void SendData(Models.Client client, string data)
@@ -73,6 +84,25 @@ namespace boombang_emulator.src.Controllers
             catch (Exception)
             {
                 client.Close();
+            }
+        }
+        public static async void SendDataAll(string data)
+        {
+            foreach (Models.Client client in SocketGameController.clients)
+            {
+                try
+                {
+                    WebSocket clientSocket = client.WebSocket;
+                    if (clientSocket != null && clientSocket.State == WebSocketState.Open)
+                    {
+                        byte[] messageBytes = Encoding.UTF8.GetBytes(data);
+                        await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                    }
+                }
+                catch (Exception)
+                {
+                    client.Close();
+                }
             }
         }
         private static async void RemovePendingTokens()

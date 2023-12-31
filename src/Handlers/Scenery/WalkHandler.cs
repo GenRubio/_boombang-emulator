@@ -44,7 +44,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             catch (Exception)
             {
                 client.Close();
-            }  
+            }
         }
     }
 }

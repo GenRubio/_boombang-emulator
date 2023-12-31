@@ -15,6 +15,7 @@ namespace boombang_emulator.src.Models
         public Position? ActualPositionInScenery { get; set; }
         public BlockAction BlockAction { get; set; }
         public UserData Avatar { get; set; }
+        public CancellationTokenSource? ResetPathfindingSource { get; set; }
         public User(Dictionary<string, object> data)
         {
             this.Id = Convert.ToInt32(data["id"]);
@@ -48,7 +49,17 @@ namespace boombang_emulator.src.Models
             int z = scenery.MapAreaObject.PosZ;
             this.ActualPositionInScenery = new(x, y, z);
         }
-        public async void RunPathfinding()
+        public void RunPathfinding()
+        {
+            if (this.ResetPathfindingSource != null)
+            {
+                this.ResetPathfindingSource.Cancel();
+            }
+            this.ResetPathfindingSource = new();
+            CancellationToken resetPathfindingToken = this.ResetPathfindingSource.Token;
+            StartPathfinding(resetPathfindingToken);
+        }
+        private async void StartPathfinding(CancellationToken cancellationToken)
         {
             if (this.Scenery != null)
             {
@@ -68,15 +79,24 @@ namespace boombang_emulator.src.Models
                                 this.ActualPositionInScenery = nextPosition;
                                 this.WalkTrajectory.Positions.Remove(this.ActualPositionInScenery);
                                 WalkPacket.Invoke(this, userKeyInArea);
-                                await Task.Delay(680);
+                                await Task.Delay(680, cancellationToken);
                             }
                         }
                     }
-                    catch (Exception)
+                    catch (OperationCanceledException)
                     {
-                        this.WalkTrajectory = null;
                         break;
                     }
+                    catch (Exception)
+                    {
+                        break;
+                    }
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     await Task.Delay(1);
                 }
                 this.WalkTrajectory = null;

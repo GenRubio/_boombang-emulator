@@ -12,5 +12,14 @@ namespace boombang_emulator.src.Utils
         {
             return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(json) ?? [];
         }
+        public static string Serialize(Dictionary<string, object>? data)
+        {
+            return JsonConvert.SerializeObject(data, Formatting.Indented,
+                new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }
+            );
+        }
     }
 }

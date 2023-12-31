@@ -20,6 +20,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.Backpack.BackpackUserHandler.Invoke();
             Handlers.House.UserHouseButtonHandler.Invoke();
             Handlers.FlowerPower.MenuHandler.Invoke();
+            Handlers.FlowerPower.LoadSceneryObjectsHandler.Invoke();
             Handlers.UndefinedHandlers.Invoke();
             Handlers.Scenery.GoOutHandler.Invoke();
             Handlers.Scenery.VotesHandler.Invoke();
@@ -27,6 +28,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.Scenery.WatchHandler.Invoke();
             Handlers.Scenery.ExpressionHandler.Invoke();
             Handlers.Scenery.ChatHandler.Invoke();
+
         }
         public static void SetHandler(int header, ProcessHandler handler)
         {
