@@ -23,7 +23,7 @@
                     bool watchBlock = this.Watch > DateTime.Now;
                     if (!watchBlock)
                     {
-                        this.Watch = DateTime.Now.AddMilliseconds(1000);
+                        this.Watch = DateTime.Now.AddMilliseconds(100);
                     }
                     return watchBlock;
                 case Enums.BlockActionEnum.Walk:
@@ -108,6 +108,6 @@
                     break;
             }
             return block;
-        }   
+        }
     }
 }

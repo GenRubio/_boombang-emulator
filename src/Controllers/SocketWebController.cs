@@ -110,11 +110,11 @@ namespace boombang_emulator.src.Controllers
             while (true)
             {
                 //Console.WriteLine("Removing pending tokens: " + tokensPending.Count);
-                foreach (var token in tokensPending)
+                foreach (var token in tokensPending.Values.ToList())
                 {
-                    if (token.Value.TimeOut < DateTime.Now)
+                    if (token.TimeOut < DateTime.Now)
                     {
-                        tokensPending.Remove(token.Value.Token);
+                        tokensPending.Remove(token.Token);
                     }
                 }
                 await Task.Delay(1000);

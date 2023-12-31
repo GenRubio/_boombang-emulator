@@ -59,6 +59,14 @@ namespace boombang_emulator.src.Models
             CancellationToken resetPathfindingToken = this.ResetPathfindingSource.Token;
             StartPathfinding(resetPathfindingToken);
         }
+        public void StopPathfinding()
+        {
+            if (this.ResetPathfindingSource != null)
+            {
+                this.ResetPathfindingSource.Cancel();
+                this.ResetPathfindingSource = null;
+            }
+        }
         private async void StartPathfinding(CancellationToken cancellationToken)
         {
             if (this.Scenery != null)
@@ -76,9 +84,9 @@ namespace boombang_emulator.src.Models
                                 && this.Scenery.MapAreaObject.IsWalkable(nextPosition.X, nextPosition.Y)
                                 )
                             {
+                                WalkPacket.Invoke(this, userKeyInArea);
                                 this.ActualPositionInScenery = nextPosition;
                                 this.WalkTrajectory.Positions.Remove(this.ActualPositionInScenery);
-                                WalkPacket.Invoke(this, userKeyInArea);
                                 await Task.Delay(680, cancellationToken);
                             }
                         }
