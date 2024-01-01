@@ -1,5 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
-using boombang_emulator.src.Handlers.FlowerPower.PacketsWeb;
+using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
 
 namespace boombang_emulator.src.Handlers.FlowerPower
@@ -17,7 +17,9 @@ namespace boombang_emulator.src.Handlers.FlowerPower
             if (client.IsInGame == false)
             {
                 RenderAreasPacketWeb.Invoke(client);
+                RenderAreasCountUserPacketWeb.Invoke(client);
                 LoadingPacketWeb.Invoke(client, false);
+
                 client.IsInGame = true;
             }
         }

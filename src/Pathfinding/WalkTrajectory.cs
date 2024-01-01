@@ -23,6 +23,8 @@ namespace boombang_emulator.src.Pathfinding
         }
         private void SetPositions()
         {
+            this.NextStep = new(this.EndPosition, this.Client);
+            this.PathFinder = new(this.NextStep, this.Client);
             List<Point> path = this.PathFinder.FindPath();
             foreach (Point point in path)
             {
@@ -43,7 +45,10 @@ namespace boombang_emulator.src.Pathfinding
                 //|| !Session.User.Sala.WalkByObjects(NextStep.X, NextStep.Y)
                 )
             {
-                if (this.Positions.Count >= 1) this.Positions.Clear();
+                if (this.Positions.Count >= 1)
+                {
+                    this.Positions.Clear();
+                }
                 this.SetPositions();
                 NextStep = this.Positions[0];
             }

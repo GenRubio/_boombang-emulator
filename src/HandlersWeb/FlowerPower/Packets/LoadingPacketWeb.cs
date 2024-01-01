@@ -2,7 +2,7 @@
 using boombang_emulator.src.Models;
 using Newtonsoft.Json;
 
-namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
+namespace boombang_emulator.src.HandlersWeb.FlowerPower.Packets
 {
     internal class LoadingPacketWeb
     {
@@ -14,7 +14,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
                {"key", "loading"},
                {"loading", loading},
             };
-            SocketWebController.SendData(client, JsonConvert.SerializeObject(data));
+            SocketWebController.SendData(JsonConvert.SerializeObject(data), client);
         }
     }
 }

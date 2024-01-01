@@ -2,7 +2,7 @@
 using boombang_emulator.src.Models;
 using Newtonsoft.Json;
 
-namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
+namespace boombang_emulator.src.HandlersWeb.FlowerPower.Packets
 {
     internal class RenderAreasPacketWeb
     {
@@ -13,8 +13,8 @@ namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
             {
                 areas.Add(new
                 {
-                    Id = area.Id,
-                    Name = area.Name,
+                    area.Id,
+                    area.Name,
                     UserInArea = area.Clients.ContainsValue(client),
                 });
             }
@@ -24,7 +24,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
                {"key", "render-areas"},
                {"areas", areas},
             };
-            SocketWebController.SendData(client, JsonConvert.SerializeObject(data));
+            SocketWebController.SendData(JsonConvert.SerializeObject(data), client);
         }
     }
 }

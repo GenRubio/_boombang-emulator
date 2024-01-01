@@ -1,6 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Handlers.FlowerPower.Packets;
-using boombang_emulator.src.Handlers.FlowerPower.PacketsWeb;
+using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
 using System.Net.WebSockets;
@@ -39,7 +39,7 @@ namespace boombang_emulator.src.HandlersWeb
                     client.User.RunPathfinding();
 
                     RenderAreasPacketWeb.Invoke(client);
-                    RenderAreasCountUserPacketWeb.Invoke();
+                    RenderAreasCountUserPacketWeb.Invoke(null);
 
                     LoadUserPacket.Invoke(client, publicScenery);
                     GoToSceneryPacket.Invoke(client, publicScenery);

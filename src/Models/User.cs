@@ -57,17 +57,9 @@ namespace boombang_emulator.src.Models
             }
             this.ResetPathfindingSource = new();
             CancellationToken resetPathfindingToken = this.ResetPathfindingSource.Token;
-            StartPathfinding(resetPathfindingToken);
+            Task.Run(() => this.StartPathfinding(resetPathfindingToken), resetPathfindingToken);
         }
-        public void StopPathfinding()
-        {
-            if (this.ResetPathfindingSource != null)
-            {
-                this.ResetPathfindingSource.Cancel();
-                this.ResetPathfindingSource = null;
-            }
-        }
-        private async void StartPathfinding(CancellationToken cancellationToken)
+        private async Task StartPathfinding(CancellationToken cancellationToken)
         {
             if (this.Scenery != null)
             {
@@ -84,9 +76,9 @@ namespace boombang_emulator.src.Models
                                 && this.Scenery.MapAreaObject.IsWalkable(nextPosition.X, nextPosition.Y)
                                 )
                             {
-                                WalkPacket.Invoke(this, userKeyInArea);
                                 this.ActualPositionInScenery = nextPosition;
                                 this.WalkTrajectory.Positions.Remove(this.ActualPositionInScenery);
+                                WalkPacket.Invoke(this, userKeyInArea);
                                 await Task.Delay(680, cancellationToken);
                             }
                         }
@@ -95,8 +87,10 @@ namespace boombang_emulator.src.Models
                     {
                         break;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        Console.WriteLine(ex.StackTrace);
+                        Console.WriteLine(ex.Message);
                         break;
                     }
 
@@ -105,7 +99,7 @@ namespace boombang_emulator.src.Models
                         break;
                     }
 
-                    await Task.Delay(1);
+                    await Task.Delay(1, cancellationToken);
                 }
                 this.WalkTrajectory = null;
             }

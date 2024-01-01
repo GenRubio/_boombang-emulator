@@ -23,11 +23,11 @@ namespace boombang_emulator.src.HandlersWeb.Auth
                     string token = (string)data["jwt"];
                     if (!SocketWebController.tokensPending.ContainsKey(token))
                     {
-                        SocketWebController.tokensPending.Add(token, new PendingToken(token, webSocket));
+                        SocketWebController.tokensPending.TryAdd(token, new PendingToken(token, webSocket));
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

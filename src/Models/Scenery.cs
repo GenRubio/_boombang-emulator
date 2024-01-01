@@ -38,7 +38,6 @@ namespace boombang_emulator.src.Models
             }
             Clients.Remove(Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key);
             client.User.SetScenery(null);
-            client.User.StopPathfinding();
         }
         public Client? GetClientInPosition(Point position)
         {
