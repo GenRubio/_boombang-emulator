@@ -2,7 +2,7 @@
 using boombang_emulator.src.Models;
 using Newtonsoft.Json;
 
-namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
+namespace boombang_emulator.src.HandlersWeb.FlowerPower.Packets
 {
     internal class UserInSceneryPacketWeb
     {
@@ -11,10 +11,10 @@ namespace boombang_emulator.src.Handlers.FlowerPower.PacketsWeb
             Dictionary<string, object> data = new()
             {
                {"key", "user-in-scenery"},
-               {"test_1", 123},
+               {"test_1", client.User.Username},
                {"test_2", true}
             };
-            SocketWebController.SendData(client, JsonConvert.SerializeObject(data));
+            SocketWebController.SendData(JsonConvert.SerializeObject(data), client);
         }
     }
 }

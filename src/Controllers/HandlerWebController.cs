@@ -1,4 +1,5 @@
-﻿using boombang_emulator.src.HandlersWeb.Auth;
+﻿using boombang_emulator.src.HandlersWeb;
+using boombang_emulator.src.HandlersWeb.Auth;
 using System.Collections.Concurrent;
 using System.Net.WebSockets;
 
@@ -11,6 +12,7 @@ namespace boombang_emulator.src.Controllers
         public static void Invoke()
         {
             SetWebSocketHandlerWeb.Invoke();
+            GoToAreaHandlerWeb.Invoke();
         }
         public static void SetHandler(string header, ProcessWebHandler handler)
         {

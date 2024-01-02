@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Utils;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
@@ -8,7 +9,7 @@ namespace boombang_emulator.src.Controllers
     internal class SocketWebController
     {
         //https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_server
-        public static Dictionary<string, Models.PendingToken> tokensPending = [];
+        public static ConcurrentDictionary<string, Models.PendingToken> tokensPending = [];
         public static void Invoke()
         {
             HttpListener httpListener = new();
@@ -23,69 +24,111 @@ namespace boombang_emulator.src.Controllers
         {
             while (true)
             {
-                HttpListenerContext httpListenerContext = await httpListener.GetContextAsync();
-                if (httpListenerContext.Request.IsWebSocketRequest)
+                try
                 {
-                    await ReceiveData(httpListenerContext);
+                    HttpListenerContext httpListenerContext = await httpListener.GetContextAsync();
+                    if (httpListenerContext.Request.IsWebSocketRequest)
+                    {
+                        //await ReceiveData(httpListenerContext);
+                        Task.Run(() => ReceiveData(httpListenerContext));
+                    }
+                    else
+                    {
+                        httpListenerContext.Response.StatusCode = 400;
+                        httpListenerContext.Response.Close();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    httpListenerContext.Response.StatusCode = 400;
-                    httpListenerContext.Response.Close();
+                    Console.WriteLine("An exception occurred: " + ex.Message);
                 }
             }
         }
         private static async Task ReceiveData(HttpListenerContext context)
         {
+            WebSocketContext? webSocketContext = null;
+            webSocketContext = await context.AcceptWebSocketAsync(null);
+            WebSocket webSocket = webSocketContext.WebSocket;
             try
             {
-                WebSocketContext webSocketContext = await context.AcceptWebSocketAsync(null);
-                WebSocket webSocket = webSocketContext.WebSocket;
-
-                ArraySegment<byte> buffer = new(new byte[4096]);
-                WebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
-
-                string response = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, result.Count);
-                var data = JsonUtils.Deserialize(response);
-                if (data == null)
+                while (webSocket.State == WebSocketState.Open)
                 {
-                    return;
+                    ArraySegment<byte> buffer = new(new byte[4096]);
+                    WebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
+                    }
+                    else
+                    {
+                        string response = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, result.Count);
+                        var data = JsonUtils.Deserialize(response);
+                        if (data != null)
+                        {
+                            Models.Client? client = SocketGameController.clients.Find(c => c.JwtToken == (string)data["jwt"]);
+                            HandlerWebController.SendHandler(webSocket, client, data);
+                        }
+                    }
                 }
-                Models.Client? client = SocketGameController.clients.Find(c => c.JwtToken == (string)data["jwt"]);
-                HandlerWebController.SendHandler(webSocket, client, data);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        public static async void SendData(Models.Client client, string data)
-        {
-            try
-            {
-                WebSocket clientSocket = client.WebSocket;
-                if (clientSocket != null && clientSocket.State == WebSocketState.Open)
+                if (webSocket.State == WebSocketState.Open)
                 {
-                    byte[] messageBytes = Encoding.UTF8.GetBytes(data);
-                    await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                    Console.WriteLine("An exception occurred: " + ex.Message);
+                    webSocketContext?.WebSocket.CloseAsync(WebSocketCloseStatus.InternalServerError, "An error occurred", CancellationToken.None).Wait();
                 }
             }
-            catch (Exception)
+        }
+        public static async void SendData(string data, Models.Client? client)
+        {
+            if (client != null)
             {
-                client.Close();
+                try
+                {
+                    WebSocket clientSocket = client.WebSocket;
+                    if (clientSocket != null && clientSocket.State == WebSocketState.Open)
+                    {
+                        byte[] messageBytes = Encoding.UTF8.GetBytes(data);
+                        await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                    }
+                }
+                catch (Exception)
+                {
+                    client.Close();
+                }
+            }
+            else
+            {
+                foreach (Models.Client connectedClient in SocketGameController.clients)
+                {
+                    try
+                    {
+                        WebSocket clientSocket = connectedClient.WebSocket;
+                        if (clientSocket != null && clientSocket.State == WebSocketState.Open)
+                        {
+                            byte[] messageBytes = Encoding.UTF8.GetBytes(data);
+                            await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        connectedClient.Close();
+                    }
+                }
             }
         }
         private static async void RemovePendingTokens()
         {
             while (true)
             {
-                //Console.WriteLine("Removing pending tokens: " + tokensPending.Count);
-                foreach (var token in tokensPending)
+                var currentDateTime = DateTime.Now;
+                var tokensToRemove = tokensPending.Where(kv => kv.Value.TimeOut < currentDateTime).Select(kv => kv.Key).ToList();
+
+                foreach (var tokenKey in tokensToRemove)
                 {
-                    if (token.Value.TimeOut < DateTime.Now)
-                    {
-                        tokensPending.Remove(token.Value.Token);
-                    }
+                    tokensPending.TryRemove(tokenKey, out var removedToken);
                 }
                 await Task.Delay(1000);
             }

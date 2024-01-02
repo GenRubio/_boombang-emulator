@@ -75,7 +75,7 @@ namespace boombang_emulator.src.Models
         }
         public void SendData(ServerMessage server, Client? client = null)
         {
-            foreach (Client sceneryClient in this.Clients.Values)
+            foreach (Client sceneryClient in this.Clients.Values.ToList())
             {
                 if (sceneryClient == client)
                 {

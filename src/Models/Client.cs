@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Text;
@@ -18,6 +19,7 @@ namespace boombang_emulator.src.Models
         public string? WebsocketToken { get; set; }
         public User? User { get; set; }
         public WebSocket WebSocket { get; set; }
+        public bool IsInGame { get; set; }
         public Client(Socket socket)
         {
             this.Socket = socket;
@@ -26,6 +28,7 @@ namespace boombang_emulator.src.Models
             this.EncipherConstant = 135;
             this.DecipherConstant = 135;
             this.Socket.BeginReceive(this.Buffer, 0, this.Buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
+            this.IsInGame = false;
         }
         private void OnReceive(IAsyncResult iAr)
         {
@@ -148,6 +151,12 @@ namespace boombang_emulator.src.Models
                 this.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
 
                 this.User.Scenery.RemoveClient(this);
+            }
+            if (this.WebSocket != null && this.WebSocket.State == WebSocketState.Open)
+            {
+                RenderAreasPacketWeb.Invoke(this);
+                RenderAreasCountUserPacketWeb.Invoke(null);
+                this.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
             }
             SocketGameController.clients.Remove(this);
         }
