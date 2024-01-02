@@ -15,7 +15,7 @@ namespace boombang_emulator.src.Pathfinding
         {
             this.EndPosition = endPosition;
             this.Client = client;
-            this.Scenery = client.User != null ? client.User.Scenery : null;
+            this.Scenery = client.User?.Scenery;
             this.NextStep = new(endPosition, client);
             this.PathFinder = new(this.NextStep, client);
             this.Positions = [];
