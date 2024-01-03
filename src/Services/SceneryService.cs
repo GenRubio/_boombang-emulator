@@ -9,7 +9,7 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute + "/loaders/areas";
+                string url = Config.apiRoute + "/game/loaders/areas";
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -29,7 +29,7 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute + "/loaders/sceneries";
+                string url = Config.apiRoute + "/game/loaders/sceneries";
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
