@@ -4,10 +4,7 @@
     {
         public static void Invoke(Models.Client client)
         {
-            if (client.User == null || client.User.Scenery == null)
-            {
-                throw new Exception("-");
-            }
+            Middlewares.IsUserInScenery(client);
 
             Models.ServerMessage serverMessage = new([128, 121, 120]);
             serverMessage = LoadNpcPacket.Invoke(serverMessage);

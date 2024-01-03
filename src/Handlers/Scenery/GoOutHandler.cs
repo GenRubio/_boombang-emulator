@@ -14,10 +14,7 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
-                if (client.User == null || client.User.Scenery == null)
-                {
-                    throw new Exception("-");
-                }
+                Middlewares.IsUserInScenery(client);
 
                 int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
                 client.User.Scenery.SendData(new([128, 123], [userKeyInArea]));

@@ -14,10 +14,7 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
-                if (client.User == null || client.User.Scenery == null)
-                {
-                    throw new Exception("-");
-                }
+                Middlewares.IsUserInScenery(client);
 
                 int expressionId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 if (Middlewares.BlockExpression(client, expressionId))

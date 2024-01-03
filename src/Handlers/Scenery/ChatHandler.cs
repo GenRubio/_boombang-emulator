@@ -14,10 +14,10 @@ namespace boombang_emulator.src.Handlers.Scenery
         {
             try
             {
-                if (client.User == null || client.User.Scenery == null)
-                {
-                    throw new Exception("-");
-                }
+                Middlewares.IsUserInScenery(client);
+
+                ParameterValidator validator = new();
+                validator.ValidateParameter<string>((object)clientMessage.Parameters[1, 0]);
 
                 string message = clientMessage.Parameters[1, 0];
                 if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Chat))
