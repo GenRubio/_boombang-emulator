@@ -19,16 +19,23 @@
         private static Dictionary<string, string> LoadConfiguration(string path)
         {
             var config = new Dictionary<string, string>();
-            foreach (var line in File.ReadAllLines(path))
+            try
             {
-                if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#"))
+                foreach (var line in File.ReadAllLines(path))
                 {
-                    var parts = line.Split('=', 2);
-                    if (parts.Length == 2)
+                    if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#"))
                     {
-                        config[parts[0].Trim()] = parts[1].Trim();
+                        var parts = line.Split('=', 2);
+                        if (parts.Length == 2)
+                        {
+                            config[parts[0].Trim()] = parts[1].Trim();
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("No se pudo cargar el archivo de configuración.");
             }
             return config;
         }
