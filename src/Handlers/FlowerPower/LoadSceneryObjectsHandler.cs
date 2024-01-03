@@ -14,10 +14,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
         {
             try
             {
-                if (client.User == null || client.User.Scenery == null)
-                {
-                    throw new Exception("-");
-                }
+                Middlewares.IsUserInScenery(client);
 
                 switch (client.User.Scenery.TypeId)
                 {

@@ -11,7 +11,16 @@ namespace boombang_emulator.src.Handlers.Scenery
         }
         private static void RemainingVotes(Client client, ClientMessage clientMessage)
         {
-            client.SendData(new([167], [1]));
+            try
+            {
+                Middlewares.IsUserInScenery(client);
+
+                client.SendData(new([167], [1]));
+            }
+            catch (Exception)
+            {
+                client.Close();
+            }
         }
     }
 }

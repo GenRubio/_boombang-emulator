@@ -1,11 +1,5 @@
 ﻿using boombang_emulator.src.Enums;
 using boombang_emulator.src.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace boombang_emulator.src
 {
@@ -26,6 +20,13 @@ namespace boombang_emulator.src
                 return true;
             }
             return false;
+        }
+        public static void IsUserInScenery(Client client)
+        {
+            if (client.User == null || client.User.Scenery == null)
+            {
+                throw new Exception("-");
+            }
         }
     }
 }
