@@ -1,4 +1,4 @@
-﻿namespace boombang_emulator.src.Models
+﻿namespace boombang_emulator.src.Models.SceneryModel
 {
     internal class PublicAreaScenery : PublicScenery
     {

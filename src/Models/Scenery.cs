@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Concurrent;
 using System.Drawing;
 
 namespace boombang_emulator.src.Models
@@ -14,7 +15,7 @@ namespace boombang_emulator.src.Models
         public int CocoPrice { get; set; }
         public int MaxVisitors { get; set; }
         public bool Active { get; set; }
-        public Dictionary<int, Client> Clients { get; set; }
+        public ConcurrentDictionary<int, Client> Clients { get; set; }
         public MapArea MapAreaObject { get; set; }
         public Scenery(Dictionary<string, object> data)
         {
@@ -36,7 +37,8 @@ namespace boombang_emulator.src.Models
             {
                 return;
             }
-            Clients.Remove(Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key);
+            int key = Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key;
+            Clients.TryRemove(key, out var removedClient);
             client.User.SetScenery(null);
         }
         public Client? GetClientInPosition(Point position)
@@ -75,7 +77,7 @@ namespace boombang_emulator.src.Models
         }
         public void SendData(ServerMessage server, Client? client = null)
         {
-            foreach (Client sceneryClient in this.Clients.Values.ToList())
+            foreach (Client sceneryClient in this.Clients.Values)
             {
                 if (sceneryClient == client)
                 {

@@ -3,6 +3,7 @@ using boombang_emulator.src.Handlers.FlowerPower.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.SceneryModel;
 using System.Net.WebSockets;
 
 namespace boombang_emulator.src.HandlersWeb
@@ -13,15 +14,10 @@ namespace boombang_emulator.src.HandlersWeb
         {
             HandlerWebController.SetHandler("go-to-area", new ProcessWebHandler(GoToArea));
         }
-        private static void GoToArea(WebSocket webSocket, Client? client, Dictionary<string, object> data)
+        private static void GoToArea(WebSocket webSocket, Client client, Dictionary<string, object> data)
         {
             try
             {
-                if (client == null || client.User == null)
-                {
-                    throw new Exception("-");
-                }
-
                 int scenaryId = Convert.ToInt32(data["scenery_id"]);
                 PublicScenery publicScenery = PublicSceneryLoader.publicSceneries[scenaryId] ?? throw new Exception("-");
 
@@ -30,7 +26,7 @@ namespace boombang_emulator.src.HandlersWeb
                     || client.User.Scenery == null
                     )
                 {
-                    RemoveUserFromScenary(client);
+                    Utils.SceneryUtils.RemoveUser(client);
 
                     client.User.SetScenery(publicScenery);
                     client.User.SetActualPositionInScenery(publicScenery);
@@ -45,19 +41,9 @@ namespace boombang_emulator.src.HandlersWeb
                     GoToSceneryPacket.Invoke(client, publicScenery);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        private static void RemoveUserFromScenary(Client client)
-        {
-            if (client.User != null && client.User.Scenery != null)
-            {
-                int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
-                client.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
-                client.User.Scenery.RemoveClient(client);
-                client.SendData(new([128, 124]));
+                client.Close();
             }
         }
     }

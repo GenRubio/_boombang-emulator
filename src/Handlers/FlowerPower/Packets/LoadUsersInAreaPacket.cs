@@ -4,7 +4,7 @@
     {
         public static Models.ServerMessage Invoke(Models.ServerMessage serverMessage, Models.Scenery scenery)
         {
-            foreach (var item in scenery.Clients.ToList())
+            foreach (var item in scenery.Clients)
             {
                 if (
                     item.Value.User != null

@@ -9,7 +9,7 @@ namespace boombang_emulator.src.HandlersWeb.FlowerPower.Packets
         public static void Invoke(Client? client)
         {
             List<object> areas = [];
-            foreach (var area in Loaders.PublicSceneryLoader.publicSceneries.Values.ToList())
+            foreach (var area in Loaders.PublicSceneryLoader.publicSceneries.Values)
             {
                 areas.Add(new
                 {

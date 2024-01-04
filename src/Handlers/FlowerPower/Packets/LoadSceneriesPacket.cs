@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.SceneryModel;
 
 namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
@@ -13,7 +14,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower.Packets
             switch (typeId)
             {
                 case 1:
-                    foreach (PublicAreaScenery sceneryArea in PublicSceneryLoader.publicSceneries.Values.ToList())
+                    foreach (PublicAreaScenery sceneryArea in PublicSceneryLoader.publicSceneries.Values)
                     {
                         serverMessage.AppendParameter([
                             sceneryArea.TypeId,
