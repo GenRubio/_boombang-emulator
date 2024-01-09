@@ -7,7 +7,7 @@ namespace boombang_emulator.src.Utils
     {
         public static void CloseLauncher()
         {
-            foreach (var client in SocketGameController.clients.ToList())
+            foreach (var client in SocketGameController.clients)
             {
                 try
                 {

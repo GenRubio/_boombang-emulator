@@ -16,7 +16,6 @@ namespace boombang_emulator.src.Models
         private int DecipherConstant { get; set; }
         private int DecipherMorph { get; set; }
         public string? JwtToken { get; set; }
-        public string? WebsocketToken { get; set; }
         public User? User { get; set; }
         public WebSocket WebSocket { get; set; }
         public bool IsInGame { get; set; }

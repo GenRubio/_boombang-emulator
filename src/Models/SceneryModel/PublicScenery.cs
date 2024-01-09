@@ -1,4 +1,4 @@
-﻿namespace boombang_emulator.src.Models
+﻿namespace boombang_emulator.src.Models.SceneryModel
 {
     internal class PublicScenery : Scenery
     {
@@ -7,12 +7,12 @@
         public PublicScenery(int key, Dictionary<string, object> data)
             : base(data)
         {
-            this.Key = key;
-            this.ClientIdentifierAutoIncrement = 1;
+            Key = key;
+            ClientIdentifierAutoIncrement = 1;
         }
         public void AddClient(Client client)
         {
-            Clients.Add(this.ClientIdentifierAutoIncrement++, client);
+            Clients.TryAdd(ClientIdentifierAutoIncrement++, client);
         }
     }
 }

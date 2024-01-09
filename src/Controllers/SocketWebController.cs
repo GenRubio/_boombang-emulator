@@ -8,7 +8,6 @@ namespace boombang_emulator.src.Controllers
 {
     internal class SocketWebController
     {
-        //https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_server
         public static ConcurrentDictionary<string, Models.PendingToken> tokensPending = [];
         public static void Invoke()
         {
@@ -124,7 +123,7 @@ namespace boombang_emulator.src.Controllers
             while (true)
             {
                 var currentDateTime = DateTime.Now;
-                var tokensToRemove = tokensPending.Where(kv => kv.Value.TimeOut < currentDateTime).Select(kv => kv.Key).ToList();
+                var tokensToRemove = tokensPending.Where(kv => kv.Value.TimeOut < currentDateTime).Select(kv => kv.Key);
 
                 foreach (var tokenKey in tokensToRemove)
                 {

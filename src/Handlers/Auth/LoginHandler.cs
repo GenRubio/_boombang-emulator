@@ -16,9 +16,7 @@ namespace boombang_emulator.src.Handlers.Auth
             try
             {
                 string jwtToken = clientMessage.Parameters[0, 0];
-                string webSocketToken = clientMessage.Parameters[1, 0];
                 client.JwtToken = jwtToken;
-                client.WebsocketToken = webSocketToken;
 
                 User? user = await UserService.GetUser(client);
                 PendingToken pendingToken = SocketWebController.tokensPending[jwtToken];

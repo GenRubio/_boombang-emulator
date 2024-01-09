@@ -15,7 +15,7 @@ namespace boombang_emulator.src.HandlersWeb.FlowerPower.Packets
                 {
                     area.Id,
                     area.Name,
-                    UserInArea = area.Clients.ContainsValue(client),
+                    UserInArea = area.Clients.Values.Any(value => value.Equals(client)), //UserInArea = area.Clients.ContainsValue(client),
                 });
             }
 
