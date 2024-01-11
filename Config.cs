@@ -6,8 +6,6 @@
         public static string apiRoute;
         public static string webSocketRoute;
         public static int port;
-        //Produccion: dotnet publish -r win-x64 --self-contained true -p:PublishSingleFile=true
-        //dotnet publish -c release -r linux-x64 --self-contained
         public static void Invoke()
         {
             var config = LoadConfiguration(".env");
