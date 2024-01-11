@@ -24,9 +24,9 @@ namespace boombang_emulator.src.Handlers.Auth
                 {
                     throw new Exception("User not found");
                 }
-                SocketWebController.tokensPending.TryRemove(jwtToken, out var removedToken);
+                SocketWebController.tokensPending.TryRemove(jwtToken, out _);
 
-                Client? clientFound = SocketGameController.clients[client.Uid];
+                Client? clientFound = SocketGameController.clients.Values.FirstOrDefault(client => client.User?.Id == user.Id);
                 clientFound?.Close();
 
                 client.User = user;
