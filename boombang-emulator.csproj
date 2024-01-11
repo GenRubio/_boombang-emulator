@@ -17,6 +17,12 @@
     <EmbeddedResource Include="libs\Newtonsoft.Json.dll" />
   </ItemGroup>
 
+<ItemGroup>
+  <None Update=".env">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
