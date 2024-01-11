@@ -1,12 +1,13 @@
-﻿using System.Net.Sockets;
+﻿using System.Collections.Concurrent;
 using System.Net;
+using System.Net.Sockets;
 
 namespace boombang_emulator.src.Controllers
 {
     internal class SocketGameController
     {
         private static Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        public static List<Models.Client> clients = [];
+        public static ConcurrentDictionary<string, Models.Client> clients = [];
 
         public static void Invoke()
         {
@@ -30,24 +31,15 @@ namespace boombang_emulator.src.Controllers
                 if (session != null && session.RemoteEndPoint != null)
                 {
                     string? sessionEndPoint = session.RemoteEndPoint.ToString();
+                    if (sessionEndPoint == null)
+                    {
+                        return;
+                    }
                     Console.WriteLine("Conexión aceptada desde: " + sessionEndPoint);
 
-                    Models.Client? errorClient = clients.Find(c => {
-                        try
-                        {
-                            return c.GetSocket().RemoteEndPoint.ToString() == sessionEndPoint;
-                        }
-                        catch (Exception)
-                        {
-                            return true;
-                        }
-                    });
+                    clients.TryRemove(sessionEndPoint, out _);
+                    clients.TryAdd(sessionEndPoint, new Models.Client(session));
 
-                    if (errorClient != null)
-                    {
-                        clients.Remove(errorClient);
-                    }
-                    clients.Add(new Models.Client(session));
                     Listen();
                 }
             }
