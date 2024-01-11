@@ -65,7 +65,7 @@ namespace boombang_emulator.src.Controllers
                         var data = JsonUtils.Deserialize(response);
                         if (data != null)
                         {
-                            Models.Client? client = SocketGameController.clients.Find(c => c.JwtToken == (string)data["jwt"]);
+                            Models.Client? client = SocketGameController.clients.Values.FirstOrDefault(c => c.JwtToken == (string)data["jwt"]);
                             HandlerWebController.SendHandler(webSocket, client, data);
                         }
                     }
@@ -100,7 +100,7 @@ namespace boombang_emulator.src.Controllers
             }
             else
             {
-                foreach (Models.Client connectedClient in SocketGameController.clients)
+                foreach (Models.Client connectedClient in SocketGameController.clients.Values)
                 {
                     try
                     {

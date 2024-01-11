@@ -26,7 +26,7 @@ namespace boombang_emulator.src.Handlers.Auth
                 }
                 SocketWebController.tokensPending.TryRemove(jwtToken, out var removedToken);
 
-                Client? clientFound = SocketGameController.clients.Find(client => client.User?.Id == user.Id);
+                Client? clientFound = SocketGameController.clients[client.Uid];
                 clientFound?.Close();
 
                 client.User = user;

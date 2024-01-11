@@ -21,10 +21,11 @@ namespace boombang_emulator.src.HandlersWeb.Auth
                         return;
                     }
                     string token = (string)data["jwt"];
-                    if (!SocketWebController.tokensPending.ContainsKey(token))
+                    if (SocketWebController.tokensPending.ContainsKey(token))
                     {
-                        SocketWebController.tokensPending.TryAdd(token, new PendingToken(token, webSocket));
+                        SocketWebController.tokensPending.TryRemove(token, out var removedToken);
                     }
+                    SocketWebController.tokensPending.TryAdd(token, new PendingToken(token, webSocket));
                 }
             }
             catch (Exception ex)

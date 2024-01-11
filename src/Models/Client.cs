@@ -8,6 +8,7 @@ namespace boombang_emulator.src.Models
 {
     internal class Client
     {
+        public string Uid { get; set; }
         private Socket Socket { get; set; }
         private byte[] Buffer { get; set; }
         private Encoding Encoding { get; set; }
@@ -21,6 +22,7 @@ namespace boombang_emulator.src.Models
         public bool IsInGame { get; set; }
         public Client(Socket socket)
         {
+            this.Uid = socket.RemoteEndPoint!.ToString()!;
             this.Socket = socket;
             this.Buffer = new byte[2048];
             this.Encoding = Encoding.GetEncoding("iso-8859-1");
@@ -157,7 +159,7 @@ namespace boombang_emulator.src.Models
                 RenderAreasCountUserPacketWeb.Invoke(null);
                 this.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
             }
-            SocketGameController.clients.Remove(this);
+            SocketGameController.clients.TryRemove(this.Uid, out _);
         }
         public Socket GetSocket()
         {
