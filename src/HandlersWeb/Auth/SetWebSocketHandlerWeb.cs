@@ -14,17 +14,10 @@ namespace boombang_emulator.src.HandlersWeb.Auth
         {
             try
             {
-                if (client == null)
+                if (client == null && data != null)
                 {
-                    if (data == null)
-                    {
-                        return;
-                    }
                     string token = (string)data["jwt"];
-                    if (SocketWebController.tokensPending.ContainsKey(token))
-                    {
-                        SocketWebController.tokensPending.TryRemove(token, out var removedToken);
-                    }
+                    SocketWebController.tokensPending.TryRemove(token, out _);
                     SocketWebController.tokensPending.TryAdd(token, new PendingToken(token, webSocket));
                 }
             }
