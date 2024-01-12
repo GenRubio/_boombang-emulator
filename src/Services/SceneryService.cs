@@ -9,8 +9,7 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute + "/game/loaders/areas";
-                string response = await HttpController.Get(url);
+                string response = await HttpController.Get("/game/loaders/areas");
                 var dataList = JsonUtils.DeserializeList(response);
                 if (dataList == null)
                 {
@@ -27,8 +26,7 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute + "/game/loaders/sceneries";
-                string response = await HttpController.Get(url);
+                string response = await HttpController.Get("/game/loaders/sceneries");
                 var dataList = JsonUtils.DeserializeList(response);
                 if (dataList == null)
                 {
