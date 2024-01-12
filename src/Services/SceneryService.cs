@@ -19,7 +19,7 @@ namespace boombang_emulator.src.Services
             }
             catch (Exception)
             {
-                return [];
+                throw;
             }
         }
         public static async Task<List<Dictionary<string, object>>> GetSceneries()
@@ -36,7 +36,7 @@ namespace boombang_emulator.src.Services
             }
             catch (Exception)
             {
-                return [];
+                throw;
             }
         }
     }

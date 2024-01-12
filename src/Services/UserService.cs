@@ -18,12 +18,9 @@ namespace boombang_emulator.src.Services
                 }
                 return new User(data);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-                client.Close();
-                return null;
+                throw;
             }
         }
     }
