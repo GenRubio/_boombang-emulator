@@ -20,7 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 validator.ValidateParameter<string>((object)clientMessage.Parameters[1, 0]);
 
                 string message = clientMessage.Parameters[1, 0];
-                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Chat))
+                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.CHAT))
                 {
                     return;
                 }
