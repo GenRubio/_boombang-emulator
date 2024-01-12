@@ -2,9 +2,9 @@
 {
     public enum BlockActionEnum
     {
-        Watch,
-        Walk,
-        Chat,
-        Generic
+        WATCH,
+        WALK,
+        CHAT,
+        GENERIC
     }
 }

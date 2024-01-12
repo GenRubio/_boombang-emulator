@@ -16,7 +16,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.Watch))
+                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.WATCH))
                 {
                     return;
                 }

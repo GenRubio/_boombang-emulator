@@ -2,7 +2,7 @@
 {
     public enum ColorChatsEnum : ushort
     {
-        Normal = 1,
-        Gold = 2,
+        NORMAL = 1,
+        GOLD = 2,
     }
 }

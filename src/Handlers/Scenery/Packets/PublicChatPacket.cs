@@ -17,7 +17,7 @@
             Models.ServerMessage serverMessage = new([186]);
             serverMessage.AppendParameter(userKeyInArea);
             serverMessage.AppendParameter(message);
-            serverMessage.AppendParameter((int)Enums.ColorChatsEnum.Normal);
+            serverMessage.AppendParameter((int)Enums.ColorChatsEnum.NORMAL);
             client.User.Scenery.SendData(serverMessage);
         }
     }

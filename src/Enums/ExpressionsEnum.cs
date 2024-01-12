@@ -2,13 +2,13 @@
 {
     public enum ExpressionsEnum : ushort
     {
-        Little_Laughter = 1,
-        Big_Laughter = 2,
-        Cry = 7,
-        In_Love = 5,
-        Spit = 4,
-        Fart = 3,
-        Special = 6,
-        Fly = 8
+        LITTLE_LAUGHTER = 1,
+        BIG_LAUGHTER = 2,
+        CRY = 7,
+        IN_LOVE = 5,
+        SPIT = 4,
+        FART = 3,
+        SPECIAL = 6,
+        FLY = 8
     }
 }
