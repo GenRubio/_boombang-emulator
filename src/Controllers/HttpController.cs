@@ -12,7 +12,7 @@ namespace boombang_emulator.src.Controllers
         {
             try
             {
-                var response = await httpClient.GetAsync(url);
+                var response = await httpClient.GetAsync(Config.apiRoute + url);
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
@@ -31,7 +31,7 @@ namespace boombang_emulator.src.Controllers
                 }
                 var jsonContent = JsonConvert.SerializeObject(data);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(url, content);
+                var response = await httpClient.PostAsync(Config.apiRoute + url, content);
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }

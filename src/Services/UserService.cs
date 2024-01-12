@@ -10,8 +10,7 @@ namespace boombang_emulator.src.Services
         {
             try
             {
-                string url = Config.apiRoute + "/game/user";
-                string response = await HttpController.Post(url, client, requestData);
+                string response = await HttpController.Post("/game/user", client, requestData);
                 var data = JsonUtils.Deserialize(response);
                 if (data == null)
                 {
