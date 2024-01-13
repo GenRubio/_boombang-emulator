@@ -16,7 +16,6 @@ try
     SocketGameController.Invoke();
     SocketWebController.Invoke();
 
-    await SceneryLoader.Invoke();
     await PublicSceneryLoader.Invoke();
 }
 catch (Exception ex)
