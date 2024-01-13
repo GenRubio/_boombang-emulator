@@ -11,11 +11,7 @@ namespace boombang_emulator.src.Services
             {
                 string response = await HttpController.Get("/game/loaders/areas");
                 var dataList = JsonUtils.DeserializeList(response);
-                if (dataList == null)
-                {
-                    return [];
-                }
-                return dataList;
+                return dataList ?? ([]);
             }
             catch (Exception)
             {
@@ -28,11 +24,7 @@ namespace boombang_emulator.src.Services
             {
                 string response = await HttpController.Get("/game/loaders/sceneries");
                 var dataList = JsonUtils.DeserializeList(response);
-                if (dataList == null)
-                {
-                    return [];
-                }
-                return dataList;
+                return dataList ?? ([]);
             }
             catch (Exception)
             {
