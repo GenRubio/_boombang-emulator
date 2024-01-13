@@ -14,14 +14,14 @@ namespace boombang_emulator.src.Handlers.FlowerPower.Packets
             switch (typeId)
             {
                 case 1:
-                    foreach (PublicAreaScenery sceneryArea in PublicSceneryLoader.publicSceneries.Values)
+                    foreach (PublicScenery scenery in PublicSceneryLoader.publicSceneries.Values)
                     {
                         serverMessage.AppendParameter([
-                            sceneryArea.TypeId,
-                            sceneryArea.TypeId,
-                            sceneryArea.Key,
-                            sceneryArea.Name,
-                            sceneryArea.Clients.Count,
+                            scenery.TypeId,
+                            scenery.TypeId,
+                            scenery.Key,
+                            scenery.Name,
+                            scenery.Clients.Count,
                             0,
                             0,
                             0,
