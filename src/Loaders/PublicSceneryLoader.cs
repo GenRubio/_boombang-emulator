@@ -19,11 +19,9 @@ namespace boombang_emulator.src.Loaders
                     publicSceneries.TryAdd(key, new PublicScenery(key, data));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("---------------------------------------");
-                Console.WriteLine("PublicSceneryLoader: " + ex.Message);
-                Console.WriteLine("---------------------------------------");
+                throw;
             }
         }
     }
