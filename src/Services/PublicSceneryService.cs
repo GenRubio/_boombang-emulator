@@ -10,8 +10,7 @@ namespace boombang_emulator.src.Services
             try
             {
                 string response = await HttpController.Get("/game/loaders/areas");
-                var dataList = JsonUtils.DeserializeList(response);
-                return dataList ?? ([]);
+                return JsonUtils.DeserializeList(response) ?? ([]);
             }
             catch (Exception)
             {

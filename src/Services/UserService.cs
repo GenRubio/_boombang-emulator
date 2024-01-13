@@ -13,7 +13,6 @@ namespace boombang_emulator.src.Services
                 string response = await HttpController.Post("/game/user", client, requestData);
                 var data = JsonUtils.Deserialize(response);
                 return data != null ? new User(data) : null;
-
             }
             catch (Exception)
             {
