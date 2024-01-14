@@ -15,7 +15,7 @@ namespace boombang_emulator.src.Models
         public WalkTrajectory? WalkTrajectory { get; set; }
         public Position? ActualPositionInScenery { get; set; }
         public UserData Avatar { get; set; }
-        public UserActions Actions { get; set; }
+        public ActionsEngine Actions { get; set; }
         public CancellationTokenSource? ResetPathfindingSource { get; set; }
         public User(Dictionary<string, object> data)
         {
