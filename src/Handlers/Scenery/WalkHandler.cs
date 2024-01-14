@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Enums;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Pathfinding;
 using System.Drawing;
@@ -17,7 +18,8 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.WALK))
+                bool isBlockedAction = client.User!.Actions.Walk;
+                if (isBlockedAction)
                 {
                     return;
                 }
@@ -37,6 +39,8 @@ namespace boombang_emulator.src.Handlers.Scenery
                 }
                 Point endLocation = new(listPositions[^1].X, listPositions[^1].Y);
                 client.User!.SetWalkTrajectory(endLocation, client);
+
+                client.User!.Actions.SetAction(UserActionsEnum.Actions.WALK);
             }
             catch (Exception)
             {

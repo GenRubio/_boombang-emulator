@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Enums;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
 
@@ -16,23 +17,17 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.WATCH))
+                bool isBlockedAction = client.User!.Actions.Watch;
+                if (isBlockedAction)
                 {
                     return;
                 }
 
-                if (
-                client.User == null
-                || client.User.Scenery == null
-                || client.User.ActualPositionInScenery == null
-               )
-                {
-                    throw new Exception("-");
-                }
-
                 int z = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 WatchPacket.Invoke(client, z);
-                client.User.ActualPositionInScenery.Z = z;
+
+                client.User!.ActualPositionInScenery!.Z = z;
+                client.User.Actions.SetAction(UserActionsEnum.Actions.WATCH);
             }
             catch (Exception)
             {
