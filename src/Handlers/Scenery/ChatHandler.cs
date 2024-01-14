@@ -16,16 +16,20 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                ParameterValidator validator = new();
-                validator.ValidateParameter<string>((object)clientMessage.Parameters[1, 0]);
-
-                string message = clientMessage.Parameters[1, 0];
-                if (Middlewares.BlockAction(client, Enums.BlockActionEnum.CHAT))
+                bool isBlockedAction = client.User!.Actions.Chat;
+                if (isBlockedAction)
                 {
                     return;
                 }
 
+                ParameterValidator validator = new();
+                validator.ValidateParameter<string>((object)clientMessage.Parameters[1, 0]);
+
+                string message = clientMessage.Parameters[1, 0];
+
                 PublicChatPacket.Invoke(client, message);
+
+                client.User!.Actions.SetAction(Enums.UserActionsEnum.Actions.CHAT);
             }
             catch (Exception)
             {
