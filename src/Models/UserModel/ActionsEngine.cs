@@ -2,7 +2,7 @@
 
 namespace boombang_emulator.src.Models.UserModel
 {
-    internal class UserActions
+    internal class ActionsEngine
     {
         public bool Walk { get; set; }
         public bool Watch { get; set; }
@@ -15,7 +15,9 @@ namespace boombang_emulator.src.Models.UserModel
         public bool Fart { get; set; }
         public bool Special { get; set; }
         public bool Fly { get; set; }
-        public UserActions()
+        public CancellationTokenSource? ResetActionsSource { get; set; }
+        public CancellationTokenSource? ResetExpressionsSource { get; set; }
+        public ActionsEngine()
         {
             this.Walk = false;
             this.Watch = false;
@@ -33,10 +35,15 @@ namespace boombang_emulator.src.Models.UserModel
         {
             DateTime timeEnd = DateTime.Now;
             bool startTimer = true;
+            this.ResetActionsSource = new();
+            CancellationToken resetToken = this.ResetActionsSource.Token;
+
             switch (action)
             {
                 case UserActionsEnum.Actions.WALK:
                     startTimer = false;
+                    this.ResetExpressionsSource?.Cancel();
+                    SetBlockExpressions(false);
                     break;
                 case UserActionsEnum.Actions.WATCH:
                     this.Watch = true;
@@ -47,73 +54,99 @@ namespace boombang_emulator.src.Models.UserModel
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.CHAT);
                     break;
                 case UserActionsEnum.Actions.LITTLE_LAUGHTER:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.LITTLE_LAUGHTER);
                     break;
                 case UserActionsEnum.Actions.BIG_LAUGHTER:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.BIG_LAUGHTER);
                     break;
                 case UserActionsEnum.Actions.CRY:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.CRY);
                     break;
                 case UserActionsEnum.Actions.IN_LOVE:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.IN_LOVE);
                     break;
                 case UserActionsEnum.Actions.SPIT:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.SPIT);
                     break;
                 case UserActionsEnum.Actions.FART:
+                    this.ResetExpressionsSource = new();
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.FART);
                     break;
                 case UserActionsEnum.Actions.SPECIAL:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.SPECIAL);
                     break;
                 case UserActionsEnum.Actions.FLY:
+                    this.ResetExpressionsSource = new();
+                    resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
                     timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.FLY);
                     break;
             }
             if (startTimer == true)
             {
-                Task.Run(() => this.StartTimer(timeEnd, action));
+                Task.Run(() => this.StartTimer(timeEnd, action, resetToken));
             }
         }
-        private async Task StartTimer(DateTime timeEnd, UserActionsEnum.Actions action)
+        private async Task StartTimer(DateTime timeEnd, UserActionsEnum.Actions action, CancellationToken cancellationToken)
         {
             while (true)
             {
-                if (timeEnd < DateTime.Now)
+                try
                 {
-                    switch (action)
+                    if (timeEnd < DateTime.Now)
                     {
-                        case UserActionsEnum.Actions.WALK:
-                            break;
-                        case UserActionsEnum.Actions.WATCH:
-                            this.Watch = false;
-                            break;
-                        case UserActionsEnum.Actions.CHAT:
-                            this.Chat = false;
-                            break;
-                        case UserActionsEnum.Actions.LITTLE_LAUGHTER:
-                        case UserActionsEnum.Actions.BIG_LAUGHTER:
-                        case UserActionsEnum.Actions.CRY:
-                        case UserActionsEnum.Actions.IN_LOVE:
-                        case UserActionsEnum.Actions.SPIT:
-                        case UserActionsEnum.Actions.FART:
-                        case UserActionsEnum.Actions.SPECIAL:
-                        case UserActionsEnum.Actions.FLY:
-                            SetBlockExpressions(false);
-                            break;
+                        switch (action)
+                        {
+                            case UserActionsEnum.Actions.WALK:
+                                break;
+                            case UserActionsEnum.Actions.WATCH:
+                                this.Watch = false;
+                                break;
+                            case UserActionsEnum.Actions.CHAT:
+                                this.Chat = false;
+                                break;
+                            case UserActionsEnum.Actions.LITTLE_LAUGHTER:
+                            case UserActionsEnum.Actions.BIG_LAUGHTER:
+                            case UserActionsEnum.Actions.CRY:
+                            case UserActionsEnum.Actions.IN_LOVE:
+                            case UserActionsEnum.Actions.SPIT:
+                            case UserActionsEnum.Actions.FART:
+                            case UserActionsEnum.Actions.SPECIAL:
+                            case UserActionsEnum.Actions.FLY:
+                                SetBlockExpressions(false);
+                                break;
+                        }
+                        break;
                     }
+                    await Task.Delay(100, cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
                     break;
                 }
-                await Task.Delay(100);
+                catch (Exception)
+                {
+                    break;
+                }
             }
         }
         private void SetBlockExpressions(bool block)
