@@ -1,4 +1,5 @@
-﻿using boombang_emulator.src.Enums;
+﻿using boombang_emulator.src.Dictionaries;
+using boombang_emulator.src.Enums;
 
 namespace boombang_emulator.src.Models
 {
@@ -37,7 +38,7 @@ namespace boombang_emulator.src.Models
             this.Drink = false;
             this.Rose = false;
         }
-        public void SetAction(UserActionsEnum.Actions action)
+        public void SetAction(AvatarActionsEnum.Actions action, int avatarId)
         {
             DateTime timeEnd = DateTime.Now;
             bool startTimer = true;
@@ -46,86 +47,86 @@ namespace boombang_emulator.src.Models
 
             switch (action)
             {
-                case UserActionsEnum.Actions.WALK:
+                case AvatarActionsEnum.Actions.WALK:
                     startTimer = false;
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(false);
                     break;
-                case UserActionsEnum.Actions.WATCH:
+                case AvatarActionsEnum.Actions.WATCH:
                     this.Watch = true;
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.WATCH);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.CHAT:
+                case AvatarActionsEnum.Actions.CHAT:
                     this.Chat = true;
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.CHAT);
+                    timeEnd = GetTime(avatarId, action);
                     break;
                 // Romantic interactions
-                case UserActionsEnum.Actions.KISS:
+                case AvatarActionsEnum.Actions.KISS:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.KISS);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.DRINK:
+                case AvatarActionsEnum.Actions.DRINK:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.DRINK);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.ROSE:
+                case AvatarActionsEnum.Actions.ROSE:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.ROSE);
+                    timeEnd = GetTime(avatarId, action);
                     break;
                 // User actions
-                case UserActionsEnum.Actions.LITTLE_LAUGHTER:
+                case AvatarActionsEnum.Actions.LITTLE_LAUGHTER:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.LITTLE_LAUGHTER);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.BIG_LAUGHTER:
+                case AvatarActionsEnum.Actions.BIG_LAUGHTER:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.BIG_LAUGHTER);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.CRY:
+                case AvatarActionsEnum.Actions.CRY:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.CRY);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.IN_LOVE:
+                case AvatarActionsEnum.Actions.IN_LOVE:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.IN_LOVE);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.SPIT:
+                case AvatarActionsEnum.Actions.SPIT:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.SPIT);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.FART:
+                case AvatarActionsEnum.Actions.FART:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.FART);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.SPECIAL:
+                case AvatarActionsEnum.Actions.SPECIAL:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.SPECIAL);
+                    timeEnd = GetTime(avatarId, action);
                     break;
-                case UserActionsEnum.Actions.FLY:
+                case AvatarActionsEnum.Actions.FLY:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = DateTime.Now.AddMilliseconds((double)UserActionsEnum.ActionsTime.FLY);
+                    timeEnd = GetTime(avatarId, action);
                     break;
             }
             if (startTimer == true)
@@ -133,7 +134,12 @@ namespace boombang_emulator.src.Models
                 Task.Run(() => StartTimer(timeEnd, action, resetToken));
             }
         }
-        private async Task StartTimer(DateTime timeEnd, UserActionsEnum.Actions action, CancellationToken cancellationToken)
+        private static DateTime GetTime(int avatarId, AvatarActionsEnum.Actions action)
+        {
+            int time = AvatarActionsDictionary.avatarActions[(ushort)avatarId][action];
+            return DateTime.Now.AddMilliseconds(time);
+        }
+        private async Task StartTimer(DateTime timeEnd, AvatarActionsEnum.Actions action, CancellationToken cancellationToken)
         {
             while (true)
             {
@@ -143,27 +149,27 @@ namespace boombang_emulator.src.Models
                     {
                         switch (action)
                         {
-                            case UserActionsEnum.Actions.WALK:
+                            case AvatarActionsEnum.Actions.WALK:
                                 break;
-                            case UserActionsEnum.Actions.WATCH:
+                            case AvatarActionsEnum.Actions.WATCH:
                                 this.Watch = false;
                                 break;
-                            case UserActionsEnum.Actions.CHAT:
+                            case AvatarActionsEnum.Actions.CHAT:
                                 this.Chat = false;
                                 break;
-                            case UserActionsEnum.Actions.LITTLE_LAUGHTER:
-                            case UserActionsEnum.Actions.BIG_LAUGHTER:
-                            case UserActionsEnum.Actions.CRY:
-                            case UserActionsEnum.Actions.IN_LOVE:
-                            case UserActionsEnum.Actions.SPIT:
-                            case UserActionsEnum.Actions.FART:
-                            case UserActionsEnum.Actions.SPECIAL:
-                            case UserActionsEnum.Actions.FLY:
+                            case AvatarActionsEnum.Actions.LITTLE_LAUGHTER:
+                            case AvatarActionsEnum.Actions.BIG_LAUGHTER:
+                            case AvatarActionsEnum.Actions.CRY:
+                            case AvatarActionsEnum.Actions.IN_LOVE:
+                            case AvatarActionsEnum.Actions.SPIT:
+                            case AvatarActionsEnum.Actions.FART:
+                            case AvatarActionsEnum.Actions.SPECIAL:
+                            case AvatarActionsEnum.Actions.FLY:
                                 SetBlockExpressions(false);
                                 break;
-                            case UserActionsEnum.Actions.KISS:
-                            case UserActionsEnum.Actions.DRINK:
-                            case UserActionsEnum.Actions.ROSE:
+                            case AvatarActionsEnum.Actions.KISS:
+                            case AvatarActionsEnum.Actions.DRINK:
+                            case AvatarActionsEnum.Actions.ROSE:
                                 SetBlockRomanticInteractions(false);
                                 SetBlockExpressions(false);
                                 break;

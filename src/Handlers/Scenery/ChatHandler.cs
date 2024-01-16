@@ -29,7 +29,7 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 PublicChatPacket.Invoke(client, message);
 
-                client.User!.Actions.SetAction(Enums.UserActionsEnum.Actions.CHAT);
+                client.User!.Actions.SetAction(Enums.AvatarActionsEnum.Actions.CHAT, client.User.Avatar.Id);
             }
             catch (Exception)
             {
