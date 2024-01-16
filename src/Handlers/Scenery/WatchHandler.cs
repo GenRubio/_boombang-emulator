@@ -27,7 +27,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 WatchPacket.Invoke(client, z);
 
                 client.User!.ActualPositionInScenery!.Z = z;
-                client.User.Actions.SetAction(UserActionsEnum.Actions.WATCH);
+                client.User.Actions.SetAction(AvatarActionsEnum.Actions.WATCH, client.User.Avatar.Id);
             }
             catch (Exception)
             {

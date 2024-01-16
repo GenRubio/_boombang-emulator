@@ -62,23 +62,23 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
             client.User!.WalkTrajectory!.Clear();
             senderClient.User!.WalkTrajectory!.Clear();
 
-            UserActionsEnum.Actions action = UserActionsEnum.Actions.KISS;
+            AvatarActionsEnum.Actions action = AvatarActionsEnum.Actions.KISS;
 
             switch (interactionId)
             {
                 case (int)RomanticInteractionsEnum.KISS:
-                    action = UserActionsEnum.Actions.KISS;
+                    action = AvatarActionsEnum.Actions.KISS;
                     break;
                 case (int)RomanticInteractionsEnum.DRINK:
-                    action = UserActionsEnum.Actions.DRINK;
+                    action = AvatarActionsEnum.Actions.DRINK;
                     break;
                 case (int)RomanticInteractionsEnum.ROSE:
-                    action = UserActionsEnum.Actions.ROSE;
+                    action = AvatarActionsEnum.Actions.ROSE;
                     break;
             }
 
-            client.User!.Actions.SetAction(action);
-            senderClient.User!.Actions.SetAction(action);
+            client.User!.Actions.SetAction(action, client.User.Avatar.Id);
+            senderClient.User!.Actions.SetAction(action, senderClient.User.Avatar.Id);
 
             AcceptRomanticInteractionPacket.Invoke(client.User, senderClient.User, interactionId);
         }

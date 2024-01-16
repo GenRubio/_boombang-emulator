@@ -19,41 +19,41 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 int expressionId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 bool isBlockedAction = false;
-                UserActionsEnum.Actions action = UserActionsEnum.Actions.LITTLE_LAUGHTER;
+                AvatarActionsEnum.Actions action = AvatarActionsEnum.Actions.LITTLE_LAUGHTER;
 
                 switch (expressionId)
                 {
                     case (int)ExpressionsEnum.LITTLE_LAUGHTER:
                         isBlockedAction = client.User!.Actions.LittleLaughter;
-                        action = UserActionsEnum.Actions.LITTLE_LAUGHTER;
+                        action = AvatarActionsEnum.Actions.LITTLE_LAUGHTER;
                         break;
                     case (int)ExpressionsEnum.BIG_LAUGHTER:
                         isBlockedAction = client.User!.Actions.BigLaughter;
-                        action = UserActionsEnum.Actions.BIG_LAUGHTER;
+                        action = AvatarActionsEnum.Actions.BIG_LAUGHTER;
                         break;
                     case (int)ExpressionsEnum.FART:
                         isBlockedAction = client.User!.Actions.Fart;
-                        action = UserActionsEnum.Actions.FART;
+                        action = AvatarActionsEnum.Actions.FART;
                         break;
                     case (int)ExpressionsEnum.SPIT:
                         isBlockedAction = client.User!.Actions.Spit;
-                        action = UserActionsEnum.Actions.SPIT;
+                        action = AvatarActionsEnum.Actions.SPIT;
                         break;
                     case (int)ExpressionsEnum.IN_LOVE:
                         isBlockedAction = client.User!.Actions.InLove;
-                        action = UserActionsEnum.Actions.IN_LOVE;
+                        action = AvatarActionsEnum.Actions.IN_LOVE;
                         break;
                     case (int)ExpressionsEnum.SPECIAL:
                         isBlockedAction = client.User!.Actions.Special;
-                        action = UserActionsEnum.Actions.SPECIAL;
+                        action = AvatarActionsEnum.Actions.SPECIAL;
                         break;
                     case (int)ExpressionsEnum.CRY:
                         isBlockedAction = client.User!.Actions.Cry;
-                        action = UserActionsEnum.Actions.CRY;
+                        action = AvatarActionsEnum.Actions.CRY;
                         break;
                     case (int)ExpressionsEnum.FLY:
                         isBlockedAction = client.User!.Actions.Fly;
-                        action = UserActionsEnum.Actions.FLY;
+                        action = AvatarActionsEnum.Actions.FLY;
                         break;
                 }
                 if (isBlockedAction)
@@ -61,7 +61,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                     return;
                 }
                 client.User!.WalkTrajectory!.Clear();
-                client.User!.Actions.SetAction(action);
+                client.User!.Actions.SetAction(action, client.User.Avatar.Id);
                 ExpressionPacket.Invoke(client, expressionId);
             }
             catch (Exception)
