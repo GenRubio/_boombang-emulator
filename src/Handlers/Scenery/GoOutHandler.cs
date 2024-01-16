@@ -16,7 +16,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
+                int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
                 client.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
                 client.User.Scenery.RemoveClient(client);
                 client.SendData(new([128, 124]));

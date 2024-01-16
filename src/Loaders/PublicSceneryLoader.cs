@@ -1,4 +1,4 @@
-﻿using boombang_emulator.src.Models.SceneryModel;
+﻿using boombang_emulator.src.Models;
 using boombang_emulator.src.Services;
 using System.Collections.Concurrent;
 

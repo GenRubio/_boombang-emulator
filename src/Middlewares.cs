@@ -11,5 +11,12 @@ namespace boombang_emulator.src
                 throw new Exception("-");
             }
         }
+        public static void IsRomanticInteractionEnabled(Scenery scenery)
+        {
+            if (scenery is not PublicScenery && scenery is not PrivateScenery)
+            {
+                throw new Exception("-");
+            }
+        }
     }
 }

@@ -4,15 +4,7 @@
     {
         public static void Invoke(Models.Client client, string message)
         {
-            if (
-                client.User == null
-                || client.User.Scenery == null
-               )
-            {
-                throw new Exception("-");
-            }
-
-            int userKeyInArea = client.User.Scenery.GetClientIdentifier(client.User.Id);
+            int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
 
             Models.ServerMessage serverMessage = new([186]);
             serverMessage.AppendParameter(userKeyInArea);

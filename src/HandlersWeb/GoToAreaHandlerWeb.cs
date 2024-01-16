@@ -3,7 +3,6 @@ using boombang_emulator.src.Handlers.FlowerPower.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
-using boombang_emulator.src.Models.SceneryModel;
 using System.Net.WebSockets;
 
 namespace boombang_emulator.src.HandlersWeb

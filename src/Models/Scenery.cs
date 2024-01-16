@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using boombang_emulator.src.Models.Interfaces;
+using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Drawing;
 
@@ -33,10 +34,11 @@ namespace boombang_emulator.src.Models
         }
         public void RemoveClient(Client client)
         {
-            if (client.User == null)
+            if (client.User!.Scenery is PublicPrivateSceneryInterface scenery)
             {
-                return;
+                scenery.RemoveAllUserRomanticInteractions(client.User);
             }
+
             int key = Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key;
             Clients.TryRemove(key, out var removedClient);
             client.User.SetScenery(null);
@@ -74,6 +76,17 @@ namespace boombang_emulator.src.Models
                 }
             }
             return 0;
+        }
+        public Client? GetClientById(int userId)
+        {
+            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
+            {
+                if (sceneryClient.Value.User != null && sceneryClient.Value.User.Id == userId)
+                {
+                    return sceneryClient.Value;
+                }
+            }
+            return null;
         }
         public void SendData(ServerMessage server, Client? client = null)
         {
