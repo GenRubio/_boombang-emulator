@@ -1,10 +1,10 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Enums;
-using boombang_emulator.src.Handlers.Scenery.Packets;
+using boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Interfaces;
 
-namespace boombang_emulator.src.Handlers.Scenery
+namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
 {
     internal class SendRomanticInteractionHandler
     {
@@ -17,7 +17,9 @@ namespace boombang_emulator.src.Handlers.Scenery
             try
             {
                 Middlewares.IsUserInScenery(client);
-                Middlewares.IsRomanticInteractionEnabled(client.User!.Scenery!);
+
+                Models.Scenery userScenery = client.User!.Scenery!;
+                Middlewares.IsRomanticInteractionEnabled(userScenery);
 
                 int interactionId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
                 int receiverId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
@@ -25,9 +27,9 @@ namespace boombang_emulator.src.Handlers.Scenery
                 {
                     throw new Exception("Interaction not found");
                 }
-                int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
+                int userKeyInArea = userScenery.GetClientIdentifier(client.User.Id);
 
-                if (client.User!.Scenery is PublicPrivateSceneryInterface scenery)
+                if (userScenery is PublicPrivateSceneryInterface scenery)
                 {
                     RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(userKeyInArea, receiverId);
                     if (romanticInteraction == null)

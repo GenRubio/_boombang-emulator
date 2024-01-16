@@ -70,6 +70,10 @@ namespace boombang_emulator.src.Pathfinding
             }
             return false;
         }
+        public void Clear()
+        {
+            this.Positions.Clear();
+        }
         public void IsMovementCorrupt(Position NextPoint)
         {
             if (this.Client.User == null || this.Client.User.ActualPositionInScenery == null)

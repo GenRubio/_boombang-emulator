@@ -1,4 +1,4 @@
-﻿namespace boombang_emulator.src.Handlers.Scenery.Packets
+﻿namespace boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions
 {
     internal class SendRomanticInteractionPacket
     {
