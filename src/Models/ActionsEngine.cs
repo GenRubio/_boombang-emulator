@@ -38,7 +38,7 @@ namespace boombang_emulator.src.Models
             this.Drink = false;
             this.Rose = false;
         }
-        public void SetAction(AvatarActionsEnum.Actions action, int avatarId)
+        public void SetAction(AvatarActionsEnum action, int avatarId)
         {
             DateTime timeEnd = DateTime.Now;
             bool startTimer = true;
@@ -47,34 +47,34 @@ namespace boombang_emulator.src.Models
 
             switch (action)
             {
-                case AvatarActionsEnum.Actions.WALK:
+                case AvatarActionsEnum.WALK:
                     startTimer = false;
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(false);
                     break;
-                case AvatarActionsEnum.Actions.WATCH:
+                case AvatarActionsEnum.WATCH:
                     this.Watch = true;
                     break;
-                case AvatarActionsEnum.Actions.CHAT:
+                case AvatarActionsEnum.CHAT:
                     this.Chat = true;
                     break;
                 // Romantic interactions
-                case AvatarActionsEnum.Actions.KISS:
-                case AvatarActionsEnum.Actions.DRINK:
-                case AvatarActionsEnum.Actions.ROSE:
+                case AvatarActionsEnum.KISS:
+                case AvatarActionsEnum.DRINK:
+                case AvatarActionsEnum.ROSE:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
                     break;
                 // User actions
-                case AvatarActionsEnum.Actions.LITTLE_LAUGHTER:
-                case AvatarActionsEnum.Actions.BIG_LAUGHTER:
-                case AvatarActionsEnum.Actions.CRY:
-                case AvatarActionsEnum.Actions.IN_LOVE:
-                case AvatarActionsEnum.Actions.SPIT:
-                case AvatarActionsEnum.Actions.FART:
-                case AvatarActionsEnum.Actions.SPECIAL:
-                case AvatarActionsEnum.Actions.FLY:
+                case AvatarActionsEnum.LITTLE_LAUGHTER:
+                case AvatarActionsEnum.BIG_LAUGHTER:
+                case AvatarActionsEnum.CRY:
+                case AvatarActionsEnum.IN_LOVE:
+                case AvatarActionsEnum.SPIT:
+                case AvatarActionsEnum.FART:
+                case AvatarActionsEnum.SPECIAL:
+                case AvatarActionsEnum.FLY:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
@@ -86,12 +86,12 @@ namespace boombang_emulator.src.Models
                 Task.Run(() => StartTimer(timeEnd, action, resetToken));
             }
         }
-        private static DateTime GetTime(int avatarId, AvatarActionsEnum.Actions action)
+        private static DateTime GetTime(int avatarId, AvatarActionsEnum action)
         {
             int time = AvatarActionsDictionary.avatarActions[(ushort)avatarId][action];
             return DateTime.Now.AddMilliseconds(time);
         }
-        private async Task StartTimer(DateTime timeEnd, AvatarActionsEnum.Actions action, CancellationToken cancellationToken)
+        private async Task StartTimer(DateTime timeEnd, AvatarActionsEnum action, CancellationToken cancellationToken)
         {
             while (true)
             {
@@ -101,27 +101,27 @@ namespace boombang_emulator.src.Models
                     {
                         switch (action)
                         {
-                            case AvatarActionsEnum.Actions.WALK:
+                            case AvatarActionsEnum.WALK:
                                 break;
-                            case AvatarActionsEnum.Actions.WATCH:
+                            case AvatarActionsEnum.WATCH:
                                 this.Watch = false;
                                 break;
-                            case AvatarActionsEnum.Actions.CHAT:
+                            case AvatarActionsEnum.CHAT:
                                 this.Chat = false;
                                 break;
-                            case AvatarActionsEnum.Actions.LITTLE_LAUGHTER:
-                            case AvatarActionsEnum.Actions.BIG_LAUGHTER:
-                            case AvatarActionsEnum.Actions.CRY:
-                            case AvatarActionsEnum.Actions.IN_LOVE:
-                            case AvatarActionsEnum.Actions.SPIT:
-                            case AvatarActionsEnum.Actions.FART:
-                            case AvatarActionsEnum.Actions.SPECIAL:
-                            case AvatarActionsEnum.Actions.FLY:
+                            case AvatarActionsEnum.LITTLE_LAUGHTER:
+                            case AvatarActionsEnum.BIG_LAUGHTER:
+                            case AvatarActionsEnum.CRY:
+                            case AvatarActionsEnum.IN_LOVE:
+                            case AvatarActionsEnum.SPIT:
+                            case AvatarActionsEnum.FART:
+                            case AvatarActionsEnum.SPECIAL:
+                            case AvatarActionsEnum.FLY:
                                 SetBlockExpressions(false);
                                 break;
-                            case AvatarActionsEnum.Actions.KISS:
-                            case AvatarActionsEnum.Actions.DRINK:
-                            case AvatarActionsEnum.Actions.ROSE:
+                            case AvatarActionsEnum.KISS:
+                            case AvatarActionsEnum.DRINK:
+                            case AvatarActionsEnum.ROSE:
                                 SetBlockRomanticInteractions(false);
                                 SetBlockExpressions(false);
                                 break;
