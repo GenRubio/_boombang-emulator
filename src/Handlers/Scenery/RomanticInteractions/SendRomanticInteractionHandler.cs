@@ -23,7 +23,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
 
                 int interactionId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
                 int receiverId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
-                if (Enum.IsDefined(typeof(RomanticInteractionsEnum), interactionId) == false)
+                if (Enum.IsDefined(typeof(RomanticInteractionsEnum), Convert.ToUInt16(interactionId)) == false)
                 {
                     throw new Exception("Interaction not found");
                 }
@@ -45,8 +45,9 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Scenery is not romantic interaction enabled");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 client.Close();
             }
         }

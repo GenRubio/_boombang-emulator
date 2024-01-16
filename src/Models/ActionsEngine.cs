@@ -185,7 +185,7 @@ namespace boombang_emulator.src.Models
         private void SetBlockExpressions(bool block)
         {
             this.LittleLaughter = this.BigLaughter = this.Cry = this.Spit = this.Fart =
-                this.Special = this.Fly = this.Watch = this.Walk = block;
+                this.Special = this.Fly = this.Watch = block;
         }
         private void SetBlockRomanticInteractions(bool block)
         {
