@@ -19,41 +19,41 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 int expressionId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 bool isBlockedAction = false;
-                AvatarActionsEnum.Actions action = AvatarActionsEnum.Actions.LITTLE_LAUGHTER;
+                AvatarActionsEnum action = AvatarActionsEnum.LITTLE_LAUGHTER;
 
                 switch (expressionId)
                 {
                     case (int)ExpressionsEnum.LITTLE_LAUGHTER:
                         isBlockedAction = client.User!.Actions.LittleLaughter;
-                        action = AvatarActionsEnum.Actions.LITTLE_LAUGHTER;
+                        action = AvatarActionsEnum.LITTLE_LAUGHTER;
                         break;
                     case (int)ExpressionsEnum.BIG_LAUGHTER:
                         isBlockedAction = client.User!.Actions.BigLaughter;
-                        action = AvatarActionsEnum.Actions.BIG_LAUGHTER;
+                        action = AvatarActionsEnum.BIG_LAUGHTER;
                         break;
                     case (int)ExpressionsEnum.FART:
                         isBlockedAction = client.User!.Actions.Fart;
-                        action = AvatarActionsEnum.Actions.FART;
+                        action = AvatarActionsEnum.FART;
                         break;
                     case (int)ExpressionsEnum.SPIT:
                         isBlockedAction = client.User!.Actions.Spit;
-                        action = AvatarActionsEnum.Actions.SPIT;
+                        action = AvatarActionsEnum.SPIT;
                         break;
                     case (int)ExpressionsEnum.IN_LOVE:
                         isBlockedAction = client.User!.Actions.InLove;
-                        action = AvatarActionsEnum.Actions.IN_LOVE;
+                        action = AvatarActionsEnum.IN_LOVE;
                         break;
                     case (int)ExpressionsEnum.SPECIAL:
                         isBlockedAction = client.User!.Actions.Special;
-                        action = AvatarActionsEnum.Actions.SPECIAL;
+                        action = AvatarActionsEnum.SPECIAL;
                         break;
                     case (int)ExpressionsEnum.CRY:
                         isBlockedAction = client.User!.Actions.Cry;
-                        action = AvatarActionsEnum.Actions.CRY;
+                        action = AvatarActionsEnum.CRY;
                         break;
                     case (int)ExpressionsEnum.FLY:
                         isBlockedAction = client.User!.Actions.Fly;
-                        action = AvatarActionsEnum.Actions.FLY;
+                        action = AvatarActionsEnum.FLY;
                         break;
                 }
                 if (isBlockedAction)

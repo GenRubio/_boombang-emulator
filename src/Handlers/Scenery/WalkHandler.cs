@@ -40,7 +40,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 Point endLocation = new(listPositions[^1].X, listPositions[^1].Y);
                 client.User!.SetWalkTrajectory(endLocation, client);
 
-                client.User!.Actions.SetAction(AvatarActionsEnum.Actions.WALK, client.User.Avatar.Id);
+                client.User!.Actions.SetAction(AvatarActionsEnum.WALK, client.User.Avatar.Id);
             }
             catch (Exception)
             {
