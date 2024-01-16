@@ -30,6 +30,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.Scenery.ExpressionHandler.Invoke();
             Handlers.Scenery.ChatHandler.Invoke();
             Handlers.Scenery.RomanticInteractions.SendRomanticInteractionHandler.Invoke();
+            Handlers.Scenery.RomanticInteractions.AcceptRomanticInteractionHandler.Invoke();
         }
         public static void SetHandler(int header, ProcessHandler handler)
         {
