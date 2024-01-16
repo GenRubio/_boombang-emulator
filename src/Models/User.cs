@@ -1,5 +1,4 @@
 ﻿using boombang_emulator.src.Handlers.Scenery.Packets;
-using boombang_emulator.src.Models.UserModel;
 using boombang_emulator.src.Pathfinding;
 using boombang_emulator.src.Utils;
 using System.Drawing;

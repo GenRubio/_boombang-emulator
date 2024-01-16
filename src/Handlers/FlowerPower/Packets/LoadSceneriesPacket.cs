@@ -1,6 +1,5 @@
 ﻿using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
-using boombang_emulator.src.Models.SceneryModel;
 
 namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
