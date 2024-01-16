@@ -97,11 +97,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     isBlockedAction = user.Actions.Rose;
                     break;
             }
-            if (isBlockedAction)
-            {
-                return true;
-            }
-            return false;
+            return !isBlockedAction;
         }
     }
 }
