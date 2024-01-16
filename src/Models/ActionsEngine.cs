@@ -54,81 +54,33 @@ namespace boombang_emulator.src.Models
                     break;
                 case AvatarActionsEnum.Actions.WATCH:
                     this.Watch = true;
-                    timeEnd = GetTime(avatarId, action);
                     break;
                 case AvatarActionsEnum.Actions.CHAT:
                     this.Chat = true;
-                    timeEnd = GetTime(avatarId, action);
                     break;
                 // Romantic interactions
                 case AvatarActionsEnum.Actions.KISS:
-                    SetBlockRomanticInteractions(true);
-                    this.ResetExpressionsSource?.Cancel();
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.DRINK:
-                    SetBlockRomanticInteractions(true);
-                    this.ResetExpressionsSource?.Cancel();
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.ROSE:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
                     break;
                 // User actions
                 case AvatarActionsEnum.Actions.LITTLE_LAUGHTER:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.BIG_LAUGHTER:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.CRY:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.IN_LOVE:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.SPIT:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.FART:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.SPECIAL:
-                    this.ResetExpressionsSource = new();
-                    resetToken = this.ResetExpressionsSource.Token;
-                    SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
-                    break;
                 case AvatarActionsEnum.Actions.FLY:
                     this.ResetExpressionsSource = new();
                     resetToken = this.ResetExpressionsSource.Token;
                     SetBlockExpressions(true);
-                    timeEnd = GetTime(avatarId, action);
                     break;
             }
+            timeEnd = GetTime(avatarId, action);
             if (startTimer == true)
             {
                 Task.Run(() => StartTimer(timeEnd, action, resetToken));
