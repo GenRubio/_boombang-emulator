@@ -14,5 +14,15 @@ namespace boombang_emulator.src.Utils
                 client.SendData(new([128, 124]));
             }
         }
+        public static bool IsUserNextToAnotherUser(User firstUser, User secondUser)
+        {
+            int left = firstUser.ActualPositionInScenery!.Y - secondUser.ActualPositionInScenery!.Y;
+            int right = firstUser.ActualPositionInScenery!.X - secondUser.ActualPositionInScenery!.X;
+            if (right == 1 && left == 1 || right == -1 && left == -1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

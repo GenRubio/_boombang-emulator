@@ -15,6 +15,9 @@
             FART,
             SPECIAL,
             FLY,
+            KISS,
+            DRINK,
+            ROSE,
         }
         public enum ActionsTime : ushort
         {
@@ -29,6 +32,9 @@
             FART = 5000,
             SPECIAL = 5000,
             FLY = 5000,
+            KISS = 10000,
+            DRINK = 10000,
+            ROSE = 10000
         }
     }
 }

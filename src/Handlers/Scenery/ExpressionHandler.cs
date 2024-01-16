@@ -60,6 +60,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 {
                     return;
                 }
+                client.User!.WalkTrajectory!.Clear();
                 client.User!.Actions.SetAction(action);
                 ExpressionPacket.Invoke(client, expressionId);
             }
