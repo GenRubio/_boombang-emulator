@@ -2,9 +2,9 @@
 using boombang_emulator.src.Services;
 using System.Collections.Concurrent;
 
-namespace boombang_emulator.src.Loaders
+namespace boombang_emulator.src.Dictionaries
 {
-    internal class PublicSceneryLoader
+    internal class PublicSceneryDictionary
     {
         private static int autoIncrement = 1;
         public static ConcurrentDictionary<int, PublicScenery> publicSceneries = [];

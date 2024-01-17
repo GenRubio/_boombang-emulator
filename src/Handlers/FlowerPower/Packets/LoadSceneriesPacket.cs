@@ -1,4 +1,4 @@
-﻿using boombang_emulator.src.Loaders;
+﻿using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Models;
 
 namespace boombang_emulator.src.Handlers.FlowerPower.Packets
@@ -13,7 +13,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower.Packets
             switch (typeId)
             {
                 case 1:
-                    foreach (PublicScenery scenery in PublicSceneryLoader.publicSceneries.Values)
+                    foreach (PublicScenery scenery in PublicSceneryDictionary.publicSceneries.Values)
                     {
                         serverMessage.AppendParameter([
                             scenery.TypeId,

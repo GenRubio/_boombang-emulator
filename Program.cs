@@ -1,6 +1,6 @@
 ﻿using boombang_emulator;
 using boombang_emulator.src.Controllers;
-using boombang_emulator.src.Loaders;
+using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Utils;
 
 Console.Title = "Boombang Emulator";
@@ -16,7 +16,7 @@ try
     SocketGameController.Invoke();
     SocketWebController.Invoke();
 
-    await PublicSceneryLoader.Invoke();
+    await PublicSceneryDictionary.Invoke();
 }
 catch (Exception ex)
 {
