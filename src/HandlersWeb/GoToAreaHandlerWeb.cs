@@ -1,7 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Handlers.FlowerPower.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
-using boombang_emulator.src.Loaders;
 using boombang_emulator.src.Models;
 using System.Net.WebSockets;
 
@@ -18,11 +18,11 @@ namespace boombang_emulator.src.HandlersWeb
             try
             {
                 int scenaryId = Convert.ToInt32(data["scenery_id"]);
-                PublicScenery publicScenery = PublicSceneryLoader.publicSceneries[scenaryId] ?? throw new Exception("-");
+                PublicScenery publicScenery = PublicSceneryDictionary.publicSceneries[scenaryId] ?? throw new Exception("-");
 
                 if (
-                    (client.User.Scenery != null && client.User.Scenery != publicScenery)
-                    || client.User.Scenery == null
+                    (client.User!.Scenery != null && client.User.Scenery != publicScenery)
+                    || client.User!.Scenery == null
                     )
                 {
                     Utils.SceneryUtils.RemoveUser(client);

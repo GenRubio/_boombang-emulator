@@ -49,6 +49,10 @@ namespace boombang_emulator.src.Models
             int z = scenery.MapAreaObject.PosZ;
             this.ActualPositionInScenery = new(x, y, z);
         }
+        public void StopMoviment()
+        {
+            this.WalkTrajectory?.Clear();
+        }
         public void RunPathfinding()
         {
             if (this.ResetPathfindingSource != null)

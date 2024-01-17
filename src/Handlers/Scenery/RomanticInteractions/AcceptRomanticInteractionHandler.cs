@@ -59,8 +59,8 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
         }
         private static void StartInteraction(int interactionId, Client client, Client senderClient)
         {
-            client.User!.WalkTrajectory!.Clear();
-            senderClient.User!.WalkTrajectory!.Clear();
+            client.User!.StopMoviment();
+            senderClient.User!.StopMoviment();
 
             AvatarActionsEnum action = AvatarActionsEnum.KISS;
 
