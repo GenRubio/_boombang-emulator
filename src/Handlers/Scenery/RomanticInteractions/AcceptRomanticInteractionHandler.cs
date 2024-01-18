@@ -37,9 +37,9 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                 if (userScenery is PublicPrivateSceneryInterface scenery)
                 {
                     RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(senderId, userKeyInArea);
-                    bool isUserNextToReceiver = SceneryUtils.IsUserNextToAnotherUser(client.User, senderClient.User!);
+                    bool isUserNextToSender = SceneryUtils.IsUserNextToAnotherUser(client.User, senderClient.User!);
                     if (romanticInteraction != null
-                        && isUserNextToReceiver
+                        && isUserNextToSender
                         && IsUserHavePermissionToInteract(interactionId, client.User)
                         && IsUserHavePermissionToInteract(interactionId, senderClient.User))
                     {
