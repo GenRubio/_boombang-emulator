@@ -45,9 +45,8 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Scenery is not romantic interaction enabled");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex);
                 client.Close();
             }
         }

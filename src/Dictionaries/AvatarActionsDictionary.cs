@@ -11,14 +11,14 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.WATCH, 1000 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
-                    { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },//Risa 1
-                    { AvatarActionsEnum.BIG_LAUGHTER, 3000 },//Risa 2
-                    { AvatarActionsEnum.CRY, 4200 },//Llorar
-                    { AvatarActionsEnum.IN_LOVE, 2500 },//Corazon
-                    { AvatarActionsEnum.SPIT, 2200 },//Escupir
-                    { AvatarActionsEnum.FART, 3500 },//Pedo
-                    { AvatarActionsEnum.SPECIAL, 9000 },//Atrevido
-                    { AvatarActionsEnum.FLY, 8000 },//Volar
+                    { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },
+                    { AvatarActionsEnum.BIG_LAUGHTER, 3000 },
+                    { AvatarActionsEnum.CRY, 4200 },
+                    { AvatarActionsEnum.IN_LOVE, 2500 },
+                    { AvatarActionsEnum.SPIT, 2200 },
+                    { AvatarActionsEnum.FART, 3500 },
+                    { AvatarActionsEnum.SPECIAL, 9000 },
+                    { AvatarActionsEnum.FLY, 8000 },
                     { AvatarActionsEnum.GIVE_KISS, 3000 },
                     { AvatarActionsEnum.GIVE_DRINK, 9000 },
                     { AvatarActionsEnum.GIVE_ROSE, 5000 },
