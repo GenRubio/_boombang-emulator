@@ -16,9 +16,12 @@ namespace boombang_emulator.src.Models
         public bool Fart { get; set; }
         public bool Special { get; set; }
         public bool Fly { get; set; }
-        public bool Kiss { get; set; }
-        public bool Drink { get; set; }
-        public bool Rose { get; set; }
+        public bool GiveKiss { get; set; }
+        public bool ReceiveKiss { get; set; }
+        public bool GiveDrink { get; set; }
+        public bool ReceiveDrink { get; set; }
+        public bool GiveRose { get; set; }
+        public bool ReceiveRose { get; set; }
         public CancellationTokenSource? ResetActionsSource { get; set; }
         public CancellationTokenSource? ResetExpressionsSource { get; set; }
         public ActionsEngine()
@@ -34,9 +37,12 @@ namespace boombang_emulator.src.Models
             this.Fart = false;
             this.Special = false;
             this.Fly = false;
-            this.Kiss = false;
-            this.Drink = false;
-            this.Rose = false;
+            this.GiveKiss = false;
+            this.GiveDrink = false;
+            this.GiveRose = false;
+            this.ReceiveKiss = false;
+            this.ReceiveDrink = false;
+            this.ReceiveRose = false;
         }
         public void SetAction(AvatarActionsEnum action, int avatarId)
         {
@@ -59,9 +65,12 @@ namespace boombang_emulator.src.Models
                     this.Chat = true;
                     break;
                 // Romantic interactions
-                case AvatarActionsEnum.KISS:
-                case AvatarActionsEnum.DRINK:
-                case AvatarActionsEnum.ROSE:
+                case AvatarActionsEnum.GIVE_KISS:
+                case AvatarActionsEnum.GIVE_DRINK:
+                case AvatarActionsEnum.GIVE_ROSE:
+                case AvatarActionsEnum.RECEIVE_KISS:
+                case AvatarActionsEnum.RECEIVE_DRINK:
+                case AvatarActionsEnum.RECEIVE_ROSE:
                     SetBlockRomanticInteractions(true);
                     this.ResetExpressionsSource?.Cancel();
                     SetBlockExpressions(true);
@@ -119,9 +128,12 @@ namespace boombang_emulator.src.Models
                             case AvatarActionsEnum.FLY:
                                 SetBlockExpressions(false);
                                 break;
-                            case AvatarActionsEnum.KISS:
-                            case AvatarActionsEnum.DRINK:
-                            case AvatarActionsEnum.ROSE:
+                            case AvatarActionsEnum.GIVE_KISS:
+                            case AvatarActionsEnum.GIVE_DRINK:
+                            case AvatarActionsEnum.GIVE_ROSE:
+                            case AvatarActionsEnum.RECEIVE_KISS:
+                            case AvatarActionsEnum.RECEIVE_DRINK:
+                            case AvatarActionsEnum.RECEIVE_ROSE:
                                 SetBlockRomanticInteractions(false);
                                 SetBlockExpressions(false);
                                 break;
@@ -142,12 +154,24 @@ namespace boombang_emulator.src.Models
         }
         private void SetBlockExpressions(bool block)
         {
-            this.LittleLaughter = this.BigLaughter = this.Cry = this.Spit = this.Fart =
-                this.Special = this.Fly = this.Watch = block;
+            this.LittleLaughter =
+            this.BigLaughter =
+            this.Cry =
+            this.Spit =
+            this.Fart =
+            this.Special =
+            this.Fly =
+            this.Watch = block;
         }
         private void SetBlockRomanticInteractions(bool block)
         {
-            this.Kiss = this.Drink = this.Rose = this.Walk = block;
+            this.GiveKiss =
+            this.ReceiveKiss =
+            this.GiveDrink =
+            this.ReceiveDrink =
+            this.GiveRose =
+            this.ReceiveRose =
+            this.Walk = block;
         }
     }
 }

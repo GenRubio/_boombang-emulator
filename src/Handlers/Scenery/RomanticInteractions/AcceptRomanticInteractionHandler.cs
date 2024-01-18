@@ -62,23 +62,29 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
             client.User!.StopMoviment();
             senderClient.User!.StopMoviment();
 
-            AvatarActionsEnum action = AvatarActionsEnum.KISS;
+            AvatarActionsEnum senderAction;
+            AvatarActionsEnum clientAction;
 
             switch (interactionId)
             {
                 case (int)RomanticInteractionsEnum.KISS:
-                    action = AvatarActionsEnum.KISS;
+                    senderAction = AvatarActionsEnum.GIVE_KISS;
+                    clientAction = AvatarActionsEnum.RECEIVE_KISS;
                     break;
                 case (int)RomanticInteractionsEnum.DRINK:
-                    action = AvatarActionsEnum.DRINK;
+                    senderAction = AvatarActionsEnum.GIVE_DRINK;
+                    clientAction = AvatarActionsEnum.RECEIVE_DRINK;
                     break;
                 case (int)RomanticInteractionsEnum.ROSE:
-                    action = AvatarActionsEnum.ROSE;
+                    senderAction = AvatarActionsEnum.GIVE_ROSE;
+                    clientAction = AvatarActionsEnum.RECEIVE_ROSE;
                     break;
+                default:
+                    throw new Exception("Interaction not found");
             }
 
-            client.User!.Actions.SetAction(action, client.User.Avatar.Id);
-            senderClient.User!.Actions.SetAction(action, senderClient.User.Avatar.Id);
+            client.User!.Actions.SetAction(clientAction, client.User.Avatar.Id);
+            senderClient.User!.Actions.SetAction(senderAction, senderClient.User.Avatar.Id);
 
             AcceptRomanticInteractionPacket.Invoke(client.User, senderClient.User, interactionId);
         }
@@ -88,13 +94,13 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
             switch (interactionId)
             {
                 case (int)RomanticInteractionsEnum.KISS:
-                    isBlockedAction = user.Actions.Kiss;
+                    isBlockedAction = user.Actions.GiveKiss || user.Actions.ReceiveKiss;
                     break;
                 case (int)RomanticInteractionsEnum.DRINK:
-                    isBlockedAction = user.Actions.Drink;
+                    isBlockedAction = user.Actions.GiveDrink || user.Actions.ReceiveDrink;
                     break;
                 case (int)RomanticInteractionsEnum.ROSE:
-                    isBlockedAction = user.Actions.Rose;
+                    isBlockedAction = user.Actions.GiveRose || user.Actions.ReceiveRose;
                     break;
             }
             return !isBlockedAction;
