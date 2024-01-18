@@ -19,7 +19,8 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 int expressionId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 bool isBlockedAction = false;
-                AvatarActionsEnum action = AvatarActionsEnum.LITTLE_LAUGHTER;
+
+                AvatarActionsEnum action;
 
                 switch (expressionId)
                 {
@@ -55,6 +56,8 @@ namespace boombang_emulator.src.Handlers.Scenery
                         isBlockedAction = client.User!.Actions.Fly;
                         action = AvatarActionsEnum.FLY;
                         break;
+                    default:
+                        throw new Exception("Expression not found");
                 }
                 if (isBlockedAction)
                 {

@@ -13,8 +13,11 @@
         FART,
         SPECIAL,
         FLY,
-        KISS,
-        DRINK,
-        ROSE,
+        GIVE_KISS,
+        GIVE_DRINK,
+        GIVE_ROSE,
+        RECEIVE_KISS,
+        RECEIVE_DRINK,
+        RECEIVE_ROSE,
     }
 }
