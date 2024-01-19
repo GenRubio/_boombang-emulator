@@ -55,10 +55,7 @@ namespace boombang_emulator.src.Models
         }
         public void RunPathfinding()
         {
-            if (this.ResetPathfindingSource != null)
-            {
-                this.ResetPathfindingSource.Cancel();
-            }
+            this.ResetPathfindingSource?.Cancel();
             this.ResetPathfindingSource = new();
             CancellationToken resetPathfindingToken = this.ResetPathfindingSource.Token;
             Task.Run(() => this.StartPathfinding(resetPathfindingToken), resetPathfindingToken);
