@@ -34,6 +34,8 @@ namespace boombang_emulator.src.Models
         }
         public void RemoveClient(Client client)
         {
+            client.User!.StopMoviment();
+
             if (client.User!.Scenery is PublicPrivateSceneryInterface scenery)
             {
                 scenery.RemoveAllUserRomanticInteractions(client.User);
@@ -42,6 +44,7 @@ namespace boombang_emulator.src.Models
             int key = Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key;
             Clients.TryRemove(key, out var removedClient);
             client.User.SetScenery(null);
+            client.User.Actions.ResetActions();
         }
         public Client? GetClientInPosition(Point position)
         {

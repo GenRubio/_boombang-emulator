@@ -152,6 +152,27 @@ namespace boombang_emulator.src.Models
                 }
             }
         }
+        public void ResetActions()
+        {
+            this.ResetExpressionsSource?.Cancel();
+            this.Walk =
+            this.Watch =
+            this.Chat =
+            this.LittleLaughter =
+            this.BigLaughter =
+            this.Cry =
+            this.InLove =
+            this.Spit =
+            this.Fart =
+            this.Special =
+            this.Fly =
+            this.GiveKiss =
+            this.GiveDrink =
+            this.GiveRose =
+            this.ReceiveKiss =
+            this.ReceiveDrink =
+            this.ReceiveRose = false;
+        }
         private void SetBlockExpressions(bool block)
         {
             this.LittleLaughter =
