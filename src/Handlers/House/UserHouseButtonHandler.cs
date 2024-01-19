@@ -7,9 +7,9 @@ namespace boombang_emulator.src.Handlers.House
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(120143, new ProcessHandler(SetHouse));
+            HandlerController.SetHandler(120143, new ProcessHandler(Handler));
         }
-        private static void SetHouse(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             client.SendData(new([120, 143], [0, -1, 1, 25]));
         }

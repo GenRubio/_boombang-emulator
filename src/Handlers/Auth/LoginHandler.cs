@@ -9,9 +9,9 @@ namespace boombang_emulator.src.Handlers.Auth
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(120121, new ProcessHandler(Login));
+            HandlerController.SetHandler(120121, new ProcessHandler(Handler));
         }
-        private static async void Login(Client client, ClientMessage clientMessage)
+        private static async void Handler(Client client, ClientMessage clientMessage)
         {
             try
             {

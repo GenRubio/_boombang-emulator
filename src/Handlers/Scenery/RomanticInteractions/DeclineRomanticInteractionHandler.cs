@@ -6,11 +6,11 @@ using boombang_emulator.src.Models.Interfaces;
 
 namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
 {
-    internal class SendRomanticInteractionHandler
+    internal class DeclineRomanticInteractionHandler
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(137120, new ProcessHandler(Handler));
+            HandlerController.SetHandler(137123, new ProcessHandler(Handler));
         }
         private static void Handler(Client client, ClientMessage clientMessage)
         {
@@ -22,23 +22,23 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                 Middlewares.IsRomanticInteractionEnabled(userScenery);
 
                 int interactionId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
-                int receiverId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
+                int senderId = Convert.ToInt32(clientMessage.Parameters[1, 0]);
                 if (Enum.IsDefined(typeof(RomanticInteractionsEnum), Convert.ToUInt16(interactionId)) == false)
                 {
                     throw new Exception("Interaction not found");
                 }
+
+                Client senderClient = userScenery.Clients[senderId] ?? throw new Exception("Sender not found");
+
                 int userKeyInArea = userScenery.GetClientIdentifier(client.User.Id);
+                int senderKeyInArea = userScenery.GetClientIdentifier(senderClient.User!.Id);
 
                 if (userScenery is PublicPrivateSceneryInterface scenery)
                 {
-                    RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(userKeyInArea, receiverId);
-                    if (romanticInteraction == null)
-                    {
-                        romanticInteraction = new(userKeyInArea, receiverId);
-                        scenery.AddRomanticInteraction(romanticInteraction);
+                    RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(senderId, userKeyInArea) ?? throw new Exception("Interaction not found");
 
-                        SendRomanticInteractionPacket.Invoke(client, interactionId, receiverId);
-                    }
+                    scenery.RemoveRomanticInteraction(romanticInteraction);
+                    DeclineRomanticInteractionPacket.Invoke(senderClient, senderKeyInArea);
                 }
                 else
                 {

@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.BPad
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(132120, new ProcessHandler(SetFriends));
+            HandlerController.SetHandler(132120, new ProcessHandler(Handler));
         }
-        private static void SetFriends(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             BPadFriendsPacket.Invoke(client);
         }

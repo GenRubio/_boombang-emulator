@@ -11,9 +11,9 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(137122, new ProcessHandler(AcceptInteraction));
+            HandlerController.SetHandler(137122, new ProcessHandler(Handler));
         }
-        private static void AcceptInteraction(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             try
             {
