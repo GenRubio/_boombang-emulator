@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.Backpack
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(189180, new ProcessHandler(SetUserObjects));
+            HandlerController.SetHandler(189180, new ProcessHandler(Handler));
         }
-        private static void SetUserObjects(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             BackpackUserObjectsPacket.Invoke(client);
         }

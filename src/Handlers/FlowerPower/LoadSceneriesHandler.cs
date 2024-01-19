@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.FlowerPower
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(15432, new ProcessHandler(LoadSceneries));
+            HandlerController.SetHandler(15432, new ProcessHandler(Handler));
         }
-        private static void LoadSceneries(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             //int typeId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
             //LoadSceneriesPacket.Invoke(client, typeId);

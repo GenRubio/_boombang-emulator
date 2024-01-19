@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.Scenery
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(186, new ProcessHandler(PublicChat));
+            HandlerController.SetHandler(186, new ProcessHandler(Handler));
         }
-        private static void PublicChat(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             try
             {

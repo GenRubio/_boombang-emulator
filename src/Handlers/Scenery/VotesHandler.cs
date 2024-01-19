@@ -7,9 +7,9 @@ namespace boombang_emulator.src.Handlers.Scenery
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(167, new ProcessHandler(RemainingVotes));
+            HandlerController.SetHandler(167, new ProcessHandler(Handler));
         }
-        private static void RemainingVotes(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             try
             {

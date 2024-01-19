@@ -6,11 +6,11 @@ using boombang_emulator.src.Models.Interfaces;
 
 namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
 {
-    internal class SendRomanticInteractionHandler
+    internal class CancelRomanticInteractionHandler
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(137120, new ProcessHandler(Handler));
+            HandlerController.SetHandler(137124, new ProcessHandler(Handler));
         }
         private static void Handler(Client client, ClientMessage clientMessage)
         {
@@ -27,18 +27,17 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                 {
                     throw new Exception("Interaction not found");
                 }
+                Client receiverClient = userScenery.Clients[receiverId] ?? throw new Exception("Receiver not found");
+
                 int userKeyInArea = userScenery.GetClientIdentifier(client.User.Id);
+                int receiverKeyInArea = userScenery.GetClientIdentifier(receiverClient.User!.Id);
 
                 if (userScenery is PublicPrivateSceneryInterface scenery)
                 {
-                    RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(userKeyInArea, receiverId);
-                    if (romanticInteraction == null)
-                    {
-                        romanticInteraction = new(userKeyInArea, receiverId);
-                        scenery.AddRomanticInteraction(romanticInteraction);
+                    RomanticInteraction? romanticInteraction = scenery.GetRomanticInteraction(userKeyInArea, receiverKeyInArea) ?? throw new Exception("Interaction not found");
 
-                        SendRomanticInteractionPacket.Invoke(client, interactionId, receiverId);
-                    }
+                    scenery.RemoveRomanticInteraction(romanticInteraction);
+                    CancelRomanticInteractionPacket.Invoke(receiverClient, receiverKeyInArea);
                 }
                 else
                 {

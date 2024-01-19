@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.BPad
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(132121, new ProcessHandler(SetMessages));
+            HandlerController.SetHandler(132121, new ProcessHandler(Handler));
         }
-        private static void SetMessages(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             BPadMessagesPacket.Invoke(client);
         }

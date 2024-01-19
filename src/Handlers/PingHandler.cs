@@ -7,9 +7,9 @@ namespace boombang_emulator.src.Handlers
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(163, new ProcessHandler(Ping));
+            HandlerController.SetHandler(163, new ProcessHandler(Handler));
         }
-        private static void Ping(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             client.SendData(new([163], [10]));
         }

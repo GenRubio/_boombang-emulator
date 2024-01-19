@@ -8,9 +8,9 @@ namespace boombang_emulator.src.Handlers.Catalog
     {
         public static void Invoke()
         {
-            HandlerController.SetHandler(189133, new ProcessHandler(SetCatalog));
+            HandlerController.SetHandler(189133, new ProcessHandler(Handler));
         }
-        private static void SetCatalog(Client client, ClientMessage clientMessage)
+        private static void Handler(Client client, ClientMessage clientMessage)
         {
             CatalogPacket.Invoke(client);
         }
