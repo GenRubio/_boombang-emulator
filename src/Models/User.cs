@@ -1,4 +1,5 @@
-﻿using boombang_emulator.src.Handlers.Scenery.Packets;
+﻿using boombang_emulator.src.Enums;
+using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Pathfinding;
 using boombang_emulator.src.Utils;
 using System.Drawing;
@@ -80,7 +81,7 @@ namespace boombang_emulator.src.Models
                                 this.ActualPositionInScenery = nextPosition;
                                 this.WalkTrajectory.Positions.Remove(this.ActualPositionInScenery);
                                 WalkPacket.Invoke(this, userKeyInArea);
-                                await Task.Delay(680, cancellationToken);
+                                await Task.Delay(Convert.ToInt32(WalkEnum.TIMER), cancellationToken);
                             }
                         }
                     }
