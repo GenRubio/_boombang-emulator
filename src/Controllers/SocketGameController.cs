@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using boombang_emulator.src.Utils;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 
@@ -45,7 +46,7 @@ namespace boombang_emulator.src.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                ConsoleUtils.WriteError(ex);
             }
         }
     }

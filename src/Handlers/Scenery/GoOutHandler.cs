@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery
 {
@@ -24,8 +25,9 @@ namespace boombang_emulator.src.Handlers.Scenery
                 RenderAreasPacketWeb.Invoke(client);
                 RenderAreasCountUserPacketWeb.Invoke(null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

@@ -2,6 +2,7 @@
 using boombang_emulator.src.Enums;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Pathfinding;
+using boombang_emulator.src.Utils;
 using System.Drawing;
 
 namespace boombang_emulator.src.Handlers.Scenery
@@ -43,8 +44,9 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 client.User!.Actions.SetAction(AvatarActionsEnum.WALK, client.User.Avatar.Id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

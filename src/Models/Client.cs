@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
+using boombang_emulator.src.Utils;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Text;
@@ -65,8 +66,9 @@ namespace boombang_emulator.src.Models
                     this.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 this.Close();
             }
         }
@@ -90,8 +92,9 @@ namespace boombang_emulator.src.Models
                     HandlerController.SendHandler(this, clientMessage);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 this.Close();
             }
         }

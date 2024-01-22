@@ -2,6 +2,7 @@
 using boombang_emulator.src.Enums;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery
 {
@@ -68,8 +69,9 @@ namespace boombang_emulator.src.Handlers.Scenery
                 client.User!.Actions.SetAction(action, client.User.Avatar.Id);
                 ExpressionPacket.Invoke(client, expressionId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

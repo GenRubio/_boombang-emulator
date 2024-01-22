@@ -3,6 +3,7 @@ using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Handlers.FlowerPower.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 using System.Net.WebSockets;
 
 namespace boombang_emulator.src.HandlersWeb
@@ -25,7 +26,7 @@ namespace boombang_emulator.src.HandlersWeb
                     || client.User!.Scenery == null
                     )
                 {
-                    Utils.SceneryUtils.RemoveUser(client);
+                    SceneryUtils.RemoveUser(client);
 
                     client.User.SetScenery(publicScenery);
                     client.User.SetActualPositionInScenery(publicScenery);
@@ -40,8 +41,9 @@ namespace boombang_emulator.src.HandlersWeb
                     GoToSceneryPacket.Invoke(client, publicScenery);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

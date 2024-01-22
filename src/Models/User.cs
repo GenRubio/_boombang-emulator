@@ -85,14 +85,14 @@ namespace boombang_emulator.src.Models
                             }
                         }
                     }
-                    catch (OperationCanceledException)
+                    catch (OperationCanceledException ex)
                     {
+                        ConsoleUtils.WriteError(ex);
                         break;
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.StackTrace);
-                        Console.WriteLine(ex.Message);
+                        ConsoleUtils.WriteError(ex);
                         break;
                     }
 

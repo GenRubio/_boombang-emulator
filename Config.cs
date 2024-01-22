@@ -1,4 +1,6 @@
-﻿namespace boombang_emulator
+﻿using boombang_emulator.src.Utils;
+
+namespace boombang_emulator
 {
     internal class Config
     {
@@ -33,7 +35,8 @@
             }
             catch (Exception)
             {
-                Console.WriteLine("No se pudo cargar el archivo de configuración.");
+                string errorMessage = "No se pudo cargar el archivo de configuración.";
+                ConsoleUtils.WriteError(new Exception(errorMessage));
             }
             return config;
         }

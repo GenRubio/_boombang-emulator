@@ -13,9 +13,9 @@ namespace boombang_emulator.src.Utils
                 {
                     LoadingPacketWeb.Invoke(client, false);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    ConsoleUtils.WriteError(ex);
                 }
             }
         }
