@@ -8,7 +8,7 @@ namespace boombang_emulator.src.Dictionaries
         {
             {
                 (ushort)AvatarsEnum.NERD, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },
@@ -29,7 +29,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.GRANDMOTHER, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -50,7 +50,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.RASTA, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -71,7 +71,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.GRANDFATHER, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -92,7 +92,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.INDIA, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -113,7 +113,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.GANGSTER, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -134,7 +134,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.ZETA, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -155,7 +155,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.KITTEN, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -176,7 +176,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.BOOMER, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -197,7 +197,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.DJ, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },
@@ -218,7 +218,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.WITCH, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -239,7 +239,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.NINJA, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 3000 },
@@ -260,7 +260,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.SPECTRUM, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 1000 },
@@ -281,7 +281,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.CASPER, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 1000 },
@@ -302,7 +302,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.ZOMBIE, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },
@@ -323,7 +323,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.WOLF, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },
@@ -344,7 +344,7 @@ namespace boombang_emulator.src.Dictionaries
             },
             {
                 (ushort)AvatarsEnum.SKELETON, new Dictionary<AvatarActionsEnum, int> {
-                    { AvatarActionsEnum.WATCH, 1000 },
+                    { AvatarActionsEnum.WATCH, 200 },
                     { AvatarActionsEnum.WALK, 0 },
                     { AvatarActionsEnum.CHAT, 2000 },
                     { AvatarActionsEnum.LITTLE_LAUGHTER, 2000 },

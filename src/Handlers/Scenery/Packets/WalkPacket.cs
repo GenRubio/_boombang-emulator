@@ -1,4 +1,6 @@
-﻿namespace boombang_emulator.src.Handlers.Scenery.Packets
+﻿using boombang_emulator.src.Enums;
+
+namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
     internal class WalkPacket
     {
@@ -10,7 +12,7 @@
             serverMessage.AppendParameter(user.ActualPositionInScenery!.X);
             serverMessage.AppendParameter(user.ActualPositionInScenery!.Y);
             serverMessage.AppendParameter(user.ActualPositionInScenery!.Z);
-            serverMessage.AppendParameter(750);
+            serverMessage.AppendParameter(WalkEnum.PACKET);
             serverMessage.AppendParameter(user.WalkTrajectory!.Positions.Count >= 1 ? 1 : 0);
             user.Scenery!.SendData(serverMessage);
         }
