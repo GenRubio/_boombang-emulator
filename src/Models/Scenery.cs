@@ -48,48 +48,15 @@ namespace boombang_emulator.src.Models
         }
         public Client? GetClientInPosition(Point position)
         {
-            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
-            {
-                if (sceneryClient.Value.User != null && sceneryClient.Value.User.GetActualPositionInScenery() == position)
-                {
-                    return sceneryClient.Value;
-                }
-            }
-            return null;
-        }
-        public int GetClientIdentifier(Client client)
-        {
-            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
-            {
-                if (sceneryClient.Value == client)
-                {
-                    return sceneryClient.Key;
-                }
-            }
-            client.Close();
-            return 0;
+            return Clients.FirstOrDefault(sceneryClient => sceneryClient.Value.User != null
+            && sceneryClient.Value.User.GetActualPositionInScenery() == position)
+                .Value;
         }
         public int GetClientIdentifier(int userId)
         {
-            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
-            {
-                if (sceneryClient.Value.User != null && sceneryClient.Value.User.Id == userId)
-                {
-                    return sceneryClient.Key;
-                }
-            }
-            return 0;
-        }
-        public Client? GetClientById(int userId)
-        {
-            foreach (KeyValuePair<int, Client> sceneryClient in this.Clients)
-            {
-                if (sceneryClient.Value.User != null && sceneryClient.Value.User.Id == userId)
-                {
-                    return sceneryClient.Value;
-                }
-            }
-            return null;
+            return Clients.FirstOrDefault(sceneryClient => sceneryClient.Value.User != null
+               && sceneryClient.Value.User.Id == userId)
+                 .Key;
         }
         public void SendData(ServerMessage server, Client? client = null)
         {

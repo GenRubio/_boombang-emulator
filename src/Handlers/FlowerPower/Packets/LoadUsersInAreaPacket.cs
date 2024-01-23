@@ -12,7 +12,7 @@
                     && item.Value.User.ActualPositionInScenery != null
                    )
                 {
-                    serverMessage.AppendParameter(scenery.GetClientIdentifier(item.Value));
+                    serverMessage.AppendParameter(scenery.GetClientIdentifier(item.Value.User.Id));
                     serverMessage.AppendParameter(item.Value.User.Username);
                     serverMessage.AppendParameter(item.Value.User.Avatar.Id);
                     serverMessage.AppendParameter(item.Value.User.Avatar.Color);
