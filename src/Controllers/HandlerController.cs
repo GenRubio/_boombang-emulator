@@ -44,7 +44,10 @@ namespace boombang_emulator.src.Controllers
             {
                 if (!handlers.ContainsKey(clientMessage.GetInteger()))
                 {
-                    Console.WriteLine("Falta: " + clientMessage.GetInteger() + " -> " + clientMessage.GetData());
+                    if (Config.debugPackets)
+                    {
+                        Console.WriteLine("Falta: " + clientMessage.GetInteger() + " -> " + clientMessage.GetData());
+                    }
                 }
                 else
                 {

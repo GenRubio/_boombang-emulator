@@ -6,6 +6,7 @@ namespace boombang_emulator
     {
         public static string env;
         public static bool debug;
+        public static bool debugPackets;
         public static string apiRoute;
         public static string webSocketRoute;
         public static int port;
@@ -13,6 +14,7 @@ namespace boombang_emulator
         {
             var config = LoadConfiguration(".env");
             env = config.ContainsKey("APP_ENV") ? config["APP_ENV"] : "dev";
+            debugPackets = config.ContainsKey("DEBUG_PACKETS") ? Convert.ToBoolean(config["DEBUG_PACKETS"]) : false;
             debug = config.ContainsKey("APP_DEBUG") ? Convert.ToBoolean(config["APP_DEBUG"]) : true;
             apiRoute = config.ContainsKey("API_ROUTE") ? config["API_ROUTE"] : "http://localhost:8000/api";
             webSocketRoute = config.ContainsKey("WEB_SOCKET_ROUTE") ? config["WEB_SOCKET_ROUTE"] : "http://localhost:3000/";
