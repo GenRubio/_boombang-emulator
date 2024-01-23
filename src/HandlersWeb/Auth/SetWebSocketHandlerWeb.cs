@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 using System.Net.WebSockets;
 
 namespace boombang_emulator.src.HandlersWeb.Auth
@@ -23,7 +24,7 @@ namespace boombang_emulator.src.HandlersWeb.Auth
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ConsoleUtils.WriteError(ex);
             }
         }
     }

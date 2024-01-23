@@ -12,7 +12,7 @@ namespace boombang_emulator.src.Handlers.Scenery.Packets
             serverMessage.AppendParameter(user.ActualPositionInScenery!.X);
             serverMessage.AppendParameter(user.ActualPositionInScenery!.Y);
             serverMessage.AppendParameter(user.ActualPositionInScenery!.Z);
-            serverMessage.AppendParameter(WalkEnum.PACKET);
+            serverMessage.AppendParameter(Convert.ToInt32(WalkEnum.PACKET));
             serverMessage.AppendParameter(user.WalkTrajectory!.Positions.Count >= 1 ? 1 : 0);
             user.Scenery!.SendData(serverMessage);
         }

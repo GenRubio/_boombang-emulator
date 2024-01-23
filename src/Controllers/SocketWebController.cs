@@ -39,7 +39,7 @@ namespace boombang_emulator.src.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("An exception occurred: " + ex.Message);
+                    ConsoleUtils.WriteError(ex);
                 }
             }
         }
@@ -73,9 +73,9 @@ namespace boombang_emulator.src.Controllers
             }
             catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 if (webSocket.State == WebSocketState.Open)
                 {
-                    Console.WriteLine("An exception occurred: " + ex.Message);
                     webSocketContext?.WebSocket.CloseAsync(WebSocketCloseStatus.InternalServerError, "An error occurred", CancellationToken.None).Wait();
                 }
             }
@@ -93,8 +93,9 @@ namespace boombang_emulator.src.Controllers
                         await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    ConsoleUtils.WriteError(ex);
                     client.Close();
                 }
             }
@@ -111,8 +112,9 @@ namespace boombang_emulator.src.Controllers
                             await clientSocket.SendAsync(new ArraySegment<byte>(messageBytes), WebSocketMessageType.Text, true, CancellationToken.None);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        ConsoleUtils.WriteError(ex);
                         connectedClient.Close();
                     }
                 }

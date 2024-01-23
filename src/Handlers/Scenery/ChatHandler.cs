@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery
 {
@@ -39,7 +40,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en ChatHandler [186]: " + ex.Message);
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

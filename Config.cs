@@ -1,8 +1,12 @@
-﻿namespace boombang_emulator
+﻿using boombang_emulator.src.Utils;
+
+namespace boombang_emulator
 {
     internal class Config
     {
         public static string env;
+        public static bool debug;
+        public static bool debugPackets;
         public static string apiRoute;
         public static string webSocketRoute;
         public static int port;
@@ -10,6 +14,8 @@
         {
             var config = LoadConfiguration(".env");
             env = config.ContainsKey("APP_ENV") ? config["APP_ENV"] : "dev";
+            debugPackets = config.ContainsKey("DEBUG_PACKETS") ? Convert.ToBoolean(config["DEBUG_PACKETS"]) : false;
+            debug = config.ContainsKey("APP_DEBUG") ? Convert.ToBoolean(config["APP_DEBUG"]) : true;
             apiRoute = config.ContainsKey("API_ROUTE") ? config["API_ROUTE"] : "http://localhost:8000/api";
             webSocketRoute = config.ContainsKey("WEB_SOCKET_ROUTE") ? config["WEB_SOCKET_ROUTE"] : "http://localhost:3000/";
             port = config.ContainsKey("FLASH_PORT") ? Convert.ToInt32(config["FLASH_PORT"]) : 2000;
@@ -33,7 +39,8 @@
             }
             catch (Exception)
             {
-                Console.WriteLine("No se pudo cargar el archivo de configuración.");
+                string errorMessage = "No se pudo cargar el archivo de configuración.";
+                ConsoleUtils.WriteError(new Exception(errorMessage));
             }
             return config;
         }

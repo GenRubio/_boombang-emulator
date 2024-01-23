@@ -2,6 +2,7 @@
 using boombang_emulator.src.Handlers.FlowerPower.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Utils;
 namespace boombang_emulator.src.Handlers.FlowerPower
 {
     internal class LoadSceneryObjectsHandler
@@ -16,7 +17,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
             {
                 Middlewares.IsUserInScenery(client);
 
-                switch (client.User.Scenery.TypeId)
+                switch (client.User!.Scenery!.TypeId)
                 {
                     case 1:
                         LoadAreaObjectsPacket.Invoke(client);
@@ -25,8 +26,9 @@ namespace boombang_emulator.src.Handlers.FlowerPower
                 }
                 UserInSceneryPacketWeb.Invoke(client);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

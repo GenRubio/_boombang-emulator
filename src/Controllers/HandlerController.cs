@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using boombang_emulator.src.Utils;
+using System.Collections.Concurrent;
 
 namespace boombang_emulator.src.Controllers
 {
@@ -43,7 +44,10 @@ namespace boombang_emulator.src.Controllers
             {
                 if (!handlers.ContainsKey(clientMessage.GetInteger()))
                 {
-                    Console.WriteLine("Falta: " + clientMessage.GetInteger() + " -> " + clientMessage.GetData());
+                    if (Config.debugPackets)
+                    {
+                        Console.WriteLine("Falta: " + clientMessage.GetInteger() + " -> " + clientMessage.GetData());
+                    }
                 }
                 else
                 {
@@ -53,7 +57,7 @@ namespace boombang_emulator.src.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.ToString());
+                        ConsoleUtils.WriteError(ex);
                         client.Close();
                     }
                 }
