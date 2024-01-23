@@ -10,7 +10,7 @@
             }
 
             Models.ServerMessage serverMessage = new([128, 122]);
-            serverMessage.AppendParameter(scenery.GetClientIdentifier(client));
+            serverMessage.AppendParameter(scenery.GetClientIdentifier(client.User.Id));
             serverMessage.AppendParameter(client.User.Username);
             serverMessage.AppendParameter(client.User.Avatar.Id);
             serverMessage.AppendParameter(client.User.Avatar.Color);
