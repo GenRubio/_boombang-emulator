@@ -43,7 +43,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 client.User!.StopMoviment();
                 client.User!.SetWalkTrajectory(endLocation, client);
 
-                client.User!.Actions.GenericAction.SetAction(AvatarActionsEnum.WALK, client);
+                client.User!.Actions.GenericAction.SetAction(AvatarActionsEnum.WALK);
             }
             catch (Exception ex)
             {

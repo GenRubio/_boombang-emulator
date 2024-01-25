@@ -84,8 +84,8 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Interaction not found");
             }
 
-            client.User!.Actions.RomanticInteractionAction.SetAction(clientAction, client);
-            senderClient.User!.Actions.RomanticInteractionAction.SetAction(senderAction, senderClient);
+            client.User!.Actions.RomanticInteractionAction.SetAction(clientAction);
+            senderClient.User!.Actions.RomanticInteractionAction.SetAction(senderAction);
 
             AcceptRomanticInteractionPacket.Invoke(client.User, senderClient.User, interactionId);
         }

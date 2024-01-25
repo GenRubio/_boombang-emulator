@@ -35,9 +35,9 @@ namespace boombang_emulator.src.Handlers.Scenery
                     return;
                 }
 
-                PublicChatPacket.Invoke(client, message);
+                PublicChatPacket.Invoke(client.User, message);
 
-                client.User!.Actions.GenericAction.SetAction(Enums.AvatarActionsEnum.CHAT, client);
+                client.User!.Actions.GenericAction.SetAction(Enums.AvatarActionsEnum.CHAT);
             }
             catch (Exception ex)
             {

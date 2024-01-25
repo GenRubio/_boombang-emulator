@@ -5,10 +5,12 @@ namespace boombang_emulator.src.Models.AvatarActions
 {
     internal class AvatarCoconutActions
     {
+        private User User { get; set; }
         public AvatarActions Actions { get; set; }
-        public AvatarCoconutActions(AvatarActions avatarActions)
+        public AvatarCoconutActions(AvatarActions avatarActions, User user)
         {
             Actions = avatarActions;
+            User = user;
         }
         public void SetAction(AvatarActionsEnum action, Client client, int coconutId)
         {
@@ -34,12 +36,11 @@ namespace boombang_emulator.src.Models.AvatarActions
                     Actions.SetBlockCoconuts(true);
                     break;
             }
-            timeEnd = Actions.GetTime(client.User!.Avatar.Id, action);
-            Task.Run(() => StartTimer(timeEnd, action, client, coconutId, resetToken));
+            timeEnd = Actions.GetTime(action);
+            Task.Run(() => StartTimer(timeEnd, action, coconutId, resetToken));
         }
         private async Task StartTimer(DateTime timeEnd,
             AvatarActionsEnum action,
-            Client client,
             int coconutId,
             CancellationToken cancellationToken)
         {
@@ -66,7 +67,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                                 Actions.SetBlockCoconuts(false);
                                 break;
                         }
-                        RemoveCoconutPacket.Invoke(client, coconutId);
+                        RemoveCoconutPacket.Invoke(this.User, coconutId);
                         break;
                     }
                     await Task.Delay(100, cancellationToken);

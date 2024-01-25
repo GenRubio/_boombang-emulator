@@ -35,7 +35,7 @@ namespace boombang_emulator.src.Handlers.Scenery.Coconut
                     receiverClient.User!.StopMoviment();
                     receiverClient.User!.Actions.CoconutAction.SetAction(action, receiverClient, cocoId);
 
-                    SendCoconutPacket.Invoke(receiverClient, cocoId);
+                    SendCoconutPacket.Invoke(receiverClient.User, cocoId);
                 }
             }
             catch (Exception ex)

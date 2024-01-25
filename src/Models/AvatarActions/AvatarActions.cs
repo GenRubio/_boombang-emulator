@@ -5,6 +5,7 @@ namespace boombang_emulator.src.Models.AvatarActions
 {
     internal class AvatarActions
     {
+        private User User { get; set; }
         public bool Walk { get; set; } = false;
         public bool Watch { get; set; } = false;
         public bool Chat { get; set; } = false;
@@ -34,13 +35,13 @@ namespace boombang_emulator.src.Models.AvatarActions
         public bool ReceiveCoconutPiano { get; set; } = false;
         public CancellationTokenSource? ResetActionsSource { get; set; }
         public CancellationTokenSource? ResetExpressionsSource { get; set; }
-        public AvatarActions()
+        public AvatarActions(User user)
         {
-
+            this.User = user;
         }
-        public DateTime GetTime(int avatarId, AvatarActionsEnum action)
+        public DateTime GetTime(AvatarActionsEnum action)
         {
-            int time = AvatarActionsDictionary.data[(ushort)avatarId][action];
+            int time = AvatarActionsDictionary.data[(ushort)this.User.Avatar.Id][action];
             return DateTime.Now.AddMilliseconds(time);
         }
         public void SetBlockExpressions(bool block)
