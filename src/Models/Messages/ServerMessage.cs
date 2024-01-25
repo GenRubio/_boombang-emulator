@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace boombang_emulator.src.Models
+namespace boombang_emulator.src.Models.Messages
 {
     internal class ServerMessage
     {
@@ -9,7 +9,7 @@ namespace boombang_emulator.src.Models
         private readonly Encoding Encoding;
         public ServerMessage(byte[] Header, params object[] Parameters)
         {
-            this.Encoding = Encoding.GetEncoding("iso-8859-1");
+            Encoding = Encoding.GetEncoding("iso-8859-1");
             foreach (byte ActualByte in Header)
             {
                 this.Header.Add(ActualByte);
@@ -22,11 +22,11 @@ namespace boombang_emulator.src.Models
         }
         public void AppendParameter(object Parameter)
         {
-            this.Parameters.Add([Parameter]);
+            Parameters.Add([Parameter]);
         }
         public void AppendParameter(object[] ParameterGroup)
         {
-            this.Parameters.Add(ParameterGroup);
+            Parameters.Add(ParameterGroup);
         }
         public byte[] GetContent()
         {
@@ -46,7 +46,7 @@ namespace boombang_emulator.src.Models
                     {
                         if (Parameter != null && Convert.ToString(Parameter) != "")
                         {
-                            foreach (byte ParameterByte in this.Encoding.GetBytes(Parameter.ToString()))
+                            foreach (byte ParameterByte in Encoding.GetBytes(Parameter.ToString()))
                             {
                                 Message.Add(ParameterByte);
                             }
@@ -82,7 +82,7 @@ namespace boombang_emulator.src.Models
                     {
                         if (Parameter != null)
                         {
-                            foreach (byte ParameterByte in this.Encoding.GetBytes(Parameter.ToString()))
+                            foreach (byte ParameterByte in Encoding.GetBytes(Parameter.ToString()))
                             {
                                 Message.Add(ParameterByte);
                             }
@@ -97,7 +97,7 @@ namespace boombang_emulator.src.Models
                 Message.Add(0xb2);
             }
             Message.Add(0xb0);
-            return this.Encoding.GetString(Message.ToArray());
+            return Encoding.GetString(Message.ToArray());
         }
     }
 }

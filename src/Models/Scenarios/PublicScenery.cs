@@ -1,7 +1,7 @@
 ﻿using boombang_emulator.src.Models.Interfaces;
 using System.Collections.Concurrent;
 
-namespace boombang_emulator.src.Models
+namespace boombang_emulator.src.Models.Scenarios
 {
     internal class PublicScenery : Scenery, PublicPrivateSceneryInterface
     {

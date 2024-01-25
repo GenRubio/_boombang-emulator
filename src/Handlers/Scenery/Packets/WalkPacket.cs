@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Enums;
+using boombang_emulator.src.Models.Messages;
 
 namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
@@ -6,7 +7,7 @@ namespace boombang_emulator.src.Handlers.Scenery.Packets
     {
         public static void Invoke(Models.User user, int userKeyInArea)
         {
-            Models.ServerMessage serverMessage = new([182]);
+            ServerMessage serverMessage = new([182]);
             serverMessage.AppendParameter(1);
             serverMessage.AppendParameter(userKeyInArea);
             serverMessage.AppendParameter(user.ActualPositionInScenery!.X);

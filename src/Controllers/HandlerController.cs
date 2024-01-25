@@ -1,9 +1,10 @@
-﻿using boombang_emulator.src.Utils;
+﻿using boombang_emulator.src.Models.Messages;
+using boombang_emulator.src.Utils;
 using System.Collections.Concurrent;
 
 namespace boombang_emulator.src.Controllers
 {
-    delegate void ProcessHandler(Models.Client client, Models.ClientMessage clientMessage);
+    delegate void ProcessHandler(Models.Client client, ClientMessage clientMessage);
     internal class HandlerController
     {
         private static ConcurrentDictionary<int, ProcessHandler> handlers = [];
@@ -33,12 +34,13 @@ namespace boombang_emulator.src.Controllers
             Handlers.Scenery.RomanticInteractions.SendRomanticInteractionHandler.Invoke();
             Handlers.Scenery.RomanticInteractions.AcceptRomanticInteractionHandler.Invoke();
             Handlers.Scenery.RomanticInteractions.CancelRomanticInteractionHandler.Invoke();
+            Handlers.Scenery.Coconut.SendCoconutHandler.Invoke();
         }
         public static void SetHandler(int header, ProcessHandler handler)
         {
             handlers.TryAdd(header, handler);
         }
-        public static void SendHandler(Models.Client client, Models.ClientMessage clientMessage)
+        public static void SendHandler(Models.Client client, ClientMessage clientMessage)
         {
             if (client.GetSocket().Connected && clientMessage != null)
             {

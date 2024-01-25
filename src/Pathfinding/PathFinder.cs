@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Scenarios;
 
 namespace boombang_emulator.src.Pathfinding
 {

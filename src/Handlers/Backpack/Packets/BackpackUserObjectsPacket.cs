@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Messages;
 
 namespace boombang_emulator.src.Handlers.Backpack.Packets
 {
