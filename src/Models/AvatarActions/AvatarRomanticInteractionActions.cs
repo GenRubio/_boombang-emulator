@@ -9,7 +9,7 @@ namespace boombang_emulator.src.Models.AvatarActions
         {
             Actions = avatarActions;
         }
-        public void SetAction(AvatarActionsEnum action, Client client)
+        public void SetAction(AvatarActionsEnum action)
         {
             DateTime timeEnd = DateTime.Now;
             Actions.ResetActionsSource = new();
@@ -29,7 +29,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                     Actions.SetBlockCoconuts(true);
                     break;
             }
-            timeEnd = Actions.GetTime(client.User!.Avatar.Id, action);
+            timeEnd = Actions.GetTime(action);
             Task.Run(() => StartTimer(timeEnd, action, resetToken));
         }
         private async Task StartTimer(DateTime timeEnd, AvatarActionsEnum action, CancellationToken cancellationToken)

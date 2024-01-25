@@ -4,15 +4,15 @@ namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
     internal class PublicChatPacket
     {
-        public static void Invoke(Models.Client client, string message)
+        public static void Invoke(Models.User user, string message)
         {
-            int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
+            int userKeyInArea = user.Scenery!.GetClientIdentifier(user.Id);
 
             ServerMessage serverMessage = new([186]);
             serverMessage.AppendParameter(userKeyInArea);
             serverMessage.AppendParameter(message);
             serverMessage.AppendParameter((int)Enums.ColorChatsEnum.NORMAL);
-            client.User.Scenery.SendData(serverMessage);
+            user.Scenery.SendData(serverMessage);
         }
     }
 }

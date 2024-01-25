@@ -26,8 +26,8 @@ namespace boombang_emulator.src.Handlers.Scenery
                     AvatarActionsEnum action = ExpressionsDictionary.data[Convert.ToUInt16(expressionId)];
 
                     client.User!.StopMoviment();
-                    client.User!.Actions.ExpressionAction.SetAction(action, client);
-                    ExpressionPacket.Invoke(client, expressionId);
+                    client.User!.Actions.ExpressionAction.SetAction(action);
+                    ExpressionPacket.Invoke(client.User, expressionId);
                 }
             }
             catch (Exception ex)

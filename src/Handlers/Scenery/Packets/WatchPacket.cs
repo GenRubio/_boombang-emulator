@@ -4,16 +4,16 @@ namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
     internal class WatchPacket
     {
-        public static void Invoke(Models.Client client, int z)
+        public static void Invoke(Models.User user, int z)
         {
-            int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
+            int userKeyInArea = user.Scenery!.GetClientIdentifier(user.Id);
 
             ServerMessage serverMessage = new([135]);
             serverMessage.AppendParameter(userKeyInArea);
-            serverMessage.AppendParameter(client.User!.ActualPositionInScenery!.X);
-            serverMessage.AppendParameter(client.User!.ActualPositionInScenery!.Y);
+            serverMessage.AppendParameter(user.ActualPositionInScenery!.X);
+            serverMessage.AppendParameter(user.ActualPositionInScenery!.Y);
             serverMessage.AppendParameter(z);
-            client.User.Scenery.SendData(serverMessage);
+            user.Scenery.SendData(serverMessage);
         }
     }
 }

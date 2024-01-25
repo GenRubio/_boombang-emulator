@@ -9,7 +9,7 @@ namespace boombang_emulator.src.Models.AvatarActions
         {
             Actions = avatarActions;
         }
-        public void SetAction(AvatarActionsEnum action, Client client)
+        public void SetAction(AvatarActionsEnum action)
         {
             DateTime timeEnd = DateTime.Now;
             bool startTimer = true;
@@ -30,7 +30,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                     Actions.Chat = true;
                     break;
             }
-            timeEnd = Actions.GetTime(client.User!.Avatar.Id, action);
+            timeEnd = Actions.GetTime(action);
             if (startTimer)
             {
                 Task.Run(() => StartTimer(timeEnd, action, resetToken));

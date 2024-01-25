@@ -23,8 +23,8 @@ namespace boombang_emulator.src.Models
             this.Id = Convert.ToInt32(data["id"]);
             this.Username = (string)data["username"];
             this.Email = (string)data["email"];
-            this.Actions = new();
             this.Avatar = new(JsonUtils.Deserialize((string)data["content"]));
+            this.Actions = new(this);
         }
         public void SetWalkTrajectory(Point endLocation, Client client)
         {
