@@ -12,7 +12,7 @@ namespace boombang_emulator.src.Models.AvatarActions
             Actions = avatarActions;
             User = user;
         }
-        public void SetAction(AvatarActionsEnum action, Client client, int coconutId)
+        public void SetAction(AvatarActionsEnum action, int coconutId)
         {
             DateTime timeEnd = DateTime.Now;
             Actions.ResetActionsSource = new();
