@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace boombang_emulator.src.Models
+namespace boombang_emulator.src.Models.Messages
 {
     internal class ClientMessage
     {
@@ -9,18 +9,18 @@ namespace boombang_emulator.src.Models
         public string[,] Parameters { get; set; }
         public ClientMessage(string data)
         {
-            this.Data = data;
-            this.Headers = [];
+            Data = data;
+            Headers = [];
 
             foreach (string header in Regex.Split(Regex.Split(data.Substring(1), "³²")[0], "³"))
             {
                 if (header.Length == 1)
                 {
-                    this.Headers.Add(Convert.ToInt32(Convert.ToChar(header)));
+                    Headers.Add(Convert.ToInt32(Convert.ToChar(header)));
                 }
                 else
                 {
-                    this.Headers.Add(0);
+                    Headers.Add(0);
                 }
             }
 
@@ -37,25 +37,25 @@ namespace boombang_emulator.src.Models
                 }
             }
 
-            this.Parameters = new string[data.Split('²').Length, subParametersLength];
+            Parameters = new string[data.Split('²').Length, subParametersLength];
 
             for (int i = 1; i < data.Split('²').Length; i++)
             {
                 for (int j = 0; j < data.Split('²')[i].Split('³').Length - 1; j++)
                 {
-                    this.Parameters[i - 1, j] = data.Split('²')[i].Split('³')[j];
+                    Parameters[i - 1, j] = data.Split('²')[i].Split('³')[j];
                 }
             }
 
         }
         public string GetData()
         {
-            return this.Data;
+            return Data;
         }
         public string GetHandler()
         {
             string Handler = "Method";
-            foreach (int ActualHeader in this.Headers)
+            foreach (int ActualHeader in Headers)
             {
                 Handler += "_" + ActualHeader;
             }
@@ -64,7 +64,7 @@ namespace boombang_emulator.src.Models
         public int GetInteger()
         {
             string num = "";
-            foreach (int ActualHeader in this.Headers)
+            foreach (int ActualHeader in Headers)
             {
                 num += ActualHeader;
             }
@@ -72,11 +72,11 @@ namespace boombang_emulator.src.Models
         }
         public int GetHeader()
         {
-            return this.GetInteger();
+            return GetInteger();
         }
         public new string ToString()
         {
-            return "Packet Information: " + this.GetHandler() + " -> " + this.GetData();
+            return "Packet Information: " + GetHandler() + " -> " + GetData();
         }
     }
 }

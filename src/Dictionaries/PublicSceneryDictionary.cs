@@ -1,4 +1,4 @@
-﻿using boombang_emulator.src.Models;
+﻿using boombang_emulator.src.Models.Scenarios;
 using boombang_emulator.src.Services;
 using System.Collections.Concurrent;
 

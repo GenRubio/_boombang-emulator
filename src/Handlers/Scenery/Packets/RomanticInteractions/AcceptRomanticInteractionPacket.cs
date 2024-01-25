@@ -1,4 +1,6 @@
-﻿namespace boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions
+﻿using boombang_emulator.src.Models.Messages;
+
+namespace boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions
 {
     internal class AcceptRomanticInteractionPacket
     {
@@ -7,7 +9,7 @@
             int userKeyInArea = user.Scenery!.GetClientIdentifier(user.Id);
             int senderKeyInArea = senderUser.Scenery!.GetClientIdentifier(senderUser.Id);
 
-            Models.ServerMessage serverMessage = new([137, 122]);
+            ServerMessage serverMessage = new([137, 122]);
             serverMessage.AppendParameter(interaction);
             serverMessage.AppendParameter(senderKeyInArea);
             serverMessage.AppendParameter(senderUser.ActualPositionInScenery!.X);

@@ -1,15 +1,17 @@
-﻿namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+﻿using boombang_emulator.src.Models.Messages;
+
+namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
     internal class LoadUserPacket
     {
-        public static void Invoke(Models.Client client, Models.Scenery scenery)
+        public static void Invoke(Models.Client client, Models.Scenarios.Scenery scenery)
         {
             if (client.User == null || client.User.ActualPositionInScenery == null)
             {
                 throw new Exception("-");
             }
 
-            Models.ServerMessage serverMessage = new([128, 122]);
+            ServerMessage serverMessage = new([128, 122]);
             serverMessage.AppendParameter(scenery.GetClientIdentifier(client.User.Id));
             serverMessage.AppendParameter(client.User.Username);
             serverMessage.AppendParameter(client.User.Avatar.Id);

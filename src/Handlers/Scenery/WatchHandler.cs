@@ -2,6 +2,7 @@
 using boombang_emulator.src.Enums;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery
@@ -18,7 +19,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                bool isBlockedAction = client.User!.Actions.Watch;
+                bool isBlockedAction = client.User!.Actions.Action.Watch;
                 if (isBlockedAction)
                 {
                     return;
@@ -28,7 +29,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 WatchPacket.Invoke(client, z);
 
                 client.User!.ActualPositionInScenery!.Z = z;
-                client.User.Actions.SetAction(AvatarActionsEnum.WATCH, client.User.Avatar.Id);
+                client.User.Actions.GenericAction.SetAction(AvatarActionsEnum.WATCH, client);
             }
             catch (Exception ex)
             {

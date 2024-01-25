@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Enums;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Pathfinding;
 using boombang_emulator.src.Utils;
 using System.Drawing;
@@ -19,7 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                bool isBlockedAction = client.User!.Actions.Walk;
+                bool isBlockedAction = client.User!.Actions.Action.Walk;
                 if (isBlockedAction)
                 {
                     return;
@@ -42,7 +43,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 client.User!.StopMoviment();
                 client.User!.SetWalkTrajectory(endLocation, client);
 
-                client.User!.Actions.SetAction(AvatarActionsEnum.WALK, client.User.Avatar.Id);
+                client.User!.Actions.GenericAction.SetAction(AvatarActionsEnum.WALK, client);
             }
             catch (Exception ex)
             {

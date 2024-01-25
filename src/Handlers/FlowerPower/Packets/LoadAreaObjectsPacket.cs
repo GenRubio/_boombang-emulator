@@ -1,4 +1,6 @@
-﻿namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+﻿using boombang_emulator.src.Models.Messages;
+
+namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
     internal class LoadAreaObjectsPacket
     {
@@ -6,7 +8,7 @@
         {
             Middlewares.IsUserInScenery(client);
 
-            Models.ServerMessage serverMessage = new([128, 121, 120]);
+            ServerMessage serverMessage = new([128, 121, 120]);
             serverMessage = LoadNpcPacket.Invoke(serverMessage);
             serverMessage = LoadUsersInAreaPacket.Invoke(serverMessage, client.User.Scenery);
             client.SendData(serverMessage);

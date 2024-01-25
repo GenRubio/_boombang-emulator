@@ -3,6 +3,7 @@ using boombang_emulator.src.Enums;
 using boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Interfaces;
+using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
@@ -19,7 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
             {
                 Middlewares.IsUserInScenery(client);
 
-                Models.Scenery userScenery = client.User!.Scenery!;
+                Models.Scenarios.Scenery userScenery = client.User!.Scenery!;
                 Middlewares.IsRomanticInteractionEnabled(userScenery);
 
                 int interactionId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
@@ -29,7 +30,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Interaction not found");
                 }
 
-                Client senderClient = userScenery.Clients[senderId] ?? throw new Exception("Receiver not found");
+                Client senderClient = userScenery.Clients[senderId] ?? throw new Exception("Sender not found");
 
                 int userKeyInArea = userScenery.GetClientIdentifier(client.User.Id);
                 int senderKeyInArea = userScenery.GetClientIdentifier(senderClient.User!.Id);
@@ -40,8 +41,8 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     bool isUserNextToSender = SceneryUtils.IsUserNextToAnotherUser(client.User, senderClient.User!);
                     if (romanticInteraction != null
                         && isUserNextToSender
-                        && IsUserHavePermissionToInteract(interactionId, client.User)
-                        && IsUserHavePermissionToInteract(interactionId, senderClient.User))
+                        && client.User.Actions.RomanticInteractionAction.IsPermitted()
+                        && senderClient.User.Actions.RomanticInteractionAction.IsPermitted())
                     {
                         scenery.RemoveRomanticInteraction(romanticInteraction);
                         StartInteraction(interactionId, client, senderClient);
@@ -83,27 +84,10 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Interaction not found");
             }
 
-            client.User!.Actions.SetAction(clientAction, client.User.Avatar.Id);
-            senderClient.User!.Actions.SetAction(senderAction, senderClient.User.Avatar.Id);
+            client.User!.Actions.RomanticInteractionAction.SetAction(clientAction, client);
+            senderClient.User!.Actions.RomanticInteractionAction.SetAction(senderAction, senderClient);
 
             AcceptRomanticInteractionPacket.Invoke(client.User, senderClient.User, interactionId);
-        }
-        private static bool IsUserHavePermissionToInteract(int interactionId, User user)
-        {
-            bool isBlockedAction = false;
-            switch (interactionId)
-            {
-                case (int)RomanticInteractionsEnum.KISS:
-                    isBlockedAction = user.Actions.GiveKiss || user.Actions.ReceiveKiss;
-                    break;
-                case (int)RomanticInteractionsEnum.DRINK:
-                    isBlockedAction = user.Actions.GiveDrink || user.Actions.ReceiveDrink;
-                    break;
-                case (int)RomanticInteractionsEnum.ROSE:
-                    isBlockedAction = user.Actions.GiveRose || user.Actions.ReceiveRose;
-                    break;
-            }
-            return !isBlockedAction;
         }
     }
 }

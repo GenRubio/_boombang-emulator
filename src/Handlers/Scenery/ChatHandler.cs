@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery
@@ -17,7 +18,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                bool isBlockedAction = client.User!.Actions.Chat;
+                bool isBlockedAction = client.User!.Actions.Action.Chat;
                 if (isBlockedAction)
                 {
                     return;
@@ -36,7 +37,7 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 PublicChatPacket.Invoke(client, message);
 
-                client.User!.Actions.SetAction(Enums.AvatarActionsEnum.CHAT, client.User.Avatar.Id);
+                client.User!.Actions.GenericAction.SetAction(Enums.AvatarActionsEnum.CHAT, client);
             }
             catch (Exception ex)
             {
@@ -52,7 +53,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 case "/avatar":
                     {
                         var parameter = data[1];
-                        Models.ServerMessage serverMessage = new([125, 120]);
+                        ServerMessage serverMessage = new([125, 120]);
                         serverMessage.AppendParameter(client.User!.Id);
                         serverMessage.AppendParameter(parameter);
                         serverMessage.AppendParameter(client.User!.Avatar.Color);
@@ -67,7 +68,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                         {
                             var parameter1 = data[1];
                             var parameter2 = data[2];
-                            Models.ServerMessage serverMessage = new([134]);
+                            ServerMessage serverMessage = new([134]);
                             serverMessage.AppendParameter(parameter1);
                             serverMessage.AppendParameter(client.User!.Id);
                             client.User!.Scenery!.SendData(serverMessage);
@@ -82,10 +83,10 @@ namespace boombang_emulator.src.Handlers.Scenery
                         {
                             var parameter1 = data[1];
                             var parameter2 = data[2];
-                            Models.Scenery scenery = client.User!.Scenery!;
+                            Models.Scenarios.Scenery scenery = client.User!.Scenery!;
                             int userKeyInArea = scenery.GetClientIdentifier(client.User.Id);
 
-                            Models.ServerMessage serverMessage = new([137, 122]);
+                            ServerMessage serverMessage = new([137, 122]);
                             serverMessage.AppendParameter(parameter1);
                             serverMessage.AppendParameter(userKeyInArea);
                             serverMessage.AppendParameter(client.User!.ActualPositionInScenery!.X);

@@ -1,9 +1,10 @@
 ﻿using boombang_emulator.src.Models.Interfaces;
+using boombang_emulator.src.Models.Messages;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Drawing;
 
-namespace boombang_emulator.src.Models
+namespace boombang_emulator.src.Models.Scenarios
 {
     internal class Scenery
     {
@@ -20,17 +21,17 @@ namespace boombang_emulator.src.Models
         public MapArea MapAreaObject { get; set; }
         public Scenery(Dictionary<string, object> data)
         {
-            this.Id = Convert.ToInt32(data["id"]);
-            this.ModelId = Convert.ToInt32(data["model_id"]);
-            this.TypeId = Convert.ToInt32(data["type_id"]);
-            this.AccessibilityTypeId = Convert.ToInt32(data["accessibility_type_id"]);
-            this.Name = (string)data["name"];
-            this.UppertPrice = Convert.ToInt32(data["uppert_price"]);
-            this.CocoPrice = Convert.ToInt32(data["coco_price"]);
-            this.MaxVisitors = Convert.ToInt32(data["max_visitors"]);
-            this.Active = Convert.ToBoolean(Convert.ToInt32(data["active"]));
-            this.Clients = [];
-            this.MapAreaObject = new(data);
+            Id = Convert.ToInt32(data["id"]);
+            ModelId = Convert.ToInt32(data["model_id"]);
+            TypeId = Convert.ToInt32(data["type_id"]);
+            AccessibilityTypeId = Convert.ToInt32(data["accessibility_type_id"]);
+            Name = (string)data["name"];
+            UppertPrice = Convert.ToInt32(data["uppert_price"]);
+            CocoPrice = Convert.ToInt32(data["coco_price"]);
+            MaxVisitors = Convert.ToInt32(data["max_visitors"]);
+            Active = Convert.ToBoolean(Convert.ToInt32(data["active"]));
+            Clients = [];
+            MapAreaObject = new(data);
         }
         public void RemoveClient(Client client)
         {
@@ -44,7 +45,7 @@ namespace boombang_emulator.src.Models
             int key = Clients.FirstOrDefault(x => x.Value.User?.Id == client.User.Id).Key;
             Clients.TryRemove(key, out var removedClient);
             client.User.SetScenery(null);
-            client.User.Actions.ResetActions();
+            client.User.Actions.Action.ResetActions();
         }
         public Client? GetClientInPosition(Point position)
         {
@@ -60,7 +61,7 @@ namespace boombang_emulator.src.Models
         }
         public void SendData(ServerMessage server, Client? client = null)
         {
-            foreach (Client sceneryClient in this.Clients.Values)
+            foreach (Client sceneryClient in Clients.Values)
             {
                 if (sceneryClient == client)
                 {

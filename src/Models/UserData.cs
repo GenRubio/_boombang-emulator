@@ -4,10 +4,12 @@
     {
         public int Id { get; set; }
         public string Color { get; set; }
+        public int SelectedCoconut { get; set; }
         public UserData(Dictionary<string, object> data)
         {
             this.Id = Convert.ToInt32(data["avatar_id"]);
             this.Color = (string)data["avatar_color"];
+            this.SelectedCoconut = 0;
         }
     }
 }

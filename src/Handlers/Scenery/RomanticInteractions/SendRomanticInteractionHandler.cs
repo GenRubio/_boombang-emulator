@@ -3,6 +3,8 @@ using boombang_emulator.src.Enums;
 using boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Interfaces;
+using boombang_emulator.src.Models.Messages;
+using boombang_emulator.src.Utils;
 
 namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
 {
@@ -18,7 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
             {
                 Middlewares.IsUserInScenery(client);
 
-                Models.Scenery userScenery = client.User!.Scenery!;
+                Models.Scenarios.Scenery userScenery = client.User!.Scenery!;
                 Middlewares.IsRomanticInteractionEnabled(userScenery);
 
                 int interactionId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
@@ -45,8 +47,9 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Scenery is not romantic interaction enabled");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ConsoleUtils.WriteError(ex);
                 client.Close();
             }
         }

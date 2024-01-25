@@ -1,8 +1,10 @@
-﻿namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+﻿using boombang_emulator.src.Models.Messages;
+
+namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
     internal class LoadUsersInAreaPacket
     {
-        public static Models.ServerMessage Invoke(Models.ServerMessage serverMessage, Models.Scenery scenery)
+        public static ServerMessage Invoke(ServerMessage serverMessage, Models.Scenarios.Scenery scenery)
         {
             foreach (var item in scenery.Clients)
             {

@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Handlers.Auth.Packets;
 using boombang_emulator.src.Models;
+using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Services;
 using boombang_emulator.src.Utils;
 

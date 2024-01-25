@@ -4,7 +4,7 @@ namespace boombang_emulator.src.Dictionaries
 {
     internal class AvatarActionsDictionary
     {
-        public static Dictionary<ushort, Dictionary<AvatarActionsEnum, int>> avatarActions = new()
+        public static Dictionary<ushort, Dictionary<AvatarActionsEnum, int>> data = new()
         {
             {
                 (ushort)AvatarsEnum.NERD, new Dictionary<AvatarActionsEnum, int> {
@@ -25,6 +25,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 9000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -46,6 +56,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 11000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -67,6 +87,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 9000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -88,6 +118,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 16000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -109,6 +149,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 7000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -130,6 +180,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 12000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -151,6 +211,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 2000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 9000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -172,6 +242,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 10000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -193,6 +273,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 8000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -214,6 +304,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 9000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -235,6 +335,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 15000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -256,6 +366,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 11000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -277,6 +397,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 1000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 1000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -298,6 +428,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 1000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 1000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -319,6 +459,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 8000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -340,6 +490,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 3000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 7000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
             {
@@ -361,6 +521,16 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_KISS, 2000 },
                     { AvatarActionsEnum.RECEIVE_DRINK, 8000 },
                     { AvatarActionsEnum.RECEIVE_ROSE, 1000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT, 6000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SNOWBALL, 2000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_SHOE, 4750 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_CAKE, 9300 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_FLOWERPOT, 7000 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_HONEYCOMB, 14800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_TRASH, 13200 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
+                    { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
                 }
             },
         };

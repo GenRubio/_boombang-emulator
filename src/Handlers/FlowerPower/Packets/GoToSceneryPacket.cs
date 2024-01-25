@@ -1,10 +1,12 @@
-﻿namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+﻿using boombang_emulator.src.Models.Messages;
+
+namespace boombang_emulator.src.Handlers.FlowerPower.Packets
 {
     internal class GoToSceneryPacket
     {
-        public static void Invoke(Models.Client client, Models.Scenery scenery)
+        public static void Invoke(Models.Client client, Models.Scenarios.Scenery scenery)
         {
-            Models.ServerMessage serverMessage = new([128, 120]);
+            ServerMessage serverMessage = new([128, 120]);
             serverMessage.AppendParameter(1);
             serverMessage.AppendParameter(scenery.AccessibilityTypeId);
             serverMessage.AppendParameter(0);
