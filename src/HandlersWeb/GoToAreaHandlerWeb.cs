@@ -15,7 +15,7 @@ namespace boombang_emulator.src.HandlersWeb
         {
             HandlerWebController.SetHandler("go-to-area", new ProcessWebHandler(GoToArea));
         }
-        private static void GoToArea(WebSocket webSocket, Client client, Dictionary<string, object> data)
+        private static void GoToArea(WebSocket webSocket, Client? client, Dictionary<string, object> data)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace boombang_emulator.src.HandlersWeb
                 PublicScenery publicScenery = PublicSceneryDictionary.publicSceneries[scenaryId] ?? throw new Exception("-");
 
                 if (
-                    (client.User!.Scenery != null && client.User.Scenery != publicScenery)
+                    (client!.User!.Scenery != null && client.User.Scenery != publicScenery)
                     || client.User!.Scenery == null
                     )
                 {
@@ -45,7 +45,7 @@ namespace boombang_emulator.src.HandlersWeb
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);
-                client.Close();
+                client!.Close();
             }
         }
     }
