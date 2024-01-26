@@ -21,7 +21,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 Middlewares.IsUserInScenery(client);
 
                 bool isBlockedAction = client.User!.Actions.Action.Walk;
-                if (isBlockedAction)
+                if (isBlockedAction && !client.User!.Scenery!.IsWalkable)
                 {
                     return;
                 }

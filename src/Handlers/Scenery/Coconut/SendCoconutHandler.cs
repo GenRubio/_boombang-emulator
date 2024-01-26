@@ -33,7 +33,7 @@ namespace boombang_emulator.src.Handlers.Scenery.Coconut
                     int cocoId = Convert.ToInt32(cocoData["coconut_id"]);
 
                     receiverClient.User!.StopMoviment();
-                    receiverClient.User!.Actions.CoconutAction.SetAction(action, receiverClient, cocoId);
+                    receiverClient.User!.Actions.CoconutAction.SetAction(action, cocoId);
 
                     SendCoconutPacket.Invoke(receiverClient.User, cocoId);
                 }

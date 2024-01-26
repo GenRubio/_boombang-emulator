@@ -11,6 +11,7 @@ namespace boombang_emulator.src.Models
         {
             Key = key;
             ClientIdentifierAutoIncrement = 1;
+            IsWalkable = false;
         }
         public void AddClient(Client client)
         {

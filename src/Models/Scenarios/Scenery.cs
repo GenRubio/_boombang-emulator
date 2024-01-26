@@ -16,6 +16,7 @@ namespace boombang_emulator.src.Models.Scenarios
         public int UppertPrice { get; set; }
         public int CocoPrice { get; set; }
         public int MaxVisitors { get; set; }
+        public bool IsWalkable { get; set; }
         public bool Active { get; set; }
         public ConcurrentDictionary<int, Client> Clients { get; set; }
         public MapArea MapAreaObject { get; set; }
@@ -30,6 +31,7 @@ namespace boombang_emulator.src.Models.Scenarios
             CocoPrice = Convert.ToInt32(data["coco_price"]);
             MaxVisitors = Convert.ToInt32(data["max_visitors"]);
             Active = Convert.ToBoolean(Convert.ToInt32(data["active"]));
+            IsWalkable = true;
             Clients = [];
             MapAreaObject = new(data);
         }
