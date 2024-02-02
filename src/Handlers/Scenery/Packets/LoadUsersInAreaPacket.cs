@@ -1,6 +1,6 @@
 ﻿using boombang_emulator.src.Models.Messages;
 
-namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
     internal class LoadUsersInAreaPacket
     {
@@ -14,13 +14,14 @@ namespace boombang_emulator.src.Handlers.FlowerPower.Packets
                     && item.Value.User.ActualPositionInScenery != null
                    )
                 {
-                    serverMessage.AppendParameter(scenery.GetClientIdentifier(item.Value.User.Id));
-                    serverMessage.AppendParameter(item.Value.User.Username);
-                    serverMessage.AppendParameter(item.Value.User.Avatar.Id);
-                    serverMessage.AppendParameter(item.Value.User.Avatar.Color);
-                    serverMessage.AppendParameter(item.Value.User.ActualPositionInScenery.X);
-                    serverMessage.AppendParameter(item.Value.User.ActualPositionInScenery.Y);
-                    serverMessage.AppendParameter(item.Value.User.ActualPositionInScenery.Z);
+                    var user = item.Value.User;
+                    serverMessage.AppendParameter(scenery.GetClientIdentifier(user.Id));
+                    serverMessage.AppendParameter(user.Username);
+                    serverMessage.AppendParameter(user.Avatar.Id);
+                    serverMessage.AppendParameter(user.Avatar.Color);
+                    serverMessage.AppendParameter(user.ActualPositionInScenery.X);
+                    serverMessage.AppendParameter(user.ActualPositionInScenery.Y);
+                    serverMessage.AppendParameter(user.ActualPositionInScenery.Z);
                     serverMessage.AppendParameter("BurBian");
                     serverMessage.AppendParameter(0);
                     serverMessage.AppendParameter(0);
@@ -29,13 +30,13 @@ namespace boombang_emulator.src.Handlers.FlowerPower.Packets
                     serverMessage.AppendParameter(new object[] { 0, 0, 0, 0, 0 });
                     serverMessage.AppendParameter(0);
                     serverMessage.AppendParameter(0);
-                    serverMessage.AppendParameter(0);
-                    serverMessage.AppendParameter(0);
+                    serverMessage.AppendParameter(user.Avatar.SelectedCoconut);
+                    serverMessage.AppendParameter(user.Avatar.CoconutLevel);
                     serverMessage.AppendParameter(new object[] { "Hola", "Hola", "Hola" });
                     serverMessage.AppendParameter(new object[] { "Hola", "Hola", "Hola" });
                     serverMessage.AppendParameter(new object[] { 50, 50, 50 });
                     serverMessage.AppendParameter("Hola");
-                    serverMessage.AppendParameter(new object[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "0³" + 1 + "³0³0³0³" + 1 + "³0³0³" + (1 + 1) + "³" + 1 + "³0³" + 1 + "³" + 1 + "³" + 1 + "³0³" + 1 });
+                    serverMessage.AppendParameter(new object[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "0³" + 1 + "³0³0³0³" + 1 + "³0³0³" + user.Avatar.CoconutLevel + "³" + user.Avatar.CoconutPoints + "³0³" + user.Avatar.CoconutFinishLevelPoints + "³" + 1 + "³" + 1 + "³0³" + 1 });
                     serverMessage.AppendParameter(0);
                     serverMessage.AppendParameter(0);
                     serverMessage.AppendParameter(0);

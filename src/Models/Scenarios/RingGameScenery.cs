@@ -2,11 +2,11 @@
 
 namespace boombang_emulator.src.Models
 {
-    internal class GameScenery : Scenery
+    internal class RingGameScenery : Scenery
     {
         public int Key { get; set; }
         public int ClientIdentifierAutoIncrement { get; set; }
-        public GameScenery(int key, Dictionary<string, object> data)
+        public RingGameScenery(int key, Dictionary<string, object> data)
             : base(data)
         {
             Key = key;

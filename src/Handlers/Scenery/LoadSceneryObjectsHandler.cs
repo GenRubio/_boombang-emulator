@@ -1,10 +1,11 @@
 ﻿using boombang_emulator.src.Controllers;
-using boombang_emulator.src.Handlers.FlowerPower.Packets;
+using boombang_emulator.src.Exceptions;
+using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
-namespace boombang_emulator.src.Handlers.FlowerPower
+namespace boombang_emulator.src.Handlers.Scenery
 {
     internal class LoadSceneryObjectsHandler
     {
@@ -27,6 +28,7 @@ namespace boombang_emulator.src.Handlers.FlowerPower
                 }
                 UserInSceneryPacketWeb.Invoke(client);
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

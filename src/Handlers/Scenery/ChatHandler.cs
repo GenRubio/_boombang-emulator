@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
@@ -39,6 +40,7 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 client.User!.Actions.GenericAction.SetAction(Enums.AvatarActionsEnum.CHAT);
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

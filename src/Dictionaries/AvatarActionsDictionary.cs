@@ -35,6 +35,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -66,6 +68,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -97,6 +101,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -128,6 +134,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -159,6 +167,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -190,6 +200,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -221,6 +233,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -252,6 +266,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -283,6 +299,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -314,6 +332,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -345,6 +365,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -376,6 +398,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -407,6 +431,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -438,6 +464,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -469,6 +497,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -500,6 +530,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
             {
@@ -531,6 +563,8 @@ namespace boombang_emulator.src.Dictionaries
                     { AvatarActionsEnum.RECEIVE_COCONUT_WATERMELON, 9800 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_YUNQUE, 13700 },
                     { AvatarActionsEnum.RECEIVE_COCONUT_PIANO, 16800 },
+                    { AvatarActionsEnum.GIVE_UPPERCUT, 13000 },
+                    { AvatarActionsEnum.RECEIVE_UPPERCUT, 15000 },
                 }
             },
         };

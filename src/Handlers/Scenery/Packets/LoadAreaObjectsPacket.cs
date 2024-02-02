@@ -1,6 +1,6 @@
 ﻿using boombang_emulator.src.Models.Messages;
 
-namespace boombang_emulator.src.Handlers.FlowerPower.Packets
+namespace boombang_emulator.src.Handlers.Scenery.Packets
 {
     internal class LoadAreaObjectsPacket
     {

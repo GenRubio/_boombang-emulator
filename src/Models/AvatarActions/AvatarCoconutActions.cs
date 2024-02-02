@@ -33,6 +33,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                     Actions.SetBlockRomanticInteractions(true);
                     Actions.ResetExpressionsSource?.Cancel();
                     Actions.SetBlockExpressions(true);
+                    Actions.SetBlockUppercut(true);
                     Actions.SetBlockCoconuts(true);
                     break;
             }
@@ -65,6 +66,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                                 Actions.SetBlockRomanticInteractions(false);
                                 Actions.SetBlockExpressions(false);
                                 Actions.SetBlockCoconuts(false);
+                                Actions.SetBlockUppercut(false);
                                 break;
                         }
                         RemoveCoconutPacket.Invoke(this.User, coconutId);

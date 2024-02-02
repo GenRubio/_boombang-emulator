@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Enums;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
@@ -31,6 +32,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                 client.User!.ActualPositionInScenery!.Z = z;
                 client.User.Actions.GenericAction.SetAction(AvatarActionsEnum.WATCH);
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

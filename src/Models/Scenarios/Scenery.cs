@@ -35,8 +35,20 @@ namespace boombang_emulator.src.Models.Scenarios
             Clients = [];
             MapAreaObject = new(data);
         }
+        public void RemoveUser(User user)
+        {
+            Client? client = Clients.FirstOrDefault(sceneryClient => sceneryClient.Value.User != null
+                           && sceneryClient.Value.User.Id == user.Id).Value;
+            if (client != null)
+            {
+                RemoveClient(client);
+            }
+        }
         public void RemoveClient(Client client)
         {
+            int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
+            client.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
+
             client.User!.StopMoviment();
 
             if (client.User!.Scenery is PublicPrivateSceneryInterface scenery)
