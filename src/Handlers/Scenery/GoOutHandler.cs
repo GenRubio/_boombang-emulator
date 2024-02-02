@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.HandlersWeb.FlowerPower.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
@@ -18,14 +19,13 @@ namespace boombang_emulator.src.Handlers.Scenery
             {
                 Middlewares.IsUserInScenery(client);
 
-                int userKeyInArea = client.User!.Scenery!.GetClientIdentifier(client.User.Id);
-                client.User.Scenery.SendData(new([128, 123], [userKeyInArea]));
-                client.User.Scenery.RemoveClient(client);
+                client.User!.Scenery!.RemoveClient(client);
                 client.SendData(new([128, 124]));
 
                 RenderAreasPacketWeb.Invoke(client);
                 RenderAreasCountUserPacketWeb.Invoke(null);
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

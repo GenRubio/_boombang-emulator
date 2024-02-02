@@ -1,6 +1,7 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Enums;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Handlers.Scenery.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
@@ -19,6 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery
             try
             {
                 Middlewares.IsUserInScenery(client);
+                Middlewares.IsUserUseWalkAutoclick(client.User!);
 
                 if (client.User!.Actions.ExpressionAction.IsPermitted())
                 {
@@ -30,6 +32,7 @@ namespace boombang_emulator.src.Handlers.Scenery
                     ExpressionPacket.Invoke(client.User, expressionId);
                 }
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

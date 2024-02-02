@@ -23,7 +23,7 @@ namespace boombang_emulator.src.Controllers
             Handlers.House.UserHouseButtonHandler.Invoke();
             Handlers.FlowerPower.MenuHandler.Invoke();
             Handlers.FlowerPower.LoadSceneriesHandler.Invoke();
-            Handlers.FlowerPower.LoadSceneryObjectsHandler.Invoke();
+            Handlers.Scenery.LoadSceneryObjectsHandler.Invoke();
             Handlers.UndefinedHandlers.Invoke();
             Handlers.Scenery.GoOutHandler.Invoke();
             Handlers.Scenery.VotesHandler.Invoke();
@@ -35,6 +35,8 @@ namespace boombang_emulator.src.Controllers
             Handlers.Scenery.RomanticInteractions.AcceptRomanticInteractionHandler.Invoke();
             Handlers.Scenery.RomanticInteractions.CancelRomanticInteractionHandler.Invoke();
             Handlers.Scenery.Coconut.SendCoconutHandler.Invoke();
+            Handlers.Scenery.Coconut.ChangeCoconutHandler.Invoke();
+            Handlers.Scenery.Uppercut.SendUppercutHandler.Invoke();
         }
         public static void SetHandler(int header, ProcessHandler handler)
         {

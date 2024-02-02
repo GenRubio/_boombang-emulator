@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Handlers.Auth.Packets;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
@@ -37,6 +38,7 @@ namespace boombang_emulator.src.Handlers.Auth
                 Thread.Sleep(new TimeSpan(0, 0, 0, 0, 500));
                 UserPacket.Invoke(client);
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

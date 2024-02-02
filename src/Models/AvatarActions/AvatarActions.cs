@@ -33,6 +33,8 @@ namespace boombang_emulator.src.Models.AvatarActions
         public bool ReceiveCoconutWatermelon { get; set; } = false;
         public bool ReceiveCoconutYunque { get; set; } = false;
         public bool ReceiveCoconutPiano { get; set; } = false;
+        public bool ReceiveUppercut { get; set; } = false;
+        public bool GiveUppercut { get; set; } = false;
         public CancellationTokenSource? ResetActionsSource { get; set; }
         public CancellationTokenSource? ResetExpressionsSource { get; set; }
         public AvatarActions(User user)
@@ -79,6 +81,12 @@ namespace boombang_emulator.src.Models.AvatarActions
             ReceiveCoconutPiano =
             Walk = block;
         }
+        public void SetBlockUppercut(bool block)
+        {
+            ReceiveUppercut =
+            GiveUppercut =
+            Walk = block;
+        }
         public void ResetActions()
         {
             ResetExpressionsSource?.Cancel();
@@ -108,7 +116,9 @@ namespace boombang_emulator.src.Models.AvatarActions
             ReceiveCoconutTrash =
             ReceiveCoconutWatermelon =
             ReceiveCoconutYunque =
-            ReceiveCoconutPiano = false;
+            ReceiveCoconutPiano =
+            GiveUppercut =
+            ReceiveUppercut = false;
         }
     }
 }

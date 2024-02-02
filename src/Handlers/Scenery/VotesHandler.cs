@@ -1,4 +1,5 @@
 ﻿using boombang_emulator.src.Controllers;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
@@ -19,6 +20,7 @@ namespace boombang_emulator.src.Handlers.Scenery
 
                 client.SendData(new([167], [1]));
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

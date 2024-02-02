@@ -1,5 +1,6 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Enums;
+using boombang_emulator.src.Exceptions;
 using boombang_emulator.src.Handlers.Scenery.Packets.RomanticInteractions;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Interfaces;
@@ -47,6 +48,7 @@ namespace boombang_emulator.src.Handlers.Scenery.RomanticInteractions
                     throw new Exception("Scenery is not romantic interaction enabled");
                 }
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

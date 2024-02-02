@@ -27,6 +27,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                     Actions.ResetExpressionsSource?.Cancel();
                     Actions.SetBlockExpressions(true);
                     Actions.SetBlockCoconuts(true);
+                    Actions.SetBlockUppercut(true);
                     break;
             }
             timeEnd = Actions.GetTime(action);
@@ -51,6 +52,7 @@ namespace boombang_emulator.src.Models.AvatarActions
                                 Actions.SetBlockRomanticInteractions(false);
                                 Actions.SetBlockExpressions(false);
                                 Actions.SetBlockCoconuts(false);
+                                Actions.SetBlockUppercut(false);
                                 break;
                         }
                         break;

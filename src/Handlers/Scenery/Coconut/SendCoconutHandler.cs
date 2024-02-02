@@ -1,7 +1,8 @@
 ﻿using boombang_emulator.src.Controllers;
 using boombang_emulator.src.Dictionaries;
 using boombang_emulator.src.Enums;
-using boombang_emulator.src.Handlers.Scenery.Packets;
+using boombang_emulator.src.Exceptions;
+using boombang_emulator.src.Handlers.Scenery.Packets.Coconut;
 using boombang_emulator.src.Models;
 using boombang_emulator.src.Models.Messages;
 using boombang_emulator.src.Utils;
@@ -19,11 +20,15 @@ namespace boombang_emulator.src.Handlers.Scenery.Coconut
             try
             {
                 Middlewares.IsUserInScenery(client);
+                Middlewares.IsUserUseWalkAutoclick(client.User!);
 
                 Models.Scenarios.Scenery userScenery = client.User!.Scenery!;
                 int receiverId = Convert.ToInt32(clientMessage.Parameters[0, 0]);
 
-                Client receiverClient = userScenery.Clients[receiverId] ?? throw new Exception("Receiver not found");
+                if (!userScenery.Clients.TryGetValue(receiverId, out Client? receiverClient) || receiverClient == null)
+                {
+                    return;
+                }
 
                 if (receiverClient.User!.Actions.CoconutAction.IsPermitted())
                 {
@@ -38,6 +43,7 @@ namespace boombang_emulator.src.Handlers.Scenery.Coconut
                     SendCoconutPacket.Invoke(receiverClient.User, cocoId);
                 }
             }
+            catch (MiddlewareException) { }
             catch (Exception ex)
             {
                 ConsoleUtils.WriteError(ex);

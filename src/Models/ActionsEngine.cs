@@ -10,6 +10,7 @@ namespace boombang_emulator.src.Models
         public AvatarRomanticInteractionActions RomanticInteractionAction { get; set; }
         public AvatarExpressionActions ExpressionAction { get; set; }
         public AvatarCoconutActions CoconutAction { get; set; }
+        public AvatarUppercutActions UppercutActions { get; set; }
         public ActionsEngine(User user)
         {
             this.User = user;
@@ -18,6 +19,7 @@ namespace boombang_emulator.src.Models
             this.RomanticInteractionAction = new(this.Action);
             this.ExpressionAction = new(this.Action);
             this.CoconutAction = new(this.Action, this.User);
+            this.UppercutActions = new(this.Action, this.User);
         }
     }
 }
